@@ -36,7 +36,7 @@ Untuk mencapai tujuan di atas, kami akan menggunakan berbagai teknik pemodelan t
 
 ## Data Understanding
 
-Dataset yang digunakan adalah dataset kendaraan yang berisi informasi mengenai merek kendaraan, harga MSRP, tenaga mesin, torsi, dan beberapa fitur lainnya. Data ini diambil dari [sumber dataset](tautan_link). Variabel-variabel dalam dataset ini antara lain:
+Dataset yang digunakan adalah dataset kendaraan yang berisi informasi mengenai merek kendaraan, harga MSRP, tenaga mesin, torsi, dan beberapa fitur lainnya. Data ini diambil dari [sumber dataset](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv). Variabel-variabel dalam dataset ini antara lain:
 - **MSRP**: Harga kendaraan baru.
 - **Horsepower**: Tenaga mesin kendaraan.
 - **Torque**: Torsi kendaraan.
