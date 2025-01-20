@@ -149,3 +149,7 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 Proyek ini berhasil mengidentifikasi faktor utama yang mempengaruhi harga kendaraan dan membangun model prediksi harga kendaraan dengan akurasi yang cukup baik. Walaupun model memiliki akurasi tinggi untuk sebagian besar harga kendaraan, terdapat ruang untuk meningkatkan prediksi terutama pada kendaraan dengan harga tinggi. Ke depannya, pengembangan model dengan fitur lebih banyak dan teknik lain seperti regresi berbasis pohon keputusan atau XGBoost dapat meningkatkan performa lebih jauh.
 
 ---
+
+## Referensi
+
+Simanjuntak, D. S. (2020). *Analisis faktor pembelian mobil berdasarkan harga dan merek*. CERMIN: Jurnal Penelitian, 4(1), 176-187. [https://doi.org/10.36841/cermin_unars.v4i1.529](https://doi.org/10.36841/cermin_unars.v4i1.529). Diakses pada 20 Januari 2025, dari [https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
