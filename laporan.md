@@ -62,7 +62,7 @@ Dataset yang digunakan adalah dataset kendaraan yang berisi informasi mengenai m
 Setelah memuat dan memahami data, kami melakukan eksplorasi lebih lanjut terhadap distribusi fitur dan hubungan antar fitur untuk mendapatkan wawasan yang lebih dalam melalui visualisasi dan analisis data eksploratori. Kami juga melakukan analisis untuk melihat apakah ada fitur yang tidak memberikan informasi berguna atau mengandung banyak nilai hilang.
 
 ### Lampiran:
-- **Sample Dataset**: ![Sample Dataset](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/ml1.PNG)
+- **Sample Dataset**: ![Sample Dataset](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt1.PNG)
 
 ---
 
@@ -85,7 +85,7 @@ Proses ini melibatkan pengolahan data untuk mempersiapkannya agar dapat digunaka
 Proses ini penting untuk memastikan bahwa data yang digunakan dalam pelatihan model sudah bersih, konsisten, dan siap untuk dianalisis lebih lanjut. Dengan mempersiapkan data dengan cara ini, model machine learning yang dibangun nantinya dapat bekerja dengan optimal.
 
 ### Lampiran:
-- **Tabel Missing Value**: ![Missing Value Table](link_ke_image_missing_value)
+- **Tabel Missing Value**: ![Missing Value Table](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
 
 ---
 
@@ -113,8 +113,8 @@ Model dievaluasi menggunakan beberapa metrik:
 Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi linier memiliki performa yang baik dengan R² mencapai **0.93** pada data uji. Meskipun demikian, RMSE dan MAE menunjukkan bahwa masih ada ruang untuk perbaikan.
 
 ### Lampiran:
-- **Pairplot to Visualize Relationships**: ![Pairplot](link_ke_image_pairplot)
-- **Correlation Matrix**: ![Correlation Matrix](link_ke_image_correlation_matrix)
+- **Pairplot to Visualize Relationships**: ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
+- **Correlation Matrix**: ![Correlation Matrix](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
 
 ---
 
@@ -131,8 +131,8 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 5. **Tren Residual**: Tren residual menunjukkan bahwa model kurang akurat pada kendaraan dengan harga sangat tinggi, yang memberikan wawasan tentang kelompok kendaraan yang kurang terlayani oleh model.
 
 ### Lampiran:
-- **Train Data: Predicted vs Actual**: ![Predicted vs Actual](link_ke_image_predicted_vs_actual)
-- **Residuals for Train Data**: ![Residuals](link_ke_image_residuals)
+- **Train Data: Predicted vs Actual**: ![Predicted vs Actual](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt5.png)
+- **Residuals for Train Data**: ![Residuals](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt6.png)
 
 ---
 
