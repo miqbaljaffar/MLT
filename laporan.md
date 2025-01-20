@@ -7,14 +7,17 @@ Proyek ini bertujuan untuk menganalisis faktor-faktor yang mempengaruhi harga ke
 Mengidentifikasi faktor-faktor yang mempengaruhi harga kendaraan sangat penting karena dapat membantu produsen, dealer, dan pembeli dalam menentukan harga yang lebih akurat dan strategis. Hal ini juga berpotensi memberikan wawasan mengenai pasar kendaraan dan membantu dalam pengambilan keputusan yang lebih baik.
 
 ### Mengapa Masalah Ini Harus Diselesaikan?
+
 Masalah harga kendaraan harus diselesaikan untuk memberikan dasar yang kuat dalam penetapan harga oleh produsen serta memberikan pembeli panduan yang lebih cerdas dalam menentukan anggaran mereka. Di era yang semakin kompetitif ini, kemampuan untuk memahami faktor harga kendaraan dapat membantu dalam merancang strategi harga yang lebih efisien dan tepat sasaran.
 
 ### Riset Terkait
+
 Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang menganalisis faktor harga kendaraan menggunakan berbagai fitur kendaraan. Beberapa studi yang relevan melibatkan penggunaan model regresi dan pohon keputusan untuk memprediksi harga kendaraan. Penelitian mengenai analisis harga kendaraan dapat ditemukan dalam artikel seperti yang dipublikasikan oleh [Sumber Riset](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529), yang memberikan dasar teori serta pendekatan metodologi yang dapat digunakan untuk memecahkan masalah ini.
 
 ## Business Understanding
 
 ### Problem Statements
+
 1. **Faktor apa saja yang mempengaruhi harga kendaraan baru (MSRP)?**
    - Pemahaman tentang fitur-fitur teknis dan faktor-faktor eksternal yang memengaruhi harga kendaraan.
    
@@ -31,6 +34,7 @@ Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang m
    - Mencari pola-pola yang menunjukkan bahwa model mungkin tidak dapat menangani beberapa kelompok kendaraan dengan baik, terutama harga tinggi.
 
 ### Goals
+
 1. **Mengetahui faktor utama yang mempengaruhi harga kendaraan.**
 2. **Mengetahui hubungan antara jenis kendaraan dan harga.**
 3. **Mengetahui distribusi harga kendaraan untuk menentukan strategi harga yang tepat.**
@@ -38,6 +42,7 @@ Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang m
 5. **Mengidentifikasi kelompok kendaraan yang kurang terlayani melalui analisis residual.**
 
 ### Solution Statement
+
 Untuk mencapai tujuan di atas, proyek ini menggunakan berbagai teknik pemodelan dan analisis data:
 1. **Regresi Linier** untuk memprediksi harga berdasarkan fitur-fitur kendaraan.
 2. **Decision Tree** untuk mengevaluasi pentingnya setiap fitur dalam memengaruhi harga kendaraan.
@@ -57,22 +62,31 @@ Setelah memuat dan memahami data, kami melakukan eksplorasi lebih lanjut terhada
 ## Data Preparation
 
 Proses ini melibatkan pengolahan data untuk mempersiapkannya agar dapat digunakan dalam pemodelan:
-1. **Menghapus kolom yang tidak relevan atau memiliki banyak nilai hilang**: Kolom yang tidak memberikan kontribusi terhadap model dihapus, misalnya ID kendaraan atau fitur yang redundant.
-2. **Mengisi nilai yang hilang**: Nilai yang hilang pada kolom numerik diisi dengan rata-rata dari nilai kolom tersebut.
-3. **Mengonversi kolom string yang berisi angka (seperti MSRP dan harga bekas)** menjadi tipe data numerik agar dapat digunakan dalam model machine learning.
-4. **Melakukan encoding pada variabel kategori** dengan one-hot encoding untuk fitur seperti `Make` dan `Body Style` yang bersifat kategorikal.
 
-Proses ini penting untuk memastikan bahwa data yang digunakan dalam pelatihan model sudah bersih, konsisten, dan siap untuk dianalisis lebih lanjut.
+1. **Menghapus kolom yang tidak relevan atau memiliki banyak nilai hilang**  
+   Kolom yang tidak memberikan kontribusi terhadap model atau memiliki terlalu banyak nilai hilang dihapus untuk meningkatkan kualitas dataset. Sebagai contoh, kolom Invoice Price, Cylinders, dan Highway Fuel Economy dihapus karena memiliki terlalu banyak nilai hilang atau dianggap kurang relevan untuk analisis harga kendaraan.
+
+2. **Mengisi nilai yang hilang**  
+   Nilai yang hilang pada kolom numerik, seperti Horsepower dan Torque, diisi dengan rata-rata dari nilai kolom tersebut. Sebelum pengisian, data pada kolom Horsepower dan Torque mengandung string, sehingga pertama-tama bagian angka diekstraksi dan dikonversi menjadi tipe numerik. Setelah itu, nilai hilang diisi dengan rata-rata untuk memastikan kelengkapan data.
+
+3. **Mengonversi kolom string yang berisi angka**  
+   Kolom seperti MSRP yang berisi nilai dalam bentuk string dengan simbol mata uang dan tanda koma, diformat ulang dengan menghapus simbol tersebut dan mengonversinya menjadi tipe data numerik agar bisa digunakan dalam pemodelan.
+
+4. **Melakukan encoding pada variabel kategori**  
+   Fitur kategori seperti 'Make' dan 'Body Style' yang berupa string perlu diubah menjadi format numerik agar bisa digunakan dalam model machine learning. Teknik **one-hot encoding** digunakan untuk mengubah variabel kategori menjadi representasi numerik yang bisa diproses oleh algoritma machine learning.
+
+Proses ini penting untuk memastikan bahwa data yang digunakan dalam pelatihan model sudah bersih, konsisten, dan siap untuk dianalisis lebih lanjut. Dengan mempersiapkan data dengan cara ini, model machine learning yang dibangun nantinya dapat bekerja dengan optimal.
 
 ## Modeling
 
 Model yang digunakan dalam proyek ini terdiri dari dua pendekatan utama:
-1. **Regresi Linier** untuk memprediksi harga kendaraan berdasarkan berbagai fitur teknis dan kategori. Model ini sederhana namun efektif untuk analisis linier.
+1. **Regresi Linier** untuk memprediksi harga kendaraan berdasarkan berbagai fitur teknis dan kategori.
 2. **Decision Tree** untuk mengevaluasi pentingnya berbagai fitur dalam memprediksi harga kendaraan dan memahami interaksi yang lebih kompleks antar fitur.
 
 Proses modeling meliputi pembagian data menjadi data latih dan data uji, pelatihan model, dan evaluasi performa model untuk mengidentifikasi model terbaik.
 
 ### Hyperparameter Tuning
+
 Kami juga melakukan tuning hyperparameter pada model untuk meningkatkan akurasi prediksi. Dengan melakukan pencarian grid dan menggunakan teknik validasi silang, kami memilih parameter yang memberikan hasil terbaik pada data uji.
 
 ## Evaluation
@@ -98,6 +112,9 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 
 ## Kesimpulan
 
-Proyek ini berhasil membangun model yang dapat memprediksi harga kendaraan dengan akurasi yang cukup baik. Namun, terdapat beberapa ruang untuk perbaikan, terutama dalam menangani kendaraan dengan harga sangat tinggi. Model regresi linier memberikan performa yang solid, tetapi masih ada peluang untuk menggunakan model yang lebih kompleks atau memperkaya fitur untuk meningkatkan akurasi prediksi lebih lanjut.
+Proyek ini berhasil membangun model yang dapat memprediksi harga kendaraan dengan akurasi yang cukup baik. Namun, terdapat beberapa ruang untuk perbaikan, terutama dalam menangani kendaraan dengan harga sangat tinggi. Model regresi linier memberikan performa yang solid, tetapi masih ada peluang untuk menggunakan model yang lebih kompleks atau memperkaya fitur untuk meningkatkan akurasi lebih lanjut.
 
+## Referensi
 
+1. [Sumber Riset](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529)
+2. Dataset kendaraan: [GitHub - Car Data](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv)
