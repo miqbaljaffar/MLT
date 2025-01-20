@@ -4,8 +4,6 @@
 
 Proyek ini bertujuan untuk menganalisis faktor-faktor yang mempengaruhi harga kendaraan baru (MSRP) dan membangun model prediksi harga kendaraan berdasarkan berbagai fitur. Permasalahan yang diangkat berkaitan dengan harga kendaraan yang sangat bervariasi tergantung pada faktor-faktor seperti merek, jenis kendaraan, dan spesifikasi teknis. Dengan menggunakan teknik machine learning, tujuan utama proyek ini adalah untuk membangun model prediktif yang dapat memprediksi harga kendaraan dengan akurasi tinggi.
 
-Mengidentifikasi faktor-faktor yang mempengaruhi harga kendaraan sangat penting karena dapat membantu produsen, dealer, dan pembeli dalam menentukan harga yang lebih akurat dan strategis. Hal ini juga berpotensi memberikan wawasan mengenai pasar kendaraan dan membantu dalam pengambilan keputusan yang lebih baik.
-
 ### Mengapa Masalah Ini Harus Diselesaikan?
 
 Masalah harga kendaraan harus diselesaikan untuk memberikan dasar yang kuat dalam penetapan harga oleh produsen serta memberikan pembeli panduan yang lebih cerdas dalam menentukan anggaran mereka. Di era yang semakin kompetitif ini, kemampuan untuk memahami faktor harga kendaraan dapat membantu dalam merancang strategi harga yang lebih efisien dan tepat sasaran.
@@ -13,6 +11,8 @@ Masalah harga kendaraan harus diselesaikan untuk memberikan dasar yang kuat dala
 ### Riset Terkait
 
 Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang menganalisis faktor harga kendaraan menggunakan berbagai fitur kendaraan. Beberapa studi yang relevan melibatkan penggunaan model regresi dan pohon keputusan untuk memprediksi harga kendaraan. Penelitian mengenai analisis harga kendaraan dapat ditemukan dalam artikel seperti yang dipublikasikan oleh [Sumber Riset](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529), yang memberikan dasar teori serta pendekatan metodologi yang dapat digunakan untuk memecahkan masalah ini.
+
+---
 
 ## Business Understanding
 
@@ -45,8 +45,10 @@ Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang m
 
 Untuk mencapai tujuan di atas, proyek ini menggunakan berbagai teknik pemodelan dan analisis data:
 1. **Regresi Linier** untuk memprediksi harga berdasarkan fitur-fitur kendaraan.
-2. **Decision Tree** untuk mengevaluasi pentingnya setiap fitur dalam memengaruhi harga kendaraan.
+2. **Decision Tree** untuk mengevaluasi pentingnya setiap fitur dalam mempengaruhi harga kendaraan.
 3. **Visualisasi Data** untuk membantu pemahaman distribusi harga dan hubungan antar fitur dengan lebih jelas.
+
+---
 
 ## Data Understanding
 
@@ -58,6 +60,11 @@ Dataset yang digunakan adalah dataset kendaraan yang berisi informasi mengenai m
 - **Body Style**: Jenis bodi kendaraan, seperti sedan, SUV, convertible, dll.
 
 Setelah memuat dan memahami data, kami melakukan eksplorasi lebih lanjut terhadap distribusi fitur dan hubungan antar fitur untuk mendapatkan wawasan yang lebih dalam melalui visualisasi dan analisis data eksploratori. Kami juga melakukan analisis untuk melihat apakah ada fitur yang tidak memberikan informasi berguna atau mengandung banyak nilai hilang.
+
+### Lampiran:
+- **Sample Dataset**: ![Sample Dataset](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/ml1.PNG)
+
+---
 
 ## Data Preparation
 
@@ -77,6 +84,11 @@ Proses ini melibatkan pengolahan data untuk mempersiapkannya agar dapat digunaka
 
 Proses ini penting untuk memastikan bahwa data yang digunakan dalam pelatihan model sudah bersih, konsisten, dan siap untuk dianalisis lebih lanjut. Dengan mempersiapkan data dengan cara ini, model machine learning yang dibangun nantinya dapat bekerja dengan optimal.
 
+### Lampiran:
+- **Tabel Missing Value**: ![Missing Value Table](link_ke_image_missing_value)
+
+---
+
 ## Modeling
 
 Model yang digunakan dalam proyek ini terdiri dari dua pendekatan utama:
@@ -89,6 +101,8 @@ Proses modeling meliputi pembagian data menjadi data latih dan data uji, pelatih
 
 Kami juga melakukan tuning hyperparameter pada model untuk meningkatkan akurasi prediksi. Dengan melakukan pencarian grid dan menggunakan teknik validasi silang, kami memilih parameter yang memberikan hasil terbaik pada data uji.
 
+---
+
 ## Evaluation
 
 Model dievaluasi menggunakan beberapa metrik:
@@ -97,6 +111,12 @@ Model dievaluasi menggunakan beberapa metrik:
 - **MAE (Mean Absolute Error)**: Mengukur rata-rata kesalahan absolut, memberikan gambaran yang lebih jelas tentang akurasi prediksi.
 
 Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi linier memiliki performa yang baik dengan R² mencapai **0.93** pada data uji. Meskipun demikian, RMSE dan MAE menunjukkan bahwa masih ada ruang untuk perbaikan.
+
+### Lampiran:
+- **Pairplot to Visualize Relationships**: ![Pairplot](link_ke_image_pairplot)
+- **Correlation Matrix**: ![Correlation Matrix](link_ke_image_correlation_matrix)
+
+---
 
 ## Hasil dan Analisis
 
@@ -110,11 +130,14 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 
 5. **Tren Residual**: Tren residual menunjukkan bahwa model kurang akurat pada kendaraan dengan harga sangat tinggi, yang memberikan wawasan tentang kelompok kendaraan yang kurang terlayani oleh model.
 
-## Kesimpulan
+### Lampiran:
+- **Train Data: Predicted vs Actual**: ![Predicted vs Actual](link_ke_image_predicted_vs_actual)
+- **Residuals for Train Data**: ![Residuals](link_ke_image_residuals)
 
-Proyek ini berhasil membangun model yang dapat memprediksi harga kendaraan dengan akurasi yang cukup baik. Namun, terdapat beberapa ruang untuk perbaikan, terutama dalam menangani kendaraan dengan harga sangat tinggi. Model regresi linier memberikan performa yang solid, tetapi masih ada peluang untuk menggunakan model yang lebih kompleks atau memperkaya fitur untuk meningkatkan akurasi lebih lanjut.
+---
 
-## Referensi
+## Conclusion
 
-1. [Sumber Riset](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529)
-2. Dataset kendaraan: [GitHub - Car Data](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv)
+Proyek ini berhasil mengidentifikasi faktor utama yang mempengaruhi harga kendaraan dan membangun model prediksi harga kendaraan dengan akurasi yang cukup baik. Walaupun model memiliki akurasi tinggi untuk sebagian besar harga kendaraan, terdapat ruang untuk meningkatkan prediksi terutama pada kendaraan dengan harga tinggi. Ke depannya, pengembangan model dengan fitur lebih banyak dan teknik lain seperti regresi berbasis pohon keputusan atau XGBoost dapat meningkatkan performa lebih jauh.
+
+---
