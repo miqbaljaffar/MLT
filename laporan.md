@@ -152,4 +152,4 @@ Proyek ini berhasil mengidentifikasi faktor utama yang mempengaruhi harga kendar
 
 ## Referensi
 
-Simanjuntak, D. S. (2020). *Analisis faktor pembelian mobil berdasarkan harga dan merek*. CERMIN: Jurnal Penelitian, 4(1), 176-187. [https://doi.org/10.36841/cermin_unars.v4i1.529](https://doi.org/10.36841/cermin_unars.v4i1.529). Diakses pada 20 Januari 2025, dari [https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
+Simanjuntak, D. S. (2020). *Analisis faktor pembelian mobil berdasarkan harga dan merek*. CERMIN: Jurnal Penelitian, 4(1), 176-187. [https://doi.org/10.36841/cermin_unars.v4i1.529](https://doi.org/10.36841/cermin_unars.v4i1.529). Diakses pada 19 Januari 2025, dari [https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
