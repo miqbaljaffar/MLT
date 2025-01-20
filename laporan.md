@@ -63,6 +63,8 @@ Setelah memuat dan memahami data, kami melakukan eksplorasi lebih lanjut terhada
 
 ### Lampiran:
 - **Sample Dataset**: ![Sample Dataset](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt1.PNG)
+- **Pairplot to Visualize Relationships**: ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
+- **Correlation Matrix**: ![Correlation Matrix](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
 
 ---
 
@@ -114,10 +116,6 @@ Model dievaluasi menggunakan beberapa metrik:
 - **MAE (Mean Absolute Error)**: Mengukur rata-rata kesalahan absolut, memberikan gambaran yang lebih jelas tentang akurasi prediksi.
 
 Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi linier memiliki performa yang baik dengan R² mencapai **0.79** pada data uji. Meskipun demikian, RMSE dan MAE menunjukkan bahwa masih ada ruang untuk perbaikan.
-
-### Lampiran:
-- **Pairplot to Visualize Relationships**: ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
-- **Correlation Matrix**: ![Correlation Matrix](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
 
 ---
 
