@@ -79,7 +79,10 @@ Proses ini melibatkan pengolahan data untuk mempersiapkannya agar dapat digunaka
 3. **Mengonversi kolom string yang berisi angka**  
    Kolom seperti MSRP yang berisi nilai dalam bentuk string dengan simbol mata uang dan tanda koma, diformat ulang dengan menghapus simbol tersebut dan mengonversinya menjadi tipe data numerik agar bisa digunakan dalam pemodelan.
 
-4. **Melakukan encoding pada variabel kategori**  
+4. **Mengatasi Outlier dengan IQR**
+   Proses penghapusan outlier pada kolom MSRP menggunakan metode IQR juga sudah dijelaskan secara rinci dalam dokumentasi, mencakup perhitungan Q1, Q3, IQR, dan batas bawah serta atas.
+
+5. **Melakukan encoding pada variabel kategori**  
    Fitur kategori seperti 'Make' dan 'Body Style' yang berupa string perlu diubah menjadi format numerik agar bisa digunakan dalam model machine learning. Teknik **one-hot encoding** digunakan untuk mengubah variabel kategori menjadi representasi numerik yang bisa diproses oleh algoritma machine learning.
 
 Proses ini penting untuk memastikan bahwa data yang digunakan dalam pelatihan model sudah bersih, konsisten, dan siap untuk dianalisis lebih lanjut. Dengan mempersiapkan data dengan cara ini, model machine learning yang dibangun nantinya dapat bekerja dengan optimal.
@@ -110,7 +113,7 @@ Model dievaluasi menggunakan beberapa metrik:
 - **RMSE (Root Mean Squared Error)**: Mengukur rata-rata kesalahan kuadrat, memberikan gambaran kesalahan prediksi model.
 - **MAE (Mean Absolute Error)**: Mengukur rata-rata kesalahan absolut, memberikan gambaran yang lebih jelas tentang akurasi prediksi.
 
-Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi linier memiliki performa yang baik dengan R² mencapai **0.93** pada data uji. Meskipun demikian, RMSE dan MAE menunjukkan bahwa masih ada ruang untuk perbaikan.
+Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi linier memiliki performa yang baik dengan R² mencapai **0.79** pada data uji. Meskipun demikian, RMSE dan MAE menunjukkan bahwa masih ada ruang untuk perbaikan.
 
 ### Lampiran:
 - **Pairplot to Visualize Relationships**: ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
@@ -126,13 +129,13 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 
 3. **Distribusi Harga Kendaraan**: Harga kendaraan menunjukkan konsentrasi di rentang harga menengah hingga tinggi, yang memberikan gambaran bagi produsen untuk menyesuaikan strategi harga mereka.
 
-4. **Kinerja Prediksi Model**: Model regresi linier memberikan hasil yang baik dengan R² **0.93**. Evaluasi model menunjukkan hasil yang memadai dengan tingkat akurasi **0.89** pada data latih dan **0.93** pada data uji. Beberapa metrik evaluasi lainnya adalah:
-   - **R² pada data latih**: 0.89
-   - **R² pada data uji**: 0.93
-   - **RMSE pada data latih**: 17706.2
-   - **RMSE pada data uji**: 15634.0
-   - **MAE pada data latih**: 10816.5
-   - **MAE pada data uji**: 10354.2
+4. **Kinerja Prediksi Model**: Model regresi linier memberikan hasil yang baik dengan R² **0.79**. Evaluasi model menunjukkan hasil yang memadai dengan tingkat akurasi **0.79** pada data latih dan **0.79** pada data uji. Beberapa metrik evaluasi lainnya adalah:
+   - **R² pada data latih**: 0.79
+   - **R² pada data uji**: 0.79
+   - **RMSE pada data latih**: 8217.0
+   - **RMSE pada data uji**: 7869.8
+   - **MAE pada data latih**: 6189.5
+   - **MAE pada data uji**: 5975.4
 
    Meskipun model menunjukkan kinerja yang baik secara keseluruhan, prediksi masih kurang akurat untuk kendaraan dengan harga sangat tinggi, yang menunjukkan ada potensi perbaikan lebih lanjut.
 
@@ -146,9 +149,9 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 
 ## Conclusion
 
-Proyek ini berhasil mengidentifikasi faktor-faktor utama yang mempengaruhi harga kendaraan baru, seperti **Horsepower**, **Torque**, dan **Make**. Model regresi linier yang dibangun mampu memprediksi harga kendaraan dengan akurasi yang cukup baik, dengan nilai **R²** mencapai **0.93** pada data uji. Namun, meskipun model menunjukkan performa yang solid, masih ada beberapa tantangan, terutama dalam memprediksi harga kendaraan dengan harga tinggi. Evaluasi menggunakan metrik **RMSE** dan **MAE** juga menunjukkan bahwa terdapat beberapa kesalahan prediksi, terutama pada kendaraan dengan harga tinggi.
+Proyek ini berhasil mengidentifikasi faktor-faktor utama yang memengaruhi harga kendaraan baru (MSRP), seperti **Horsepower**, **Torque**, dan **Make**, berdasarkan analisis statistik dan korelasi. Model regresi linier yang dibangun mampu memprediksi harga kendaraan dengan akurasi yang baik, mencapai nilai **R²** sebesar 0.79 pada data uji. Evaluasi menggunakan metrik **RMSE** dan **MAE** menunjukkan performa yang solid, meskipun masih ada beberapa kesalahan prediksi, terutama untuk kendaraan dengan harga sangat tinggi.
 
-Selain itu, analisis residual memberikan wawasan yang berguna, terutama mengenai kelompok kendaraan dengan harga sangat tinggi yang kurang terlayani oleh model saat ini. Oleh karena itu, ada potensi untuk meningkatkan model dengan menambahkan lebih banyak fitur atau mencoba teknik pemodelan lain yang lebih kompleks.
+Analisis residual mengungkapkan bahwa model saat ini kurang mampu menangani kendaraan dalam rentang harga yang sangat tinggi, yang mungkin disebabkan oleh jumlah data yang lebih sedikit di segmen tersebut atau perlunya fitur tambahan yang lebih relevan. Temuan ini memberikan wawasan tentang potensi pengembangan lebih lanjut.
 
 ## Saran
 
@@ -158,13 +161,10 @@ Selain itu, analisis residual memberikan wawasan yang berguna, terutama mengenai
 2. **Fitur Tambahan**:  
    Penambahan fitur lain, seperti **tahun pembuatan kendaraan**, **sejarah pemeliharaan**, atau **fitur teknologi canggih** yang ada pada kendaraan, dapat memberikan wawasan lebih mendalam dan meningkatkan akurasi model.
 
-3. **Penanganan Data Ekstrem**:  
-   Model saat ini kesulitan dalam memprediksi harga kendaraan dengan harga sangat tinggi. Oleh karena itu, teknik **outlier detection** dan penanganan data ekstrem sebaiknya diterapkan untuk memperbaiki kinerja model dalam menangani harga ekstrem.
-
-4. **Validasi Lebih Lanjut**:  
+3. **Validasi Lebih Lanjut**:  
    Disarankan untuk melakukan validasi model lebih lanjut menggunakan dataset yang lebih besar dan bervariasi untuk memastikan keandalan model dalam memprediksi harga kendaraan pada berbagai kategori dan kondisi pasar yang berbeda.
 
-5. **Interaksi dengan Pengguna**:  
+4. **Interaksi dengan Pengguna**:  
    Untuk aplikasi bisnis, proyek ini dapat diperluas dengan mengintegrasikan model prediksi harga kendaraan dalam platform harga kendaraan atau sistem pembelian, di mana pengguna dapat memasukkan fitur kendaraan untuk mendapatkan prediksi harga yang lebih akurat.
 
 
