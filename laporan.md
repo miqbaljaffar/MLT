@@ -10,7 +10,7 @@ Mengidentifikasi faktor-faktor yang mempengaruhi harga kendaraan penting karena 
 Menyelesaikan masalah harga kendaraan dapat membantu produsen dalam menentukan harga yang kompetitif, serta membantu pembeli dalam membuat keputusan yang lebih baik terkait anggaran mereka.
 
 ### Riset Terkait
-Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang menganalisis faktor harga kendaraan menggunakan berbagai fitur kendaraan. Referensi terkait dapat ditemukan dalam penelitian mengenai analisis prediksi harga kendaraan dan regresi harga kendaraan, seperti yang dipublikasikan oleh [Sumber Riset 1] dan [Sumber Riset 2].
+Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang menganalisis faktor harga kendaraan menggunakan berbagai fitur kendaraan. Referensi terkait dapat ditemukan dalam penelitian mengenai analisis prediksi harga kendaraan dan regresi harga kendaraan, seperti yang dipublikasikan oleh [Sumber Riset](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
 
 ## Business Understanding
 
