@@ -146,7 +146,27 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 
 ## Conclusion
 
-Proyek ini berhasil mengidentifikasi faktor utama yang mempengaruhi harga kendaraan dan membangun model prediksi harga kendaraan dengan akurasi yang cukup baik. Walaupun model memiliki akurasi tinggi untuk sebagian besar harga kendaraan, terdapat ruang untuk meningkatkan prediksi terutama pada kendaraan dengan harga tinggi. Ke depannya, pengembangan model dengan fitur lebih banyak dan teknik lain seperti regresi berbasis pohon keputusan atau XGBoost dapat meningkatkan performa lebih jauh.
+Proyek ini berhasil mengidentifikasi faktor-faktor utama yang mempengaruhi harga kendaraan baru, seperti **Horsepower**, **Torque**, dan **Make**. Model regresi linier yang dibangun mampu memprediksi harga kendaraan dengan akurasi yang cukup baik, dengan nilai **R²** mencapai **0.93** pada data uji. Namun, meskipun model menunjukkan performa yang solid, masih ada beberapa tantangan, terutama dalam memprediksi harga kendaraan dengan harga tinggi. Evaluasi menggunakan metrik **RMSE** dan **MAE** juga menunjukkan bahwa terdapat beberapa kesalahan prediksi, terutama pada kendaraan dengan harga tinggi.
+
+Selain itu, analisis residual memberikan wawasan yang berguna, terutama mengenai kelompok kendaraan dengan harga sangat tinggi yang kurang terlayani oleh model saat ini. Oleh karena itu, ada potensi untuk meningkatkan model dengan menambahkan lebih banyak fitur atau mencoba teknik pemodelan lain yang lebih kompleks.
+
+## Saran
+
+1. **Peningkatan Model**:  
+   Untuk meningkatkan akurasi prediksi harga kendaraan, disarankan untuk mengeksplorasi model machine learning lainnya seperti **Decision Trees**, **Random Forest**, atau **XGBoost**, yang mungkin lebih mampu menangani hubungan non-linear dan interaksi antar fitur yang lebih kompleks.
+
+2. **Fitur Tambahan**:  
+   Penambahan fitur lain, seperti **tahun pembuatan kendaraan**, **sejarah pemeliharaan**, atau **fitur teknologi canggih** yang ada pada kendaraan, dapat memberikan wawasan lebih mendalam dan meningkatkan akurasi model.
+
+3. **Penanganan Data Ekstrem**:  
+   Model saat ini kesulitan dalam memprediksi harga kendaraan dengan harga sangat tinggi. Oleh karena itu, teknik **outlier detection** dan penanganan data ekstrem sebaiknya diterapkan untuk memperbaiki kinerja model dalam menangani harga ekstrem.
+
+4. **Validasi Lebih Lanjut**:  
+   Disarankan untuk melakukan validasi model lebih lanjut menggunakan dataset yang lebih besar dan bervariasi untuk memastikan keandalan model dalam memprediksi harga kendaraan pada berbagai kategori dan kondisi pasar yang berbeda.
+
+5. **Interaksi dengan Pengguna**:  
+   Untuk aplikasi bisnis, proyek ini dapat diperluas dengan mengintegrasikan model prediksi harga kendaraan dalam platform harga kendaraan atau sistem pembelian, di mana pengguna dapat memasukkan fitur kendaraan untuk mendapatkan prediksi harga yang lebih akurat.
+
 
 ---
 
