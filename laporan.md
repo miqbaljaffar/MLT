@@ -126,7 +126,15 @@ Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi l
 
 3. **Distribusi Harga Kendaraan**: Harga kendaraan menunjukkan konsentrasi di rentang harga menengah hingga tinggi, yang memberikan gambaran bagi produsen untuk menyesuaikan strategi harga mereka.
 
-4. **Kinerja Prediksi Model**: Model regresi linier memberikan hasil yang baik dengan R² **0.93**. Namun, prediksi masih kurang akurat untuk kendaraan dengan harga sangat tinggi, yang menunjukkan ada potensi perbaikan lebih lanjut.
+4. **Kinerja Prediksi Model**: Model regresi linier memberikan hasil yang baik dengan R² **0.93**. Evaluasi model menunjukkan hasil yang memadai dengan tingkat akurasi **0.89** pada data latih dan **0.93** pada data uji. Beberapa metrik evaluasi lainnya adalah:
+   - **R² pada data latih**: 0.89
+   - **R² pada data uji**: 0.93
+   - **RMSE pada data latih**: 17706.2
+   - **RMSE pada data uji**: 15634.0
+   - **MAE pada data latih**: 10816.5
+   - **MAE pada data uji**: 10354.2
+
+   Meskipun model menunjukkan kinerja yang baik secara keseluruhan, prediksi masih kurang akurat untuk kendaraan dengan harga sangat tinggi, yang menunjukkan ada potensi perbaikan lebih lanjut.
 
 5. **Tren Residual**: Tren residual menunjukkan bahwa model kurang akurat pada kendaraan dengan harga sangat tinggi, yang memberikan wawasan tentang kelompok kendaraan yang kurang terlayani oleh model.
 
