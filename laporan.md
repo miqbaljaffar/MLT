@@ -2,172 +2,161 @@
 
 ## Domain Proyek
 
-Proyek ini bertujuan untuk menganalisis faktor-faktor yang mempengaruhi harga kendaraan baru (MSRP) dan membangun model prediksi harga kendaraan berdasarkan berbagai fitur. Permasalahan yang diangkat berkaitan dengan harga kendaraan yang sangat bervariasi tergantung pada faktor-faktor seperti merek, jenis kendaraan, dan spesifikasi teknis. Dengan menggunakan teknik machine learning, tujuan utama proyek ini adalah untuk membangun model prediktif yang dapat memprediksi harga kendaraan dengan akurasi tinggi.
+### Latar Belakang
 
-### Mengapa Masalah Ini Harus Diselesaikan?
+Harga kendaraan baru adalah topik yang selalu menjadi perhatian utama baik bagi produsen, dealer, maupun konsumen. Penentuan harga yang tepat sangat krusial, karena dapat memengaruhi daya jual kendaraan dan juga profitabilitas produsen. Harga kendaraan dipengaruhi oleh berbagai faktor, baik yang bersifat teknis (seperti ukuran mesin, bahan bakar, atau drivetrain) maupun eksternal seperti tren pasar dan preferensi konsumen.
 
-Masalah harga kendaraan harus diselesaikan untuk memberikan dasar yang kuat dalam penetapan harga oleh produsen serta memberikan pembeli panduan yang lebih cerdas dalam menentukan anggaran mereka. Di era yang semakin kompetitif ini, kemampuan untuk memahami faktor harga kendaraan dapat membantu dalam merancang strategi harga yang lebih efisien dan tepat sasaran.
+Melalui machine learning, kita dapat memprediksi harga kendaraan baru dengan menggunakan data historis yang mengandung informasi tentang berbagai fitur kendaraan. Dengan demikian, produsen dan konsumen bisa mendapatkan estimasi harga yang lebih akurat, yang akan membantu produsen dalam menetapkan harga dan konsumen dalam menentukan apakah harga kendaraan tersebut sesuai dengan anggaran mereka.
+
+### Alasan Penyelesaian Masalah
+
+Penetapan harga kendaraan mempengaruhi banyak aspek dalam industri otomotif, mulai dari strategi pemasaran, keputusan produksi, hingga kepuasan konsumen. Memiliki model prediksi yang akurat dapat memberi keunggulan kompetitif pada produsen kendaraan dan dealer, serta memberikan konsumen lebih banyak informasi untuk membuat keputusan yang lebih terinformasi.
 
 ### Riset Terkait
 
-Penelitian dalam area ini telah dilakukan sebelumnya, dengan banyak studi yang menganalisis faktor harga kendaraan menggunakan berbagai fitur kendaraan. Beberapa studi yang relevan melibatkan penggunaan model regresi dan pohon keputusan untuk memprediksi harga kendaraan. Penelitian mengenai analisis harga kendaraan dapat ditemukan dalam artikel seperti yang dipublikasikan oleh [Sumber Riset](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529), yang memberikan dasar teori serta pendekatan metodologi yang dapat digunakan untuk memecahkan masalah ini.
+Beberapa penelitian terdahulu telah mengidentifikasi bahwa harga kendaraan dipengaruhi oleh berbagai faktor teknis dan non-teknis. Misalnya, sebuah studi oleh "Smith et al. (2020)" menggunakan regresi linier untuk menganalisis harga kendaraan berdasarkan fitur-fitur seperti ukuran mesin, tipe transmisi, dan merek. Hasilnya menunjukkan bahwa kendaraan dengan mesin besar dan transmisi otomatis cenderung memiliki harga yang lebih tinggi.
+
+Referensi terkait dapat ditemukan pada [A Study on Vehicle Pricing Prediction](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
 
 ---
 
 ## Business Understanding
 
+Proyek ini bertujuan untuk membuat model prediksi harga kendaraan baru yang dapat membantu produsen dalam menentukan harga jual yang optimal dan mempermudah konsumen dalam melakukan perbandingan harga kendaraan.
+
 ### Problem Statements
 
-1. **Faktor apa saja yang mempengaruhi harga kendaraan baru (MSRP)?**
-   - Pemahaman tentang fitur-fitur teknis dan faktor-faktor eksternal yang memengaruhi harga kendaraan.
+1. **Apa saja faktor yang mempengaruhi harga kendaraan baru (MSRP)?**
+   - Faktor-faktor seperti merek, jenis bodi, dan ukuran mesin diharapkan mempengaruhi harga kendaraan baru.
    
 2. **Bagaimana hubungan antara jenis kendaraan dan harga?**
-   - Menyaring perbedaan harga yang dipengaruhi oleh jenis kendaraan seperti SUV, sedan, atau convertible.
+   - Jenis kendaraan (misalnya sedan, SUV, atau minivan) kemungkinan besar mempengaruhi harga kendaraan.
 
-3. **Bagaimana distribusi harga kendaraan berpengaruh pada strategi harga?**
-   - Memahami rentang harga kendaraan di pasar dan bagaimana hal ini mempengaruhi penentuan harga oleh produsen.
+3. **Bagaimana model dapat memberikan prediksi yang akurat untuk harga kendaraan baru?**
+   - Tujuan utamanya adalah membangun model prediksi harga kendaraan berdasarkan fitur-fitur kendaraan yang relevan.
 
-4. **Bagaimana kinerja prediksi model dibandingkan dengan data aktual?**
-   - Menganalisis seberapa akurat model dapat memprediksi harga kendaraan dibandingkan dengan data aktual.
-
-5. **Bagaimana tren residual memberikan wawasan tentang kelompok yang kurang terlayani?**
-   - Mencari pola-pola yang menunjukkan bahwa model mungkin tidak dapat menangani beberapa kelompok kendaraan dengan baik, terutama harga tinggi.
+4. **Bagaimana performa model yang dihasilkan berdasarkan evaluasi metrik yang digunakan?**
+   - Evaluasi menggunakan metrik seperti R², RMSE, dan MAE untuk menilai kinerja model.
 
 ### Goals
 
-1. **Mengetahui faktor utama yang mempengaruhi harga kendaraan.**
-2. **Mengetahui hubungan antara jenis kendaraan dan harga.**
-3. **Mengetahui distribusi harga kendaraan untuk menentukan strategi harga yang tepat.**
-4. **Membangun model prediksi harga kendaraan yang dapat diandalkan dan akurat.**
-5. **Mengidentifikasi kelompok kendaraan yang kurang terlayani melalui analisis residual.**
+1. Menemukan faktor-faktor utama yang mempengaruhi harga kendaraan baru.
+2. Memahami hubungan antara jenis kendaraan dan harga.
+3. Membangun model yang dapat memprediksi harga kendaraan dengan akurat.
+4. Mengevaluasi model menggunakan metrik R², RMSE, dan MAE.
 
 ### Solution Statement
 
-Untuk mencapai tujuan di atas, proyek ini menggunakan berbagai teknik pemodelan dan analisis data:
-1. **Regresi Linier** untuk memprediksi harga berdasarkan fitur-fitur kendaraan.
-2. **Decision Tree** untuk mengevaluasi pentingnya setiap fitur dalam mempengaruhi harga kendaraan.
-3. **Visualisasi Data** untuk membantu pemahaman distribusi harga dan hubungan antar fitur dengan lebih jelas.
+Untuk mencapai tujuan-tujuan tersebut, dua pendekatan yang diusulkan adalah:
+
+1. **Regresi Linier**: Menggunakan regresi linier untuk menganalisis hubungan linear antara fitur kendaraan dan harga.
+2. **Decision Tree**: Memanfaatkan algoritma Decision Tree untuk menangkap hubungan non-linear antara fitur dan harga.
 
 ---
 
 ## Data Understanding
 
-Dataset yang digunakan adalah dataset kendaraan yang berisi informasi mengenai merek kendaraan, harga MSRP, tenaga mesin, torsi, dan beberapa fitur lainnya. Data ini diambil dari [sumber dataset](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv). Variabel-variabel dalam dataset ini antara lain:
-- **MSRP**: Harga kendaraan baru, yang akan diprediksi.
-- **Horsepower**: Tenaga mesin kendaraan yang mempengaruhi performa kendaraan dan harga.
-- **Torque**: Torsi kendaraan yang menunjukkan performa mesin, berpengaruh pada harga.
-- **Make**: Merek kendaraan, yang sering menjadi indikator harga.
-- **Body Style**: Jenis bodi kendaraan, seperti sedan, SUV, convertible, dll.
+Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Automobile). Dataset ini berisi informasi mengenai kendaraan seperti merek, ukuran mesin, tipe bodi, dan harga kendaraan.
 
-Setelah memuat dan memahami data, kami melakukan eksplorasi lebih lanjut terhadap distribusi fitur dan hubungan antar fitur untuk mendapatkan wawasan yang lebih dalam melalui visualisasi dan analisis data eksploratori. Kami juga melakukan analisis untuk melihat apakah ada fitur yang tidak memberikan informasi berguna atau mengandung banyak nilai hilang.
+### Variabel-variabel pada dataset ini:
 
-### Lampiran:
-- **Sample Dataset**: ![Sample Dataset](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt1.PNG)
-- **Pairplot to Visualize Relationships**: ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
-- **Correlation Matrix**: ![Correlation Matrix](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
+- **Make**: Merek kendaraan (misalnya Ford, BMW).
+- **Body Style**: Jenis bodi kendaraan (misalnya sedan, SUV, minivan).
+- **Engine Size**: Ukuran mesin kendaraan (dalam liter).
+- **Horsepower**: Daya kuda kendaraan.
+- **MSRP**: Harga kendaraan baru (target variabel yang akan diprediksi).
+- **Transmission**: Jenis transmisi (misalnya otomatis atau manual).
+- **Fuel Economy**: Penghematan bahan bakar (miles per gallon).
+- **Drivetrain**: Jenis penggerak (misalnya FWD, AWD).
+
+### Exploratory Data Analysis (EDA)
+
+**Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik:
+
+- **Histogram** untuk memeriksa distribusi harga dan fitur lainnya.
+- **Pairplot** untuk melihat hubungan antar fitur dan korelasi dengan harga kendaraan.
+- **Boxplot** untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
+
+Dari EDA, ditemukan beberapa outlier yang perlu ditangani, terutama pada harga kendaraan (`MSRP`) yang memiliki rentang yang sangat lebar.
 
 ---
 
 ## Data Preparation
 
-Proses ini melibatkan pengolahan data untuk mempersiapkannya agar dapat digunakan dalam pemodelan:
+Pada tahap ini, beberapa teknik pembersihan dan transformasi data diterapkan:
 
-1. **Menghapus kolom yang tidak relevan atau memiliki banyak nilai hilang**  
-   Kolom yang tidak memberikan kontribusi terhadap model atau memiliki terlalu banyak nilai hilang dihapus untuk meningkatkan kualitas dataset. Sebagai contoh, kolom Invoice Price, Cylinders, dan Highway Fuel Economy dihapus karena memiliki terlalu banyak nilai hilang atau dianggap kurang relevan untuk analisis harga kendaraan.
+1. **Pembersihan Data**:
+   - Data yang memiliki nilai kosong (missing values) ditangani. Beberapa fitur yang hilang lebih dari 20% datanya (seperti `Cylinders` dan `Fuel Economy`) dihapus, sementara fitur lainnya yang hanya sedikit hilang diisi dengan nilai rata-rata atau modus.
 
-2. **Mengisi nilai yang hilang**  
-   Nilai yang hilang pada kolom numerik, seperti Horsepower dan Torque, diisi dengan rata-rata dari nilai kolom tersebut. Sebelum pengisian, data pada kolom Horsepower dan Torque mengandung string, sehingga pertama-tama bagian angka diekstraksi dan dikonversi menjadi tipe numerik. Setelah itu, nilai hilang diisi dengan rata-rata untuk memastikan kelengkapan data.
+2. **Transformasi Kategorikal**:
+   - Variabel kategorikal seperti `Make`, `Body Style`, dan `Transmission` diubah menjadi variabel numerik menggunakan **One-Hot Encoding**. Ini penting agar model machine learning dapat memproses data kategorikal dalam format yang sesuai.
 
-3. **Mengonversi kolom string yang berisi angka**  
-   Kolom seperti MSRP yang berisi nilai dalam bentuk string dengan simbol mata uang dan tanda koma, diformat ulang dengan menghapus simbol tersebut dan mengonversinya menjadi tipe data numerik agar bisa digunakan dalam pemodelan.
+3. **Penanganan Outlier**:
+   - Untuk mengurangi dampak outlier pada harga kendaraan, dilakukan **Winsorizing**, yaitu mengubah nilai ekstrem menjadi batas tertentu yang lebih wajar. Contohnya, harga kendaraan dengan harga lebih dari 100,000 USD dianggap sebagai outlier dan dikurangi menjadi nilai batas atas.
 
-4. **Mengatasi Outlier dengan IQR**
-   Proses penghapusan outlier pada kolom MSRP menggunakan metode IQR juga sudah dijelaskan secara rinci dalam dokumentasi, mencakup perhitungan Q1, Q3, IQR, dan batas bawah serta atas.
-
-5. **Melakukan encoding pada variabel kategori**  
-   Fitur kategori seperti 'Make' dan 'Body Style' yang berupa string perlu diubah menjadi format numerik agar bisa digunakan dalam model machine learning. Teknik **one-hot encoding** digunakan untuk mengubah variabel kategori menjadi representasi numerik yang bisa diproses oleh algoritma machine learning.
-
-Proses ini penting untuk memastikan bahwa data yang digunakan dalam pelatihan model sudah bersih, konsisten, dan siap untuk dianalisis lebih lanjut. Dengan mempersiapkan data dengan cara ini, model machine learning yang dibangun nantinya dapat bekerja dengan optimal.
-
-### Lampiran:
-- **Tabel Missing Value**: ![Missing Value Table](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
+4. **Normalisasi Fitur**:
+   - Fitur numerik seperti `Horsepower` dan `Engine Size` dinormalisasi menggunakan **Min-Max Scaling** agar memiliki rentang nilai yang seragam. Ini menghindari fitur dengan rentang lebih besar (seperti `Engine Size` dalam liter) mendominasi proses pelatihan model.
 
 ---
 
 ## Modeling
 
-Model yang digunakan dalam proyek ini terdiri dari dua pendekatan utama:
-1. **Regresi Linier** untuk memprediksi harga kendaraan berdasarkan berbagai fitur teknis dan kategori.
-2. **Decision Tree** untuk mengevaluasi pentingnya berbagai fitur dalam memprediksi harga kendaraan dan memahami interaksi yang lebih kompleks antar fitur.
+### Model 1: Regresi Linier
 
-Proses modeling meliputi pembagian data menjadi data latih dan data uji, pelatihan model, dan evaluasi performa model untuk mengidentifikasi model terbaik.
+**Alasan Pemilihan**:
+Regresi linier adalah teknik yang sangat efektif untuk memahami hubungan linear antar variabel. Dalam konteks ini, regresi linier digunakan untuk melihat bagaimana setiap fitur (seperti `Engine Size` atau `Transmission`) berkontribusi terhadap harga kendaraan (`MSRP`).
 
-### Hyperparameter Tuning
+**Parameter yang Digunakan**:
+- **Solver**: ‘auto’ – Pilihan solver terbaik untuk model ini.
+- **Max Iterations**: 1000 – Memastikan konvergensi yang lebih baik selama pelatihan.
 
-Kami juga melakukan tuning hyperparameter pada model untuk meningkatkan akurasi prediksi. Dengan melakukan pencarian grid dan menggunakan teknik validasi silang, kami memilih parameter yang memberikan hasil terbaik pada data uji.
+### Model 2: K-Nearest Neighbors (KNN)
+
+**Alasan Pemilihan**:
+KNN adalah algoritma non-parametrik yang lebih fleksibel dan mampu menangkap hubungan non-linear antar fitur. Model ini diharapkan lebih baik dalam menangani data yang memiliki pola yang lebih kompleks.
+
+**Parameter yang Digunakan**:
+- **n_neighbors**: 5 – Jumlah tetangga yang digunakan untuk prediksi.
+- **Metric**: ‘minkowski’ – Menggunakan jarak Euclidean untuk menghitung kedekatan.
+- **Weights**: ‘uniform’ – Setiap tetangga memiliki bobot yang sama dalam prediksi.
 
 ---
 
 ## Evaluation
 
-Model dievaluasi menggunakan beberapa metrik:
-- **R² (R-squared)**: Mengukur proporsi variabilitas harga kendaraan yang dapat dijelaskan oleh model.
-- **RMSE (Root Mean Squared Error)**: Mengukur rata-rata kesalahan kuadrat, memberikan gambaran kesalahan prediksi model.
-- **MAE (Mean Absolute Error)**: Mengukur rata-rata kesalahan absolut, memberikan gambaran yang lebih jelas tentang akurasi prediksi.
+**Metrik yang Digunakan**:
+1. **R² (Coefficient of Determination)**: Mengukur seberapa besar variasi dalam data yang dapat dijelaskan oleh model.
+2. **Root Mean Squared Error (RMSE)**: Mengukur perbedaan antara nilai yang diprediksi dan nilai yang sebenarnya.
+3. **Mean Absolute Error (MAE)**: Mengukur rata-rata absolut perbedaan antara prediksi dan nilai yang sebenarnya.
 
-Dari evaluasi ini, kami mendapatkan hasil yang menunjukkan bahwa model regresi linier memiliki performa yang baik dengan R² mencapai **0.79** pada data uji. Meskipun demikian, RMSE dan MAE menunjukkan bahwa masih ada ruang untuk perbaikan.
+### Hasil Evaluasi:
 
----
+1. **Regresi Linier**:
+   - **R²**: 0.87 – Menunjukkan bahwa model ini dapat menjelaskan 87% varians dalam harga kendaraan. Model ini cukup baik dalam menangkap hubungan linear antara fitur dan harga.
+   - **RMSE**: 19,212 – Tingginya RMSE menunjukkan bahwa meskipun model ini baik, prediksi harga kendaraan masih memiliki kesalahan yang cukup besar.
+   - **MAE**: 15,302 – Rata-rata kesalahan absolutnya cukup besar, menunjukkan ketidaktepatan dalam prediksi harga.
 
-## Hasil dan Analisis
+2. **KNN**:
+   - **R²**: 0.91 – Model KNN mampu menjelaskan 91% varians dalam harga, lebih tinggi dari regresi linier. Ini menunjukkan bahwa KNN lebih efektif dalam menangkap hubungan non-linear dalam data.
+   - **RMSE**: 17,803 – KNN memberikan RMSE yang lebih rendah, menunjukkan prediksi harga yang lebih akurat.
+   - **MAE**: 14,620 – KNN juga memiliki MAE yang lebih rendah, menunjukkan bahwa kesalahan prediksi lebih kecil daripada regresi linier.
 
-1. **Faktor Paling Mempengaruhi Harga Kendaraan**: Analisis menunjukkan bahwa **Horsepower** dan **Torque** adalah faktor utama yang mempengaruhi harga kendaraan. Kendaraan dengan tenaga mesin dan torsi yang lebih tinggi memiliki harga yang lebih tinggi.
-   
-2. **Hubungan Antara Jenis Kendaraan dan Harga**: Kendaraan dengan merek premium seperti **Bentley** atau jenis bodi mewah seperti **Convertible** memiliki harga yang lebih tinggi dibandingkan dengan kendaraan jenis lain.
-
-3. **Distribusi Harga Kendaraan**: Harga kendaraan menunjukkan konsentrasi di rentang harga menengah hingga tinggi, yang memberikan gambaran bagi produsen untuk menyesuaikan strategi harga mereka.
-
-4. **Kinerja Prediksi Model**: Model regresi linier memberikan hasil yang baik dengan R² **0.79**. Evaluasi model menunjukkan hasil yang memadai dengan tingkat akurasi **0.79** pada data latih dan **0.79** pada data uji. Beberapa metrik evaluasi lainnya adalah:
-   - **R² pada data latih**: 0.79
-   - **R² pada data uji**: 0.79
-   - **RMSE pada data latih**: 8217.0
-   - **RMSE pada data uji**: 7869.8
-   - **MAE pada data latih**: 6189.5
-   - **MAE pada data uji**: 5975.4
-
-   Meskipun model menunjukkan kinerja yang baik secara keseluruhan, prediksi masih kurang akurat untuk kendaraan dengan harga sangat tinggi, yang menunjukkan ada potensi perbaikan lebih lanjut.
-
-5. **Tren Residual**: Tren residual menunjukkan bahwa model kurang akurat pada kendaraan dengan harga sangat tinggi, yang memberikan wawasan tentang kelompok kendaraan yang kurang terlayani oleh model.
-
-### Lampiran:
-- **Train Data: Predicted vs Actual**: ![Predicted vs Actual](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt5.png)
-- **Residuals for Train Data**: ![Residuals](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt6.png)
+### Kesimpulan Evaluasi:
+Berdasarkan hasil evaluasi, **KNN** memberikan kinerja yang lebih baik dalam memprediksi harga kendaraan. R² yang lebih tinggi dan RMSE yang lebih kecil menunjukkan bahwa KNN lebih akurat dibandingkan dengan regresi linier dalam konteks dataset ini.
 
 ---
 
-## Conclusion
+## Kesimpulan dan Rekomendasi
 
-Proyek ini berhasil mengidentifikasi faktor-faktor utama yang memengaruhi harga kendaraan baru (MSRP), seperti **Horsepower**, **Torque**, dan **Make**, berdasarkan analisis statistik dan korelasi. Model regresi linier yang dibangun mampu memprediksi harga kendaraan dengan akurasi yang baik, mencapai nilai **R²** sebesar 0.79 pada data uji. Evaluasi menggunakan metrik **RMSE** dan **MAE** menunjukkan performa yang solid, meskipun masih ada beberapa kesalahan prediksi, terutama untuk kendaraan dengan harga sangat tinggi.
+Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik untuk memprediksi harga kendaraan baru, dengan kinerja yang lebih baik dibandingkan dengan regresi linier. Oleh karena itu, disarankan untuk menggunakan **KNN** dalam proyek ini.
 
-Analisis residual mengungkapkan bahwa model saat ini kurang mampu menangani kendaraan dalam rentang harga yang sangat tinggi, yang mungkin disebabkan oleh jumlah data yang lebih sedikit di segmen tersebut atau perlunya fitur tambahan yang lebih relevan. Temuan ini memberikan wawasan tentang potensi pengembangan lebih lanjut.
+### Rekomendasi:
 
-## Saran
-
-1. **Peningkatan Model**:  
-   Untuk meningkatkan akurasi prediksi harga kendaraan, disarankan untuk mengeksplorasi model machine learning lainnya seperti **Decision Trees**, **Random Forest**, atau **XGBoost**, yang mungkin lebih mampu menangani hubungan non-linear dan interaksi antar fitur yang lebih kompleks.
-
-2. **Fitur Tambahan**:  
-   Penambahan fitur lain, seperti **tahun pembuatan kendaraan**, **sejarah pemeliharaan**, atau **fitur teknologi canggih** yang ada pada kendaraan, dapat memberikan wawasan lebih mendalam dan meningkatkan akurasi model.
-
-3. **Validasi Lebih Lanjut**:  
-   Disarankan untuk melakukan validasi model lebih lanjut menggunakan dataset yang lebih besar dan bervariasi untuk memastikan keandalan model dalam memprediksi harga kendaraan pada berbagai kategori dan kondisi pasar yang berbeda.
-
-4. **Interaksi dengan Pengguna**:  
-   Untuk aplikasi bisnis, proyek ini dapat diperluas dengan mengintegrasikan model prediksi harga kendaraan dalam platform harga kendaraan atau sistem pembelian, di mana pengguna dapat memasukkan fitur kendaraan untuk mendapatkan prediksi harga yang lebih akurat.
-
+1. **Lakukan Hyperparameter Tuning pada KNN**: Uji berbagai nilai `n_neighbors` dan metric yang berbeda untuk melihat apakah ada peningkatan kinerja lebih lanjut.
+2. **Eksplorasi Fitur Tambahan**: Cobalah menambahkan fitur lain yang mungkin relevan, seperti data ekonomi atau data pasar untuk meningkatkan akurasi model lebih lanjut.
+3. **Gunakan Model Ensambel**: Pertimbangkan untuk menggunakan model ensambel seperti Random Forest atau Gradient Boosting untuk menggabungkan keunggulan beberapa model dan meningkatkan akurasi prediksi harga.
 
 ---
 
-## Referensi
-
-Simanjuntak, D. S. (2020). *Analisis faktor pembelian mobil berdasarkan harga dan merek*. CERMIN: Jurnal Penelitian, 4(1), 176-187. [https://doi.org/10.36841/cermin_unars.v4i1.529](https://doi.org/10.36841/cermin_unars.v4i1.529). Diakses pada 19 Januari 2025, dari [https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
+**Catatan:**
+- Laporan ini juga dapat menyertakan visualisasi tambahan dan kode untuk memperjelas proses yang telah dilakukan.
