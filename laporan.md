@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/799f457b-a6a5-4b3d-97a6-7dd099da45be)# Laporan Proyek Machine Learning - Mohammad Iqbal Jaffar
+# Laporan Proyek Machine Learning - Mohammad Iqbal Jaffar
 
 ## Domain Proyek
 
@@ -47,10 +47,23 @@ Proyek ini bertujuan untuk membuat model prediksi harga kendaraan baru yang dapa
 
 ### Solution Statement
 
-Untuk mencapai tujuan-tujuan tersebut, dua pendekatan yang diusulkan adalah:
+Untuk mencapai tujuan-tujuan analisis dan prediksi harga kendaraan, tiga pendekatan yang diusulkan adalah:
 
-1. **Regresi Linier**: Menggunakan regresi linier untuk menganalisis hubungan linear antara fitur kendaraan dan harga.
-2. **Decision Tree**: Memanfaatkan algoritma Decision Tree untuk menangkap hubungan non-linear antara fitur dan harga.
+1. **Regresi Linier**: 
+   - Digunakan untuk menganalisis hubungan linear antara fitur kendaraan dan harga.
+   - Model ini cocok untuk data yang memiliki hubungan linear sederhana.
+
+2. **K-Nearest Neighbors (KNN)**: 
+   - Memanfaatkan pendekatan berbasis tetangga terdekat untuk memperkirakan harga berdasarkan data serupa.
+   - Model ini fleksibel dalam menangkap pola non-linear sederhana, namun kinerjanya bergantung pada jumlah tetangga (hyperparameter `k`).
+
+3. **Decision Tree**:
+   - Menggunakan algoritma Decision Tree untuk menangkap hubungan non-linear yang lebih kompleks.
+   - Model ini dapat dengan mudah menyesuaikan data dengan fitur yang memiliki interaksi kompleks, tetapi berisiko overfitting jika tidak diatur dengan baik.
+
+### Tujuan:
+- Membandingkan performa ketiga model berdasarkan metrik evaluasi seperti **R²**, **RMSE**, dan **MAE** pada data uji.
+- Menentukan model terbaik yang memberikan prediksi harga kendaraan paling akurat.
 
 ---
 
