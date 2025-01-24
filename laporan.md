@@ -56,7 +56,7 @@ Untuk mencapai tujuan-tujuan tersebut, dua pendekatan yang diusulkan adalah:
 
 ## Data Understanding
 
-Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Automobile). Dataset ini berisi informasi mengenai kendaraan seperti merek, ukuran mesin, tipe bodi, dan harga kendaraan.
+Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [Dataset](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv). Dataset ini berisi informasi mengenai kendaraan seperti merek, ukuran mesin, tipe bodi, dan harga kendaraan.
 
 ### Variabel-variabel pada dataset ini:
 
@@ -73,57 +73,71 @@ Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [UCI Machine
 
 ### Exploratory Data Analysis (EDA)
 
-**Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik:
+**Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik untuk menggali wawasan dari data.
 
-- **Histogram** untuk memeriksa distribusi harga dan fitur lainnya.
+---
 
-![histogram](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
+#### 1. **Histogram**
+Histogram digunakan untuk memeriksa distribusi harga dan fitur lainnya.
 
-   Distribusi Harga (Used/New Price dan MSRP):
-   
-   Gambar: Terdapat dua grafik yang menunjukkan distribusi harga kendaraan:
+![Distribusi Harga](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
+![Distribusi MSRP](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt31.png)
 
-   - Harga bekas/baru (Used/New Price)
-   - MSRP (Manufacturer's Suggested Retail Price)
-   
-   Statistik:
-   - Rata-rata (Mean): 62,795.98
-   - Median: 55,900.00
-   - Modus: 114,843.75
-   - Interpretasi: Grafik menunjukkan pola distribusi harga kendaraan. Puncak grafik menunjukkan harga yang paling sering muncul (modus). Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
+**Distribusi Harga (Used/New Price dan MSRP):**
+- **Gambar:** Dua grafik yang menunjukkan distribusi harga kendaraan:
+  - **Used/New Price** (Harga bekas/baru)
+  - **MSRP** (Manufacturer's Suggested Retail Price)
 
-- **Pairplot** untuk melihat hubungan antar fitur dan korelasi dengan harga kendaraan.
+**Statistik Penting:**
+- **Rata-rata (Mean):** 62,795.98
+- **Median:** 55,900.00
+- **Modus:** 114,843.75
 
-![pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
+**Interpretasi:**
+- Grafik menunjukkan pola distribusi harga kendaraan.
+- Puncak grafik menggambarkan harga yang paling sering muncul (modus).
+- Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
 
-   Hubungan antara MSRP dan Horsepower_No:
-   - Terdapat korelasi positif antara MSRP dan Horsepower_No.
-   - Semakin tinggi tenaga kuda (horsepower), semakin tinggi pula MSRP.
-   - Ini menunjukkan bahwa mobil dengan tenaga kuda yang lebih tinggi umumnya lebih mahal.
+---
 
-   Hubungan antara MSRP dan Torque_No:
-   - Terdapat korelasi positif antara MSRP dan Torque_No, meskipun tidak sekuat hubungan antara MSRP dan horsepower.
-   - Ini menunjukkan bahwa mobil dengan torsi yang lebih tinggi cenderung lebih mahal.
+#### 2. **Pairplot**
+Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan harga kendaraan.
 
-   Hubungan antara Horsepower_No dan Torque_No:
-   - Terdapat korelasi positif antara Horsepower_No dan Torque_No.
-   - Artinya, mobil dengan tenaga kuda yang lebih tinggi umumnya memiliki torsi yang lebih tinggi pula.
+![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
 
-   Catatan Penting:
-   - Korelasi hanya menunjukkan kecenderungan umum dalam data.
-   - Ada outlier yang tidak mengikuti tren umum.
+**Analisis Hubungan Antar Fitur:**
+1. **MSRP vs. Horsepower_No:**
+   - Terdapat korelasi positif: semakin tinggi tenaga kuda, semakin tinggi pula MSRP.
+   - Mobil dengan tenaga kuda yang lebih tinggi cenderung lebih mahal.
 
-   Faktor lain selain yang ditampilkan dalam plot dapat memengaruhi harga mobil, seperti:
-   - Merek
-   - Fitur
-   - Tahun pembuatan
-   - Efisiensi bahan bakar, dll.
+2. **MSRP vs. Torque_No:**
+   - Terdapat korelasi positif, meskipun tidak sekuat hubungan dengan tenaga kuda.
+   - Mobil dengan torsi lebih tinggi cenderung lebih mahal.
 
-- **Boxplot** untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
+3. **Horsepower_No vs. Torque_No:**
+   - Korelasi positif: mobil dengan tenaga kuda lebih tinggi umumnya memiliki torsi lebih tinggi.
+
+**Catatan Penting:**
+- Korelasi hanya menunjukkan kecenderungan umum dalam data.
+- Ada outlier yang tidak mengikuti tren umum.
+- Faktor lain seperti merek, fitur, tahun pembuatan, dan efisiensi bahan bakar juga memengaruhi harga mobil.
+
+---
+
+#### 3. **Boxplot**
+Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
 
 ![Boxplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
 
-Dari EDA, ditemukan beberapa outlier yang perlu ditangani, terutama pada harga kendaraan (`MSRP`) yang memiliki rentang yang sangat lebar.
+**Hasil Analisis:**
+- Ditemukan beberapa outlier, terutama pada harga kendaraan (`MSRP`), yang memiliki rentang sangat lebar.
+- Outlier ini perlu dianalisis lebih lanjut untuk menentukan apakah perlu dihapus atau ditangani secara khusus.
+
+---
+
+**Kesimpulan EDA:**
+- EDA memberikan wawasan penting tentang distribusi data, hubungan antar fitur, dan keberadaan outlier.
+- Hasil analisis ini menjadi dasar untuk tahap preprocessing dan model building.
 
 ---
 
