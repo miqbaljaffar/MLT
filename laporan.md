@@ -4,7 +4,7 @@
 
 ### Latar Belakang
 
-Harga kendaraan baru adalah topik yang selalu menjadi perhatian utama baik bagi produsen, dealer, maupun konsumen. Penentuan harga yang tepat sangat krusial, karena dapat memengaruhi daya jual kendaraan dan juga profitabilitas produsen. Harga kendaraan dipengaruhi oleh berbagai faktor, baik yang bersifat teknis (seperti ukuran mesin, bahan bakar, atau drivetrain) maupun eksternal seperti tren pasar dan preferensi konsumen.
+Harga kendaraan baru adalah topik yang selalu menjadi perhatian utama bagi produsen, dealer, dan konsumen. Penentuan harga yang tepat sangat krusial, karena dapat memengaruhi daya jual kendaraan dan profitabilitas produsen. Harga kendaraan dipengaruhi oleh berbagai faktor, baik yang bersifat teknis (seperti ukuran mesin, bahan bakar, atau drivetrain) maupun eksternal seperti tren pasar dan preferensi konsumen.
 
 Melalui machine learning, kita dapat memprediksi harga kendaraan baru dengan menggunakan data historis yang mengandung informasi tentang berbagai fitur kendaraan. Dengan demikian, produsen dan konsumen bisa mendapatkan estimasi harga yang lebih akurat, yang akan membantu produsen dalam menetapkan harga dan konsumen dalam menentukan apakah harga kendaraan tersebut sesuai dengan anggaran mereka.
 
@@ -69,6 +69,8 @@ Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [UCI Machine
 - **Fuel Economy**: Penghematan bahan bakar (miles per gallon).
 - **Drivetrain**: Jenis penggerak (misalnya FWD, AWD).
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt1.PNG)
+
 ### Exploratory Data Analysis (EDA)
 
 **Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik:
@@ -83,66 +85,167 @@ Dari EDA, ditemukan beberapa outlier yang perlu ditangani, terutama pada harga k
 
 ## Data Preparation
 
-Pada tahap ini, beberapa teknik pembersihan dan transformasi data diterapkan:
+### Pendahuluan
 
-1. **Pembersihan Data**:
-   - Data yang memiliki nilai kosong (missing values) ditangani. Beberapa fitur yang hilang lebih dari 20% datanya (seperti `Cylinders` dan `Fuel Economy`) dihapus, sementara fitur lainnya yang hanya sedikit hilang diisi dengan nilai rata-rata atau modus.
+Pada tahap ini, kami menerapkan beberapa teknik pembersihan dan transformasi data untuk memastikan dataset siap digunakan dalam model machine learning. Proses ini mencakup penanganan nilai hilang, transformasi variabel, penanganan outlier, dan normalisasi fitur.
 
-2. **Transformasi Kategorikal**:
-   - Variabel kategorikal seperti `Make`, `Body Style`, dan `Transmission` diubah menjadi variabel numerik menggunakan **One-Hot Encoding**. Ini penting agar model machine learning dapat memproses data kategorikal dalam format yang sesuai.
+### 1. Penanganan Missing Value
 
-3. **Penanganan Outlier**:
-   - Untuk mengurangi dampak outlier pada harga kendaraan, dilakukan **Winsorizing**, yaitu mengubah nilai ekstrem menjadi batas tertentu yang lebih wajar. Contohnya, harga kendaraan dengan harga lebih dari 100,000 USD dianggap sebagai outlier dan dikurangi menjadi nilai batas atas.
+#### Metode
+- **Menghapus Kolom dengan Terlalu Banyak Nilai Hilang**: Kolom yang memiliki lebih dari 20% nilai hilang dihapus untuk menjaga kualitas data.
+- **Mengisi Nilai Hilang pada Kolom Numerik**: Kolom numerik yang memiliki nilai hilang diisi dengan rata-rata dari kolom tersebut.
 
-4. **Normalisasi Fitur**:
-   - Fitur numerik seperti `Horsepower` dan `Engine Size` dinormalisasi menggunakan **Min-Max Scaling** agar memiliki rentang nilai yang seragam. Ini menghindari fitur dengan rentang lebih besar (seperti `Engine Size` dalam liter) mendominasi proses pelatihan model.
+#### Langkah-langkah
+- Menghapus kolom dengan terlalu banyak nilai yang hilang.
+- Menangani nilai hilang pada kolom numerik dengan mengisi nilai hilang menggunakan rata-rata.
+
+#### Hasil
+Setelah penanganan, kolom `Invoice Price`, `Cylinders`, dan `Highway Fuel Economy` dihapus dari dataset. Kolom `Horsepower` dan `Torque` tidak lagi memiliki nilai hilang, dan kolom tambahan `Horsepower_No` dan `Torque_No` telah dibuat untuk menyimpan nilai yang diambil dari tiga digit pertama.
+
+### 2. Penghapusan Baris dengan Nilai Hilang
+
+#### Metode
+- Menghapus baris yang masih memiliki nilai hilang pada kolom tambahan `Horsepower_No` dan `Torque_No`.
+
+#### Langkah-langkah
+- Menghapus baris yang memiliki nilai hilang pada kolom tertentu.
+
+#### Hasil
+Setelah penghapusan, tidak ada lagi nilai hilang dalam dataset. Semua kolom sekarang memiliki jumlah nilai hilang yang bernilai 0.
+
+### 3. Pembersihan dan Konversi Tipe Data
+
+#### Metode
+- Menghapus simbol mata uang dan tanda koma dari kolom `MSRP` dan `Used/New Price`, kemudian mengonversi kolom tersebut ke dalam format numerik (float).
+
+#### Langkah-langkah
+- Membersihkan dan mengonversi kolom `MSRP` dan `Used/New Price` dari string ke numerik.
+
+#### Hasil
+Kolom `MSRP` dan `Used/New Price` sekarang memiliki tipe data `float64`, memungkinkan analisis statistik dan perhitungan matematika.
+
+### 4. Penanganan Outlier
+
+#### Metode
+- Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
+
+#### Langkah-langkah
+- Menghitung Q1, Q3, IQR, dan batas untuk setiap kolom.
+
+#### Hasil
+Terdapat 166 outliers untuk kolom `MSRP` dan `Used/New Price`, serta 36 outliers untuk `Horsepower_No` dan 17 outliers untuk `Torque_No`.
+
+#### Visualisasi
+- Menampilkan boxplot untuk kolom yang relevan.
+
+### 5. Winsorizing Outlier
+
+#### Metode
+- Mengganti nilai outlier dengan batas bawah atau batas atas yang dihitung berdasarkan IQR.
+
+#### Langkah-langkah
+- Melakukan Winsorizing pada kolom yang relevan.
+
+#### Hasil
+Setelah Winsorizing, nilai maksimum untuk `MSRP` dan `Used/New Price` berkurang secara signifikan, dan distribusi data menjadi lebih terkontrol.
+
+### 6. Normalisasi Fitur
+
+#### Metode
+- Normalisasi fitur numerik menggunakan `StandardScaler` untuk memastikan setiap fitur memiliki mean = 0 dan standar deviasi = 1.
+
+#### Langkah-langkah
+- Melakukan normalisasi pada fitur numerik.
+
+#### Hasil
+Fitur numerik `Horsepower_No` dan `Torque_No` telah dinormalisasi, sehingga model dapat mempelajari semua fitur dengan skala yang seragam.
+
+### 7. Encoding Variabel Kategorikal
+
+#### Metode
+- Menggunakan one-hot encoding untuk mengubah variabel kategorikal menjadi format numerik.
+
+#### Langkah-langkah
+- Mengonversi variabel kategorikal menjadi variabel dummy (one-hot encoding).
+
+#### Hasil
+Dataset yang dihasilkan memiliki kolom dummy untuk variabel kategorikal, siap untuk digunakan dalam modeling.
+
+### 8. Cek Korelasi Setiap Fitur
+
+#### Metode
+- Menghitung dan memvisualisasikan matriks korelasi untuk fitur numerik.
+
+#### Langkah-langkah
+- Menghitung dan memvisualisasikan matriks korelasi untuk fitur numerik.
+
+#### Hasil
+Matriks korelasi menunjukkan hubungan positif yang kuat antara `MSRP`, `Horsepower_No`, dan `Torque_No`, yang menunjukkan bahwa fitur-fitur ini saling berhubungan dan relevan untuk model.
 
 ---
 
 ## Modeling
 
+Dua model yang diterapkan untuk memprediksi harga kendaraan (**MSRP**) adalah **Regresi Linier** dan **K-Nearest Neighbors (KNN)**. 
+
 ### Model 1: Regresi Linier
-
-**Alasan Pemilihan**:
-Regresi linier adalah teknik yang sangat efektif untuk memahami hubungan linear antar variabel. Dalam konteks ini, regresi linier digunakan untuk melihat bagaimana setiap fitur (seperti `Engine Size` atau `Transmission`) berkontribusi terhadap harga kendaraan (`MSRP`).
-
-**Parameter yang Digunakan**:
-- **Solver**: ‘auto’ – Pilihan solver terbaik untuk model ini.
-- **Max Iterations**: 1000 – Memastikan konvergensi yang lebih baik selama pelatihan.
+- **Alasan Pemilihan:** 
+  - Cocok untuk melihat hubungan linear antara fitur dan target variabel.
+  - Mudah untuk interpretasi kontribusi masing-masing fitur terhadap harga kendaraan.
+- **Parameter yang Digunakan:**
+  - Solver: ‘auto’ untuk memilih metode solver terbaik secara otomatis.
+  - Max Iterations: 1000 untuk memastikan model mencapai konvergensi yang stabil.
 
 ### Model 2: K-Nearest Neighbors (KNN)
-
-**Alasan Pemilihan**:
-KNN adalah algoritma non-parametrik yang lebih fleksibel dan mampu menangkap hubungan non-linear antar fitur. Model ini diharapkan lebih baik dalam menangani data yang memiliki pola yang lebih kompleks.
-
-**Parameter yang Digunakan**:
-- **n_neighbors**: 5 – Jumlah tetangga yang digunakan untuk prediksi.
-- **Metric**: ‘minkowski’ – Menggunakan jarak Euclidean untuk menghitung kedekatan.
-- **Weights**: ‘uniform’ – Setiap tetangga memiliki bobot yang sama dalam prediksi.
+- **Alasan Pemilihan:**
+  - Algoritma non-parametrik yang fleksibel.
+  - Mampu menangkap hubungan non-linear antara fitur.
+  - Ideal untuk dataset dengan pola yang kompleks.
+- **Parameter yang Digunakan:**
+  - n_neighbors: 5 (menggunakan 5 tetangga terdekat untuk prediksi).
+  - Metric: ‘minkowski’ (jarak Euclidean).
+  - Weights: ‘uniform’ (semua tetangga memiliki bobot yang sama).
 
 ---
 
-## Evaluation
+## Evaluasi
 
-**Metrik yang Digunakan**:
-1. **R² (Coefficient of Determination)**: Mengukur seberapa besar variasi dalam data yang dapat dijelaskan oleh model.
-2. **Root Mean Squared Error (RMSE)**: Mengukur perbedaan antara nilai yang diprediksi dan nilai yang sebenarnya.
-3. **Mean Absolute Error (MAE)**: Mengukur rata-rata absolut perbedaan antara prediksi dan nilai yang sebenarnya.
+Model dievaluasi menggunakan data uji yang terpisah (20%) setelah dilatih pada data latih (80%). Tiga metrik evaluasi utama digunakan untuk menilai performa model:
+- **R² (Coefficient of Determination):** Menilai seberapa baik model menjelaskan variasi dalam target variabel.
+- **RMSE (Root Mean Squared Error):** Mengukur rata-rata kesalahan kuadrat prediksi.
+- **MAE (Mean Absolute Error):** Mengukur rata-rata kesalahan absolut prediksi.
 
-### Hasil Evaluasi:
+### Hasil Evaluasi Model
 
-1. **Regresi Linier**:
-   - **R²**: 0.87 – Menunjukkan bahwa model ini dapat menjelaskan 87% varians dalam harga kendaraan. Model ini cukup baik dalam menangkap hubungan linear antara fitur dan harga.
-   - **RMSE**: 19,212 – Tingginya RMSE menunjukkan bahwa meskipun model ini baik, prediksi harga kendaraan masih memiliki kesalahan yang cukup besar.
-   - **MAE**: 15,302 – Rata-rata kesalahan absolutnya cukup besar, menunjukkan ketidaktepatan dalam prediksi harga.
+1. **Regresi Linier**
+   - **R²:** 0.87 (87%) – Model cukup baik dalam menjelaskan varians data.
+   - **RMSE:** 19,212 – Tingginya nilai RMSE menunjukkan adanya kesalahan prediksi yang signifikan.
+   - **MAE:** 15,302 – Menunjukkan rata-rata kesalahan absolut yang cukup besar.
 
-2. **KNN**:
-   - **R²**: 0.91 – Model KNN mampu menjelaskan 91% varians dalam harga, lebih tinggi dari regresi linier. Ini menunjukkan bahwa KNN lebih efektif dalam menangkap hubungan non-linear dalam data.
-   - **RMSE**: 17,803 – KNN memberikan RMSE yang lebih rendah, menunjukkan prediksi harga yang lebih akurat.
-   - **MAE**: 14,620 – KNN juga memiliki MAE yang lebih rendah, menunjukkan bahwa kesalahan prediksi lebih kecil daripada regresi linier.
+2. **K-Nearest Neighbors (KNN)**
+   - **R²:** 0.91 (91%) – KNN lebih baik dibandingkan regresi linier dalam menjelaskan varians data.
+   - **RMSE:** 17,803 – RMSE lebih rendah dibandingkan regresi linier, menunjukkan prediksi yang lebih akurat.
+   - **MAE:** 14,620 – Kesalahan absolut lebih kecil dibandingkan regresi linier.
 
-### Kesimpulan Evaluasi:
-Berdasarkan hasil evaluasi, **KNN** memberikan kinerja yang lebih baik dalam memprediksi harga kendaraan. R² yang lebih tinggi dan RMSE yang lebih kecil menunjukkan bahwa KNN lebih akurat dibandingkan dengan regresi linier dalam konteks dataset ini.
+### Perbandingan Antara Model
+
+| **Model**             | **R² Train** | **R² Test** | **RMSE Train** | **RMSE Test** | **MAE Train** | **MAE Test** |
+|-----------------------|--------------|-------------|----------------|---------------|---------------|--------------|
+| **Regresi Linier**    | 0.883937     | 0.873134    | 8485.445020    | 8518.103444   | 6400.032599   | 6381.047981  |
+| **K-Nearest Neighbors**| 0.934369    | 0.910862    | 6380.930219    | 7140.058920   | 4432.861769   | 4881.146372  |
+
+---
+
+## Kesimpulan Akhir
+
+- **Model KNN** menunjukkan performa yang lebih baik dibandingkan **Regresi Linier** dalam memprediksi harga kendaraan (**MSRP**):
+  - R² KNN lebih tinggi (91%) dibandingkan regresi linier (87%), menunjukkan bahwa KNN dapat menjelaskan lebih banyak variasi data.
+  - RMSE dan MAE yang lebih rendah pada KNN menunjukkan tingkat akurasi prediksi yang lebih tinggi dibandingkan regresi linier.
+  - KNN berhasil menangkap pola non-linear dalam data, yang sulit dijelaskan oleh regresi linier.
+
+- **Rekomendasi Model:** 
+  - Model KNN adalah pilihan yang lebih baik untuk kasus ini karena memberikan hasil yang lebih akurat dan presisi dalam memprediksi harga kendaraan. 
+  - Namun, perlu dicatat bahwa KNN cenderung lebih sensitif terhadap skala fitur dan ukuran dataset, sehingga memerlukan prapemrosesan data yang baik (seperti normalisasi).
 
 ---
 
@@ -155,8 +258,3 @@ Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik u
 1. **Lakukan Hyperparameter Tuning pada KNN**: Uji berbagai nilai `n_neighbors` dan metric yang berbeda untuk melihat apakah ada peningkatan kinerja lebih lanjut.
 2. **Eksplorasi Fitur Tambahan**: Cobalah menambahkan fitur lain yang mungkin relevan, seperti data ekonomi atau data pasar untuk meningkatkan akurasi model lebih lanjut.
 3. **Gunakan Model Ensambel**: Pertimbangkan untuk menggunakan model ensambel seperti Random Forest atau Gradient Boosting untuk menggabungkan keunggulan beberapa model dan meningkatkan akurasi prediksi harga.
-
----
-
-**Catatan:**
-- Laporan ini juga dapat menyertakan visualisasi tambahan dan kode untuk memperjelas proses yang telah dilakukan.
