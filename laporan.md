@@ -149,6 +149,8 @@ Pada tahap ini, kami menerapkan beberapa teknik pembersihan dan transformasi dat
 
 ### 1. Penanganan Missing Value
 
+![miss](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt5.png)
+
 #### Metode
 - **Menghapus Kolom dengan Terlalu Banyak Nilai Hilang**: Kolom yang memiliki lebih dari 20% nilai hilang dihapus untuk menjaga kualitas data.
 - **Mengisi Nilai Hilang pada Kolom Numerik**: Kolom numerik yang memiliki nilai hilang diisi dengan rata-rata dari kolom tersebut.
@@ -178,6 +180,8 @@ Setelah penghapusan, tidak ada lagi nilai hilang dalam dataset. Semua kolom seka
 
 #### Langkah-langkah
 - Membersihkan dan mengonversi kolom `MSRP` dan `Used/New Price` dari string ke numerik.
+
+![info](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt6.png)
 
 #### Hasil
 Kolom `MSRP` dan `Used/New Price` sekarang memiliki tipe data `float64`, memungkinkan analisis statistik dan perhitungan matematika.
