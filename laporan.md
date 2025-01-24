@@ -76,36 +76,48 @@ Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [UCI Machine
 **Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik:
 
 - **Histogram** untuk memeriksa distribusi harga dan fitur lainnya.
+
+![histogram](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
+
+   Distribusi Harga (Used/New Price dan MSRP):
+   
+   Gambar: Terdapat dua grafik yang menunjukkan distribusi harga kendaraan:
+
+   - Harga bekas/baru (Used/New Price)
+   - MSRP (Manufacturer's Suggested Retail Price)
+   
+   Statistik:
+   - Rata-rata (Mean): 62,795.98
+   - Median: 55,900.00
+   - Modus: 114,843.75
+   - Interpretasi: Grafik menunjukkan pola distribusi harga kendaraan. Puncak grafik menunjukkan harga yang paling sering muncul (modus). Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
+
 - **Pairplot** untuk melihat hubungan antar fitur dan korelasi dengan harga kendaraan.
 
-![Boxplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
+![pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
 
-Hubungan antara MSRP dan Horsepower_No:
+   Hubungan antara MSRP dan Horsepower_No:
+   - Terdapat korelasi positif antara MSRP dan Horsepower_No.
+   - Semakin tinggi tenaga kuda (horsepower), semakin tinggi pula MSRP.
+   - Ini menunjukkan bahwa mobil dengan tenaga kuda yang lebih tinggi umumnya lebih mahal.
 
-- Terdapat korelasi positif antara MSRP dan Horsepower_No.
-- Semakin tinggi tenaga kuda (horsepower), semakin tinggi pula MSRP.
-- Ini menunjukkan bahwa mobil dengan tenaga kuda yang lebih tinggi umumnya lebih mahal.
+   Hubungan antara MSRP dan Torque_No:
+   - Terdapat korelasi positif antara MSRP dan Torque_No, meskipun tidak sekuat hubungan antara MSRP dan horsepower.
+   - Ini menunjukkan bahwa mobil dengan torsi yang lebih tinggi cenderung lebih mahal.
 
-Hubungan antara MSRP dan Torque_No:
+   Hubungan antara Horsepower_No dan Torque_No:
+   - Terdapat korelasi positif antara Horsepower_No dan Torque_No.
+   - Artinya, mobil dengan tenaga kuda yang lebih tinggi umumnya memiliki torsi yang lebih tinggi pula.
 
-- Terdapat korelasi positif antara MSRP dan Torque_No, meskipun tidak sekuat hubungan antara MSRP dan horsepower.
-- Ini menunjukkan bahwa mobil dengan torsi yang lebih tinggi cenderung lebih mahal.
+   Catatan Penting:
+   - Korelasi hanya menunjukkan kecenderungan umum dalam data.
+   - Ada outlier yang tidak mengikuti tren umum.
 
-Hubungan antara Horsepower_No dan Torque_No:
-
-- Terdapat korelasi positif antara Horsepower_No dan Torque_No.
-- Artinya, mobil dengan tenaga kuda yang lebih tinggi umumnya memiliki torsi yang lebih tinggi pula.
-
-Catatan Penting:
-
-- Korelasi hanya menunjukkan kecenderungan umum dalam data.
-- Ada outlier yang tidak mengikuti tren umum.
-
-Faktor lain selain yang ditampilkan dalam plot dapat memengaruhi harga mobil, seperti:
-- Merek
-- Fitur
-- Tahun pembuatan
-- Efisiensi bahan bakar, dll.
+   Faktor lain selain yang ditampilkan dalam plot dapat memengaruhi harga mobil, seperti:
+   - Merek
+   - Fitur
+   - Tahun pembuatan
+   - Efisiensi bahan bakar, dll.
 
 - **Boxplot** untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
 
