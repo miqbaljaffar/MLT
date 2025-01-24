@@ -340,3 +340,7 @@ Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik u
 1. **Lakukan Hyperparameter Tuning pada KNN**: Uji berbagai nilai `n_neighbors` dan metric yang berbeda untuk melihat apakah ada peningkatan kinerja lebih lanjut.
 2. **Eksplorasi Fitur Tambahan**: Cobalah menambahkan fitur lain yang mungkin relevan, seperti data ekonomi atau data pasar untuk meningkatkan akurasi model lebih lanjut.
 3. **Gunakan Model Ensambel**: Pertimbangkan untuk menggunakan model ensambel seperti Random Forest atau Gradient Boosting untuk menggabungkan keunggulan beberapa model dan meningkatkan akurasi prediksi harga.
+
+# Referensi
+Simanjuntak, D. S. (2020). Analisis Faktor Pembelian Mobil Berdasarkan Harga dan Merek. *CERMIN: Jurnal Penelitian, 4*(1), 176–187. https://doi.org/10.36841/cermin_unars.v4i1.529
+
