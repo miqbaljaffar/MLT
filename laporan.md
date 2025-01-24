@@ -77,7 +77,11 @@ Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [UCI Machine
 
 - **Histogram** untuk memeriksa distribusi harga dan fitur lainnya.
 - **Pairplot** untuk melihat hubungan antar fitur dan korelasi dengan harga kendaraan.
+
+
 - **Boxplot** untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
+
+![Boxplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
 
 Dari EDA, ditemukan beberapa outlier yang perlu ditangani, terutama pada harga kendaraan (`MSRP`) yang memiliki rentang yang sangat lebar.
 
