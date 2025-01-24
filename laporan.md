@@ -1,4 +1,4 @@
-# Laporan Proyek Machine Learning - Mohammad Iqbal Jaffar
+![image](https://github.com/user-attachments/assets/799f457b-a6a5-4b3d-97a6-7dd099da45be)# Laporan Proyek Machine Learning - Mohammad Iqbal Jaffar
 
 ## Domain Proyek
 
@@ -208,6 +208,9 @@ Terdapat 166 outliers untuk kolom `MSRP` dan `Used/New Price`, serta 36 outliers
 #### Langkah-langkah
 - Melakukan Winsorizing pada kolom yang relevan.
 
+![MRS](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt7.png)
+![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt8.png)
+
 #### Hasil
 Setelah Winsorizing, nilai maksimum untuk `MSRP` dan `Used/New Price` berkurang secara signifikan, dan distribusi data menjadi lebih terkontrol.
 
@@ -230,6 +233,8 @@ Fitur numerik `Horsepower_No` dan `Torque_No` telah dinormalisasi, sehingga mode
 #### Langkah-langkah
 - Mengonversi variabel kategorikal menjadi variabel dummy (one-hot encoding).
 
+![OHE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt9.PNG)
+
 #### Hasil
 Dataset yang dihasilkan memiliki kolom dummy untuk variabel kategorikal, siap untuk digunakan dalam modeling.
 
@@ -240,6 +245,8 @@ Dataset yang dihasilkan memiliki kolom dummy untuk variabel kategorikal, siap un
 
 #### Langkah-langkah
 - Menghitung dan memvisualisasikan matriks korelasi untuk fitur numerik.
+
+![corr](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt10.png)
 
 #### Hasil
 Matriks korelasi menunjukkan hubungan positif yang kuat antara `MSRP`, `Horsepower_No`, dan `Torque_No`, yang menunjukkan bahwa fitur-fitur ini saling berhubungan dan relevan untuk model.
