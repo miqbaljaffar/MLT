@@ -562,13 +562,13 @@ Model dievaluasi menggunakan data uji yang terpisah (20%) setelah dilatih pada d
 
 1. **Regresi Linier**
    - **R²:** 0.87 (87%) – Model cukup baik dalam menjelaskan varians data.
-   - **RMSE:** 19,212 – Tingginya nilai RMSE menunjukkan adanya kesalahan prediksi yang signifikan.
-   - **MAE:** 15,302 – Menunjukkan rata-rata kesalahan absolut yang cukup besar.
+   - **RMSE:** 8518.103444	 – Tingginya nilai RMSE menunjukkan adanya kesalahan prediksi yang signifikan.
+   - **MAE:** 6381.047981 – Menunjukkan rata-rata kesalahan absolut yang cukup besar.
 
 2. **K-Nearest Neighbors (KNN)**
    - **R²:** 0.91 (91%) – KNN lebih baik dibandingkan regresi linier dalam menjelaskan varians data.
-   - **RMSE:** 17,803 – RMSE lebih rendah dibandingkan regresi linier, menunjukkan prediksi yang lebih akurat.
-   - **MAE:** 14,620 – Kesalahan absolut lebih kecil dibandingkan regresi linier.
+   - **RMSE:** 7140.058920 – RMSE lebih rendah dibandingkan regresi linier, menunjukkan prediksi yang lebih akurat.
+   - **MAE:** 4881.146372 – Kesalahan absolut lebih kecil dibandingkan regresi linier.
 
 ### Perbandingan Antara Model
 
