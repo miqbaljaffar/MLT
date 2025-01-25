@@ -14,9 +14,9 @@ Penetapan harga kendaraan mempengaruhi banyak aspek dalam industri otomotif, mul
 
 ### Riset Terkait
 
-Beberapa penelitian terdahulu telah mengidentifikasi bahwa harga kendaraan dipengaruhi oleh berbagai faktor teknis dan non-teknis. Misalnya, sebuah studi oleh "Smith et al. (2020)" menggunakan regresi linier untuk menganalisis harga kendaraan berdasarkan fitur-fitur seperti ukuran mesin, tipe transmisi, dan merek. Hasilnya menunjukkan bahwa kendaraan dengan mesin besar dan transmisi otomatis cenderung memiliki harga yang lebih tinggi.
+Beberapa penelitian terdahulu telah mengidentifikasi bahwa harga kendaraan dipengaruhi oleh berbagai faktor teknis dan non-teknis. Sebagai contoh, sebuah studi oleh Simanjuntak (2020) menganalisis pengaruh harga dan merek terhadap keputusan pembelian mobil, dengan menggunakan regresi linier. Hasil penelitian menunjukkan bahwa harga dan merek memiliki pengaruh yang signifikan terhadap keputusan pembelian, dengan variabel harga berkontribusi sebesar 66,6%. Hasil tersebut menunjukkan bahwa faktor-faktor seperti harga dan merek kendaraan memainkan peran penting dalam menentukan keputusan pembelian.
 
-Referensi terkait dapat ditemukan pada [A Study on Vehicle Pricing Prediction](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
+Referensi terkait dapat ditemukan pada [ANALISIS FAKTOR PEMBELIAN MOBIL BERDASARKAN HARGA DAN MEREK](https://unars.ac.id/ojs/index.php/cermin_unars/article/view/529).
 
 ---
 
@@ -309,7 +309,7 @@ Setelah melakukan Winsorizing pada kolom-kolom yang relevan:
 
 ---
 
-## 6. Normalisasi Fitur
+### 6. Normalisasi Fitur
 
 ### Metode
 Pada tahap ini, normalisasi fitur numerik dilakukan menggunakan `StandardScaler` untuk memastikan bahwa setiap fitur memiliki **mean = 0** dan **standar deviasi = 1**. Normalisasi ini penting untuk memastikan model dapat mempelajari semua fitur dengan skala yang seragam, menghindari dominasi fitur dengan skala yang lebih besar, seperti harga dan tenaga kuda, dalam proses pelatihan model.
@@ -322,7 +322,7 @@ Fitur numerik `Horsepower_No` dan `Torque_No` telah berhasil dinormalisasi, yang
 
 ---
 
-## 7. Encoding Variabel Kategorikal
+### 7. Encoding Variabel Kategorikal
 
 ### Metode
 Untuk mengonversi variabel kategorikal menjadi format numerik, digunakan metode **one-hot encoding**. Teknik ini mengubah setiap kategori dalam variabel menjadi kolom biner (dummy variables), yang mewakili setiap kategori unik dengan nilai 0 atau 1.
@@ -337,7 +337,7 @@ Dataset yang dihasilkan memiliki kolom dummy untuk variabel kategorikal, seperti
 
 ---
 
-## 8. Cek Korelasi Setiap Fitur
+### 8. Cek Korelasi Setiap Fitur
 
 ### Metode
 Matriks korelasi dihitung dan divisualisasikan untuk fitur numerik. Matriks korelasi ini menunjukkan sejauh mana hubungan antara fitur-fitur numerik dalam dataset, yang membantu untuk mengidentifikasi hubungan antar fitur sebelum modeling.
@@ -352,7 +352,7 @@ Matriks korelasi menunjukkan hubungan positif yang kuat antara `MSRP`, `Horsepow
 
 ---
 
-## Feature Importance menggunakan Decision Tree
+### Feature Importance menggunakan Decision Tree
 
 ### Metode
 Bagian ini bertujuan untuk mengevaluasi pentingnya setiap fitur dalam mempengaruhi target variabel (MSRP) menggunakan **Decision Tree Classifier**. Analisis ini membantu mengidentifikasi fitur mana yang memiliki kontribusi terbesar terhadap prediksi target, sehingga memungkinkan penyederhanaan model dan fokus pada fitur yang paling berpengaruh.
@@ -387,6 +387,28 @@ Model Decision Tree berhasil dilatih, dan fitur penting dihitung berdasarkan nil
 
 ### Kesimpulan
 Hasil ini memberikan wawasan tentang fitur mana yang paling relevan untuk prediksi harga mobil (`MSRP`). Fitur-fitur dengan nilai penting tertinggi, seperti `Horsepower_No` dan `Torque_No`, harus dipertimbangkan lebih dalam untuk analisis lebih lanjut atau model yang lebih efisien.
+
+---
+
+### 9. Split Data
+
+Pada bagian ini, dataset dibagi menjadi dua bagian, yaitu data latih (train) dan data uji (test). Pembagian ini bertujuan untuk melatih model dengan sebagian data dan mengevaluasi performa model menggunakan data yang tidak digunakan saat pelatihan. Pembagian yang umum digunakan adalah 80% data untuk pelatihan dan 20% data untuk pengujian.
+
+**Alasan Menggunakan Pembagian 80/20:**
+- **Pelatihan yang Optimal:** Dengan memberikan 80% data untuk pelatihan, model memiliki cukup banyak data untuk belajar dan mengoptimalkan parameter-parameter yang ada.
+- **Evaluasi yang Adil:** Dengan menyisakan 20% data untuk pengujian, kita dapat mengevaluasi model dengan data yang tidak dilihat sebelumnya, sehingga hasil evaluasi lebih dapat dipercaya dan mencerminkan kemampuan model pada data yang belum dikenalnya.
+- **Mencegah Overfitting:** Pembagian ini juga membantu menghindari overfitting, yaitu saat model terlalu menyesuaikan diri dengan data pelatihan dan tidak mampu menggeneralisasi dengan baik ke data baru.
+
+**Langkah-langkah Pembagian Data:**
+1. Gunakan fungsi `train_test_split` dari pustaka scikit-learn untuk membagi dataset.
+2. Tentukan parameter `train_size=0.8`, yang berarti 80% data digunakan untuk pelatihan.
+3. Tentukan `random_state=15` agar pembagian data konsisten dan dapat direplikasi di masa depan.
+
+**Hasil Pembagian:**
+- Data latih (`X_train` dan `y_train`): Fitur dan target yang digunakan untuk melatih model.
+- Data uji (`X_test` dan `y_test`): Fitur dan target yang digunakan untuk menguji model.
+
+Dengan pembagian ini, model dapat dilatih dengan data yang cukup banyak dan diuji dengan data yang tidak terlihat sebelumnya, memberikan evaluasi yang lebih objektif mengenai kemampuan model.
 
 ---
 
@@ -451,10 +473,10 @@ Model dievaluasi menggunakan data uji yang terpisah (20%) setelah dilatih pada d
 
 ### Perbandingan Antara Model
 
-| **Model**             | **R² Train** | **R² Test** | **RMSE Train** | **RMSE Test** | **MAE Train** | **MAE Test** |
-|-----------------------|--------------|-------------|----------------|---------------|---------------|--------------|
-| **Regresi Linier**    | 0.883937     | 0.873134    | 8485.445020    | 8518.103444   | 6400.032599   | 6381.047981  |
-| **K-Nearest Neighbors**| 0.934369    | 0.910862    | 6380.930219    | 7140.058920   | 4432.861769   | 4881.146372  |
+| **Model**               | **R² Train** | **R² Test** | **RMSE Train** | **RMSE Test** | **MAE Train** | **MAE Test** |
+|-------------------------|--------------|-------------|----------------|---------------|---------------|--------------|
+| **Regresi Linier**      | 0.883937     | 0.873134    | 8485.445020    | 8518.103444   | 6400.032599   | 6381.047981  |
+| **K-Nearest Neighbors** | 0.934369     | 0.910862    | 6380.930219    | 7140.058920   | 4432.861769   | 4881.146372  |
 
 ---
 
@@ -481,6 +503,41 @@ Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik u
 2. **Eksplorasi Fitur Tambahan**: Cobalah menambahkan fitur lain yang mungkin relevan, seperti data ekonomi atau data pasar untuk meningkatkan akurasi model lebih lanjut.
 3. **Gunakan Model Ensambel**: Pertimbangkan untuk menggunakan model ensambel seperti Random Forest atau Gradient Boosting untuk menggabungkan keunggulan beberapa model dan meningkatkan akurasi prediksi harga.
 
+---
+
+### Answering the Problem Statement:
+
+1. **Faktor Apa yang Paling Mempengaruhi Harga Kendaraan Baru (MSRP)?**
+   Berdasarkan analisis model dan hasil feature importance, faktor yang paling mempengaruhi harga kendaraan baru (MSRP) adalah **Torque_No** dan **Horsepower_No**, dengan kontribusi masing-masing sebesar 22.07% dan 21.42%. Selain itu, merek Ford juga memiliki pengaruh signifikan terhadap harga kendaraan.
+
+2. **Bagaimana Hubungan Antara Jenis Kendaraan dan Harga (MSRP)?**
+   - **Merek (Make):** Merek premium seperti Aston Martin, Bentley, Audi, BMW, dan Mercedes-Benz memiliki harga yang lebih tinggi. Sedangkan merek seperti Ford dan Nissan lebih terjangkau untuk pasar massal.
+   - **Ukuran Bodi (Body Size):** Kendaraan besar (Large) memiliki harga tertinggi, sementara kendaraan kecil (Compact) lebih ekonomis.
+   - **Gaya Bodi (Body Style):** Convertible dan coupe biasanya memiliki harga lebih tinggi, mencerminkan pasar kendaraan mewah dan sporty. Sebaliknya, minivan cenderung lebih murah.
+   - **Jenis Penggerak (Drivetrain):** Kendaraan dengan penggerak AWD atau 4WD memiliki harga lebih tinggi, sementara FWD cenderung lebih murah.
+   - **Jenis Transmisi (Transmission):** Transmisi otomatis umumnya lebih mahal daripada transmisi manual.
+
+3. **Bagaimana Distribusi Harga Kendaraan Berpengaruh pada Strategi Harga?**
+   - **Distribusi Harga:** Modus (114,843.75) menunjukkan harga kendaraan yang paling sering ditemukan. Strategi harga dapat difokuskan untuk segmen ini dengan penawaran yang kompetitif.
+   - **Rentang Harga:** Rata-rata harga (mean: 62,795.98) dan median (55,900.00) menunjukkan adanya ketimpangan harga, dengan harga lebih tinggi untuk kendaraan premium dan harga lebih rendah untuk kendaraan massal.
+
+4. **Bagaimana Kinerja Prediksi Model Dibandingkan dengan Data Aktual?**
+   Model KNN memberikan hasil yang sangat baik, dengan R² sebesar 0.93 pada data latih dan 0.91 pada data uji. Nilai RMSE dan MAE yang cukup tinggi menunjukkan adanya kesalahan prediksi pada beberapa kasus, namun secara keseluruhan model memberikan prediksi yang cukup akurat.
+
+5. **Bagaimana Tren Residual Memberikan Wawasan Tentang Kelompok yang Kurang Terlayani?**
+   - **Residual** menunjukkan distribusi yang acak dan tidak ada bias sistematis pada kelompok tertentu. Model relatif adil untuk sebagian besar data, namun outlier pada residual menunjukkan bahwa ada kasus yang mungkin kurang terlayani oleh model.
+   - Penyebaran residual yang konsisten di sekitar garis nol (homoskedastisitas) mengindikasikan model tidak memiliki pola kesalahan yang jelas.
+
+### Goals and Problem Statement Review:
+
+- **Faktor yang mempengaruhi harga kendaraan (MSRP)** sudah dijawab dengan mengidentifikasi faktor seperti torque, horsepower, dan merek.
+- **Hubungan antara jenis kendaraan dan harga** telah dijelaskan dengan menganalisis hubungan merek, ukuran bodi, dan gaya bodi terhadap harga kendaraan.
+- **Model prediksi yang akurat** telah dicapai dengan model KNN, yang memberikan hasil lebih baik dibandingkan Linear Regression berdasarkan metrik evaluasi.
+- **Evaluasi model** dengan menggunakan metrik R², RMSE, dan MAE telah dilakukan, dan model KNN menunjukkan performa yang lebih baik.
+
+Dengan demikian, **semua tujuan** dari analisis ini telah tercapai, dan pernyataan masalah telah terjawab dengan baik.
+
+---
+
 # Referensi
 Simanjuntak, D. S. (2020). Analisis Faktor Pembelian Mobil Berdasarkan Harga dan Merek. *CERMIN: Jurnal Penelitian, 4*(1), 176–187. https://doi.org/10.36841/cermin_unars.v4i1.529
-
