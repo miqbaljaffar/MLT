@@ -79,7 +79,7 @@ Untuk mencapai tujuan-tujuan analisis dan prediksi harga kendaraan, tiga pendeka
 
 ## Data Understanding
 
-Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [Dataset](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv). Dataset ini berisi informasi mengenai kendaraan seperti merek, ukuran mesin, tipe bodi, dan harga kendaraan.
+Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [Dataset](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv). Dataset ini berisi informasi mengenai kendaraan seperti merek, ukuran mesin, tipe bodi, dan harga kendaraan. Data ini digunakan untuk memprediksi harga kendaraan baru (MSRP) berdasarkan berbagai fitur kendaraan.
 
 ### Variabel-variabel pada dataset ini:
 
@@ -92,7 +92,55 @@ Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [Dataset](ht
 - **Fuel Economy**: Penghematan bahan bakar (miles per gallon).
 - **Drivetrain**: Jenis penggerak (misalnya FWD, AWD).
 
+### Load and Preview Dataset
+
+Pada bagian ini, kita akan memuat dataset mobil dari file CSV ke dalam DataFrame menggunakan pustaka pandas.
+
+Setelah memuat dataset, kita dapat melihat lima baris pertama untuk memahami struktur dan isi dataset.
+
 ![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt1.PNG)
+
+Output dari kode ini menunjukkan struktur dataset, dengan kolom-kolom seperti **Make**, **Model**, **Year**, **MSRP**, **Body Style**, dan **Horsepower** untuk setiap mobil.
+
+### Data Summary and Information
+
+Pada bagian ini, kita akan menampilkan informasi dasar mengenai dataset, termasuk jenis kolom, jumlah nilai yang tidak kosong, dan tipe data pada setiap kolom. Informasi ini sangat penting untuk memahami karakteristik dataset dan untuk memutuskan langkah-langkah yang diperlukan untuk pembersihan data.
+
+Dataset ini memiliki **1610 baris** dan **17 kolom**. Beberapa kolom seperti "Invoice Price", "Cylinders", "Horsepower", "Torque", dan "Highway Fuel Economy" memiliki nilai kosong (null). Sementara kolom lainnya memiliki nilai yang lengkap tanpa kekurangan data.
+
+Mayoritas kolom adalah bertipe **object** (biasanya tipe data string), kecuali untuk kolom "index" dan "Year" yang bertipe **int64**.
+
+### Descriptive Statistics
+
+Pada bagian ini, kita akan mendapatkan statistik deskriptif dari kolom numerik dalam dataset. Statistik deskriptif ini memberikan gambaran umum mengenai sebaran data, seperti nilai rata-rata (mean), standar deviasi (std), nilai minimum (min), dan nilai maksimum (max) untuk kolom-kolom numerik.
+
+Berikut adalah penjelasan beberapa statistik yang diperoleh:
+
+- **Kolom "index"**:
+  - Jumlah data (**count**) adalah **1610**, yang berarti tidak ada nilai yang hilang pada kolom ini.
+  - Rata-rata (**mean**) nilai index adalah **2932.10**.
+  - Standar deviasi (**std**) adalah **1857.61**, menunjukkan bahwa data dalam kolom ini memiliki variasi yang cukup besar.
+  - Nilai minimum (**min**) adalah **0**, sementara nilai maksimum (**max**) adalah **6414**, yang menunjukkan rentang yang cukup luas.
+
+- **Kolom "Year"**:
+  - Jumlah data (**count**) adalah **1610**, yang berarti kolom ini juga tidak memiliki nilai yang hilang.
+  - Rata-rata (**mean**) tahun adalah **2023.45**, dengan sebagian besar data berada pada tahun 2023 dan 2024.
+  - Standar deviasi (**std**) yang kecil (**0.50**) menunjukkan bahwa data tahun relatif tidak bervariasi jauh.
+  - Nilai minimum (**min**) dan maksimum (**max**) adalah **2023**, yang menunjukkan bahwa hampir semua data berasal dari tahun 2023 dan 2024.
+
+- **Kolom "MSRP"**:
+  - Harga rata-rata (**mean**) kendaraan adalah **62,795.98**, yang menunjukkan harga kendaraan yang bervariasi di pasar.
+  - Nilai **min** adalah **7,995**, menunjukkan harga kendaraan terendah yang ada di dataset, sementara **max** adalah **141,170**, menunjukkan harga kendaraan tertinggi.
+  - Nilai **standar deviasi (std)** yang tinggi (**28,602.09**) menunjukkan variasi harga yang signifikan di antara kendaraan.
+  - Kuartil **25%** dan **75%** menunjukkan harga di sekitar median (nilai tengah) dengan rentang yang cukup luas, mengindikasikan adanya kesenjangan harga antara kendaraan kelas rendah dan kelas premium.
+
+### Summary
+
+Berdasarkan pemahaman awal dataset melalui informasi di atas, kita dapat menyimpulkan bahwa dataset ini mencakup berbagai fitur penting yang dapat digunakan untuk memprediksi harga kendaraan baru (MSRP), termasuk fitur teknis seperti **horsepower**, **engine size**, serta atribut kendaraan lainnya seperti **make**, **body style**, dan **transmission**.
+
+Proses eksplorasi lebih lanjut akan dilakukan untuk menangani nilai yang hilang, serta melakukan pembersihan data dan prapemrosesan lainnya agar model prediksi harga kendaraan dapat dibangun dengan efektif.
+
+---
 
 ### Exploratory Data Analysis (EDA)
 
