@@ -136,8 +136,6 @@ Berikut adalah penjelasan beberapa statistik yang diperoleh:
 
 **Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik untuk menggali wawasan dari data.
 
----
-
 #### 1. Analisis Data Eksplorasi (EDA): Cek Nilai Unik pada Setiap Kolom
 
 Pada tahap ini, kita akan melakukan analisis untuk memeriksa nilai unik yang ada pada setiap kolom dalam dataset. Hal ini penting untuk memahami jenis data yang ada di setiap kolom, serta untuk menentukan apakah ada kolom dengan jumlah nilai yang terlalu banyak atau terlalu sedikit. Ini juga berguna untuk memahami variabilitas dan keunikan data dalam setiap kolom.
