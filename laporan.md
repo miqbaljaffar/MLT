@@ -20,30 +20,40 @@ Referensi terkait dapat ditemukan pada [ANALISIS FAKTOR PEMBELIAN MOBIL BERDASAR
 
 ---
 
-## Business Understanding
+# Business Understanding
 
-Proyek ini bertujuan untuk membuat model prediksi harga kendaraan baru yang dapat membantu produsen dalam menentukan harga jual yang optimal dan mempermudah konsumen dalam melakukan perbandingan harga kendaraan.
+Proyek ini bertujuan untuk membangun sebuah model prediksi yang dapat memperkirakan harga kendaraan baru (MSRP), yang akan membantu produsen kendaraan dalam menetapkan harga yang optimal. Selain itu, model ini juga akan mempermudah konsumen dalam membandingkan harga kendaraan berdasarkan fitur-fitur yang relevan. Dengan adanya model ini, produsen dapat membuat keputusan yang lebih tepat mengenai harga jual, sementara konsumen dapat memperoleh informasi yang lebih transparan mengenai harga kendaraan yang mereka minati.
 
 ### Problem Statements
 
 1. **Apa saja faktor yang mempengaruhi harga kendaraan baru (MSRP)?**
-   - Faktor-faktor seperti merek, jenis bodi, dan ukuran mesin diharapkan mempengaruhi harga kendaraan baru.
-   
+   - Beberapa faktor yang diharapkan dapat mempengaruhi harga kendaraan baru antara lain merek, jenis bodi, ukuran mesin, tenaga kuda (horsepower), torsi, dan fitur-fitur tambahan seperti sistem penggerak (drivetrain), jenis transmisi, dan lain sebagainya. Dalam hal ini, kita ingin mengetahui seberapa besar kontribusi masing-masing faktor terhadap harga kendaraan.
+
 2. **Bagaimana hubungan antara jenis kendaraan dan harga?**
-   - Jenis kendaraan (misalnya sedan, SUV, atau minivan) kemungkinan besar mempengaruhi harga kendaraan.
+   - Jenis kendaraan, seperti sedan, SUV, minivan, atau truk, memiliki karakteristik yang berbeda yang dapat mempengaruhi harga jual kendaraan tersebut. Misalnya, SUV atau kendaraan mewah cenderung memiliki harga yang lebih tinggi daripada kendaraan kompak. Memahami hubungan ini dapat memberikan wawasan tentang bagaimana produsen dan konsumen memandang nilai suatu kendaraan berdasarkan jenisnya.
 
 3. **Bagaimana model dapat memberikan prediksi yang akurat untuk harga kendaraan baru?**
-   - Tujuan utamanya adalah membangun model prediksi harga kendaraan berdasarkan fitur-fitur kendaraan yang relevan.
+   - Tujuan utama dari proyek ini adalah membangun model prediksi harga kendaraan berdasarkan data yang tersedia. Model ini harus mampu memprediksi harga kendaraan baru dengan akurat, menggunakan variabel-variabel seperti merek, jenis bodi, tenaga mesin, dan fitur lainnya sebagai input.
 
 4. **Bagaimana performa model yang dihasilkan berdasarkan evaluasi metrik yang digunakan?**
-   - Evaluasi menggunakan metrik seperti R², RMSE, dan MAE untuk menilai kinerja model.
+   - Evaluasi model dilakukan menggunakan beberapa metrik, seperti R² (Coefficient of Determination), RMSE (Root Mean Squared Error), dan MAE (Mean Absolute Error), yang akan mengukur seberapa baik model dapat memprediksi harga kendaraan pada data yang belum dilihat sebelumnya. Hasil evaluasi ini akan menunjukkan apakah model sudah cukup akurat untuk digunakan dalam situasi dunia nyata.
+
+5. **Bagaimana distribusi harga kendaraan berpengaruh pada strategi harga?**
+   - Memahami distribusi harga kendaraan dapat membantu dalam merumuskan strategi harga yang efektif. Misalnya, mengetahui bahwa sebagian besar kendaraan berada pada rentang harga tertentu dapat membantu produsen dalam menentukan strategi pemasaran atau segmentasi harga yang lebih efisien. Selain itu, distribusi harga juga bisa memberi wawasan tentang segmentasi pasar, apakah pasar lebih banyak berfokus pada kendaraan ekonomis atau kendaraan mewah.
 
 ### Goals
 
-1. Menemukan faktor-faktor utama yang mempengaruhi harga kendaraan baru.
-2. Memahami hubungan antara jenis kendaraan dan harga.
-3. Membangun model yang dapat memprediksi harga kendaraan dengan akurat.
-4. Mengevaluasi model menggunakan metrik R², RMSE, dan MAE.
+1. **Menemukan faktor-faktor utama yang mempengaruhi harga kendaraan baru**: Tujuan pertama adalah mengidentifikasi dan memahami faktor-faktor yang paling signifikan dalam menentukan harga kendaraan. Faktor-faktor ini bisa mencakup merek, ukuran mesin, jenis bodi, dan fitur kendaraan lainnya.
+   
+2. **Memahami hubungan antara jenis kendaraan dan harga**: Analisis ini bertujuan untuk menjawab pertanyaan tentang bagaimana perbedaan jenis kendaraan (misalnya SUV vs. sedan) mempengaruhi harga jualnya. Hal ini akan membantu dalam memahami bagaimana preferensi pasar mempengaruhi harga kendaraan.
+
+3. **Membangun model yang dapat memprediksi harga kendaraan dengan akurat**: Dengan membangun model prediksi, tujuan utamanya adalah untuk menghasilkan alat yang dapat memberikan estimasi harga yang tepat berdasarkan input dari berbagai fitur kendaraan. Model ini bisa digunakan oleh produsen kendaraan untuk menetapkan harga atau oleh konsumen untuk menilai nilai kendaraan.
+
+4. **Mengevaluasi model menggunakan metrik R², RMSE, dan MAE**: Evaluasi model menggunakan metrik yang relevan adalah bagian penting untuk memastikan model yang dibangun dapat diandalkan. R² digunakan untuk mengukur seberapa baik model menjelaskan variabilitas data, RMSE memberikan gambaran seberapa jauh prediksi model dari nilai aktual, dan MAE mengukur rata-rata kesalahan absolut prediksi.
+
+5. **Menganalisis distribusi harga kendaraan dan dampaknya pada strategi harga**: Analisis ini bertujuan untuk memberikan wawasan lebih dalam tentang bagaimana harga kendaraan tersebar di pasar dan bagaimana distribusi harga ini dapat memengaruhi strategi harga yang digunakan oleh produsen dan pengecer kendaraan. Misalnya, jika sebagian besar kendaraan berada dalam kisaran harga tertentu, produsen dapat fokus pada segmentasi harga tersebut untuk memaksimalkan keuntungan.
+
+---
 
 ### Solution Statement
 
@@ -493,7 +503,7 @@ Model dievaluasi menggunakan data uji yang terpisah (20%) setelah dilatih pada d
 
 ---
 
-## Kesimpulan dan Rekomendasi
+## Kesimpulan dan Rekomendasi Model
 
 Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik untuk memprediksi harga kendaraan baru, dengan kinerja yang lebih baik dibandingkan dengan regresi linier. Oleh karena itu, disarankan untuk menggunakan **KNN** dalam proyek ini.
 
@@ -517,25 +527,26 @@ Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik u
    - **Jenis Penggerak (Drivetrain):** Kendaraan dengan penggerak AWD atau 4WD memiliki harga lebih tinggi, sementara FWD cenderung lebih murah.
    - **Jenis Transmisi (Transmission):** Transmisi otomatis umumnya lebih mahal daripada transmisi manual.
 
-3. **Bagaimana Distribusi Harga Kendaraan Berpengaruh pada Strategi Harga?**
-   - **Distribusi Harga:** Modus (114,843.75) menunjukkan harga kendaraan yang paling sering ditemukan. Strategi harga dapat difokuskan untuk segmen ini dengan penawaran yang kompetitif.
-   - **Rentang Harga:** Rata-rata harga (mean: 62,795.98) dan median (55,900.00) menunjukkan adanya ketimpangan harga, dengan harga lebih tinggi untuk kendaraan premium dan harga lebih rendah untuk kendaraan massal.
-
-4. **Bagaimana Kinerja Prediksi Model Dibandingkan dengan Data Aktual?**
+3. **Bagaimana Kinerja Prediksi Model Dibandingkan dengan Data Aktual?**
    Model KNN memberikan hasil yang sangat baik, dengan R² sebesar 0.93 pada data latih dan 0.91 pada data uji. Nilai RMSE dan MAE yang cukup tinggi menunjukkan adanya kesalahan prediksi pada beberapa kasus, namun secara keseluruhan model memberikan prediksi yang cukup akurat.
 
-5. **Bagaimana Tren Residual Memberikan Wawasan Tentang Kelompok yang Kurang Terlayani?**
+4. **Bagaimana Tren Residual Memberikan Wawasan Tentang Kelompok yang Kurang Terlayani?**
    - **Residual** menunjukkan distribusi yang acak dan tidak ada bias sistematis pada kelompok tertentu. Model relatif adil untuk sebagian besar data, namun outlier pada residual menunjukkan bahwa ada kasus yang mungkin kurang terlayani oleh model.
    - Penyebaran residual yang konsisten di sekitar garis nol (homoskedastisitas) mengindikasikan model tidak memiliki pola kesalahan yang jelas.
 
+5. **Bagaimana Distribusi Harga Kendaraan Berpengaruh pada Strategi Harga?**
+   - **Distribusi Harga:** Modus (114,843.75) menunjukkan harga kendaraan yang paling sering ditemukan. Strategi harga dapat difokuskan untuk segmen ini dengan penawaran yang kompetitif.
+   - **Rentang Harga:** Rata-rata harga (mean: 62,795.98) dan median (55,900.00) menunjukkan adanya ketimpangan harga, dengan harga lebih tinggi untuk kendaraan premium dan harga lebih rendah untuk kendaraan massal.
+     
 ### Goals and Problem Statement Review:
 
-- **Faktor yang mempengaruhi harga kendaraan (MSRP)** sudah dijawab dengan mengidentifikasi faktor seperti torque, horsepower, dan merek.
-- **Hubungan antara jenis kendaraan dan harga** telah dijelaskan dengan menganalisis hubungan merek, ukuran bodi, dan gaya bodi terhadap harga kendaraan.
-- **Model prediksi yang akurat** telah dicapai dengan model KNN, yang memberikan hasil lebih baik dibandingkan Linear Regression berdasarkan metrik evaluasi.
-- **Evaluasi model** dengan menggunakan metrik R², RMSE, dan MAE telah dilakukan, dan model KNN menunjukkan performa yang lebih baik.
+- **Faktor yang mempengaruhi harga kendaraan (MSRP)** sudah dijawab dengan mengidentifikasi faktor seperti torque, horsepower, dan merek. Hal ini menunjukkan bahwa faktor teknis kendaraan dan brand menjadi pendorong utama harga kendaraan.
+- **Hubungan antara jenis kendaraan dan harga** telah dijelaskan dengan menganalisis hubungan merek, ukuran bodi, dan gaya bodi terhadap harga kendaraan. Jenis kendaraan memiliki pengaruh yang signifikan terhadap harga, dengan kendaraan besar dan merek premium cenderung lebih mahal.
+- **Model prediksi yang akurat** telah dicapai dengan model KNN, yang memberikan hasil lebih baik dibandingkan Linear Regression berdasarkan metrik evaluasi. Model ini terbukti mampu memberikan prediksi harga yang cukup akurat, meskipun ada beberapa kasus yang perlu diperhatikan untuk meningkatkan prediksi lebih lanjut.
+- **Evaluasi model** dengan menggunakan metrik R², RMSE, dan MAE telah dilakukan, dan model KNN menunjukkan performa yang lebih baik, dengan R² yang tinggi pada data latih dan uji. Metrik ini mengonfirmasi bahwa model mampu memprediksi harga kendaraan dengan cukup baik, meskipun ada kesalahan prediksi pada beberapa kasus.
+- **Distribusi harga kendaraan** telah dianalisis untuk memberikan wawasan mengenai bagaimana harga kendaraan tersebar di pasar dan bagaimana ini dapat memengaruhi strategi harga yang digunakan oleh produsen. Hasil analisis distribusi menunjukkan bahwa kendaraan dengan harga tertentu cenderung lebih banyak ditemukan di pasar, yang dapat menjadi dasar untuk merancang strategi harga yang lebih efektif dan efisien.
 
-Dengan demikian, **semua tujuan** dari analisis ini telah tercapai, dan pernyataan masalah telah terjawab dengan baik.
+Dengan demikian, **semua tujuan** dari analisis ini telah tercapai, dan pernyataan masalah telah terjawab dengan baik. Model prediksi harga kendaraan yang dibangun dapat menjadi alat yang berguna untuk membantu produsen dan konsumen dalam menentukan harga yang wajar dan kompetitif.
 
 ---
 
