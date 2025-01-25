@@ -114,6 +114,8 @@ Mayoritas kolom adalah bertipe **object** (biasanya tipe data string), kecuali u
 
 Pada bagian ini, kita akan mendapatkan statistik deskriptif dari kolom numerik dalam dataset. Statistik deskriptif ini memberikan gambaran umum mengenai sebaran data, seperti nilai rata-rata (mean), standar deviasi (std), nilai minimum (min), dan nilai maksimum (max) untuk kolom-kolom numerik.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt15.PNG)
+
 Berikut adalah penjelasan beberapa statistik yang diperoleh:
 
 - **Kolom "index"**:
@@ -127,19 +129,7 @@ Berikut adalah penjelasan beberapa statistik yang diperoleh:
   - Rata-rata (**mean**) tahun adalah **2023.45**, dengan sebagian besar data berada pada tahun 2023 dan 2024.
   - Standar deviasi (**std**) yang kecil (**0.50**) menunjukkan bahwa data tahun relatif tidak bervariasi jauh.
   - Nilai minimum (**min**) dan maksimum (**max**) adalah **2023**, yang menunjukkan bahwa hampir semua data berasal dari tahun 2023 dan 2024.
-
-- **Kolom "MSRP"**:
-  - Harga rata-rata (**mean**) kendaraan adalah **62,795.98**, yang menunjukkan harga kendaraan yang bervariasi di pasar.
-  - Nilai **min** adalah **7,995**, menunjukkan harga kendaraan terendah yang ada di dataset, sementara **max** adalah **141,170**, menunjukkan harga kendaraan tertinggi.
-  - Nilai **standar deviasi (std)** yang tinggi (**28,602.09**) menunjukkan variasi harga yang signifikan di antara kendaraan.
-  - Kuartil **25%** dan **75%** menunjukkan harga di sekitar median (nilai tengah) dengan rentang yang cukup luas, mengindikasikan adanya kesenjangan harga antara kendaraan kelas rendah dan kelas premium.
-
-### Summary
-
-Berdasarkan pemahaman awal dataset melalui informasi di atas, kita dapat menyimpulkan bahwa dataset ini mencakup berbagai fitur penting yang dapat digunakan untuk memprediksi harga kendaraan baru (MSRP), termasuk fitur teknis seperti **horsepower**, **engine size**, serta atribut kendaraan lainnya seperti **make**, **body style**, dan **transmission**.
-
-Proses eksplorasi lebih lanjut akan dilakukan untuk menangani nilai yang hilang, serta melakukan pembersihan data dan prapemrosesan lainnya agar model prediksi harga kendaraan dapat dibangun dengan efektif.
-
+    
 ---
 
 ### Exploratory Data Analysis (EDA)
@@ -148,30 +138,87 @@ Proses eksplorasi lebih lanjut akan dilakukan untuk menangani nilai yang hilang,
 
 ---
 
-#### 1. **Histogram**
+#### 1. Analisis Data Eksplorasi (EDA): Cek Nilai Unik pada Setiap Kolom
+
+Pada tahap ini, kita akan melakukan analisis untuk memeriksa nilai unik yang ada pada setiap kolom dalam dataset. Hal ini penting untuk memahami jenis data yang ada di setiap kolom, serta untuk menentukan apakah ada kolom dengan jumlah nilai yang terlalu banyak atau terlalu sedikit. Ini juga berguna untuk memahami variabilitas dan keunikan data dalam setiap kolom.
+
+Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, kita akan menampilkan daftar nilai unik tersebut. Jika jumlah nilai uniknya lebih dari 12, hanya jumlah nilai unik yang akan ditampilkan.
+
+**Langkah-langkah Implementasi:**
+
+1. Melakukan pengecekan nilai unik pada setiap kolom dalam dataset mobil.
+2. Jika jumlah nilai unik pada kolom lebih kecil atau sama dengan 12, menampilkan daftar nilai unik untuk kolom tersebut.
+3. Jika jumlah nilai unik lebih dari 12, hanya menampilkan jumlah nilai unik pada kolom tersebut.
+
+**Penjelasan Hasil Output:**
+
+- **Kolom index** memiliki **1610** nilai unik, yang menunjukkan bahwa setiap baris dalam dataset memiliki nilai index yang berbeda.
+- **Kolom Make** memiliki **7** nilai unik, yang menunjukkan ada 7 merek mobil yang berbeda dalam dataset: `['Aston Martin', 'Audi', 'BMW', 'Bentley', 'Ford', 'Mercedes-Benz', 'Nissan']`.
+- **Kolom Model** memiliki **150** nilai unik, yang berarti ada 150 model mobil yang berbeda dalam dataset.
+- **Kolom Year** hanya memiliki **2** nilai unik, yaitu 2023 dan 2024, menunjukkan bahwa dataset ini hanya mencakup mobil dari tahun tersebut.
+- **Kolom Trim** memiliki **373** nilai unik, yang menunjukkan banyaknya varian trim yang tersedia dalam dataset.
+- **Kolom MSRP**, **Invoice Price**, dan **Used/New Price** memiliki banyak nilai unik, masing-masing **1317**, **944**, dan **1317** nilai unik, yang menunjukkan harga mobil yang bervariasi.
+- **Kolom Body Size** memiliki **3** nilai unik, yaitu `['Compact', 'Large', 'Midsize']`, yang menggambarkan ukuran tubuh mobil.
+- **Kolom Body Style** memiliki **12** nilai unik, yang menggambarkan berbagai jenis tubuh mobil seperti 'SUV', 'Sedan', 'Pickup Truck', dan lainnya.
+- **Kolom Cylinders** memiliki **10** nilai unik, yang menggambarkan jumlah dan tipe silinder pada mesin mobil.
+- **Kolom Engine Aspiration** memiliki **6** nilai unik, menggambarkan jenis aspirasi mesin seperti 'Turbocharged' dan 'Electric Motor'.
+- **Kolom Drivetrain** memiliki **4** nilai unik, menggambarkan jenis sistem penggerak roda pada mobil, seperti '4WD', 'AWD', 'FWD', dan 'RWD'.
+- **Kolom Transmission** memiliki **2** nilai unik, yaitu 'automatic' dan 'manual', yang menggambarkan jenis transmisi mobil.
+- **Kolom Horsepower** dan **Torque** memiliki **192** dan **176** nilai unik, yang menunjukkan banyaknya variasi dalam daya dan torsi mesin mobil.
+- **Kolom Highway Fuel Economy** memiliki **63** nilai unik, yang menggambarkan variasi konsumsi bahan bakar mobil di jalan raya.
+
+---
+
+#### 2. **Histogram**
 Histogram digunakan untuk memeriksa distribusi harga dan fitur lainnya.
 
 ![Distribusi Harga](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
 ![Distribusi MSRP](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt31.png)
 
 **Distribusi Harga (Used/New Price dan MSRP):**
-- **Gambar:** Dua grafik yang menunjukkan distribusi harga kendaraan:
-  - **Used/New Price** (Harga bekas/baru)
-  - **MSRP** (Manufacturer's Suggested Retail Price)
+- **Gambar:** Terdapat dua grafik yang menunjukkan distribusi harga kendaraan:
+  - **Harga bekas/baru (Used/New Price)**
+  - **MSRP (Manufacturer's Suggested Retail Price)**
 
-**Statistik Penting:**
+**Statistik:**
 - **Rata-rata (Mean):** 62,795.98
 - **Median:** 55,900.00
 - **Modus:** 114,843.75
 
 **Interpretasi:**
-- Grafik menunjukkan pola distribusi harga kendaraan.
+Grafik menunjukkan pola distribusi harga kendaraan:
 - Puncak grafik menggambarkan harga yang paling sering muncul (modus).
 - Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
 
 ---
 
-#### 2. **Pairplot**
+##### 1. **Distribusi Horsepower**
+- **Gambar:** Grafik distribusi tenaga kuda (Horsepower).
+  
+**Statistik:**
+- **Rata-rata (Mean):** 345.37
+- **Median:** 318.00
+- **Modus:** 275.00
+
+**Interpretasi:**
+Grafik ini memperlihatkan jumlah tenaga kuda yang dimiliki kendaraan. Sebagian besar kendaraan memiliki horsepower sekitar nilai modus, sementara nilai rata-rata dan median memberikan informasi tambahan tentang penyebaran data.
+
+---
+
+##### 2. **Distribusi Torque**
+- **Gambar:** Grafik distribusi torsi kendaraan (Torque).
+  
+**Statistik:**
+- **Rata-rata (Mean):** 364.63
+- **Median:** 339.00
+- **Modus:** 260.00
+
+**Interpretasi:**
+Grafik menunjukkan pola distribusi nilai torsi kendaraan. Sebagian besar kendaraan memiliki torsi mendekati nilai modus, sedangkan rata-rata dan median memberikan gambaran tentang sebaran data di sekitar nilai tersebut.
+
+---
+
+#### 3. **Pairplot**
 Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan harga kendaraan.
 
 ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
@@ -195,7 +242,7 @@ Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan har
 
 ---
 
-### 3. Cek Missing Value
+### 4. Cek Missing Value
 
 Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
 
@@ -210,7 +257,7 @@ Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dat
 - Kolom `Highway Fuel Economy` memiliki **424 nilai yang hilang**.
 
 
-### 4. Cek Outlier
+### 5. Cek Outlier
 
 #### Metode
 - Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
