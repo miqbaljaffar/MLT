@@ -145,6 +145,8 @@ Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan har
 #### Langkah-langkah
 - Menghitung Q1, Q3, IQR, dan batas untuk setiap kolom.
 
+![out](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt13.PNG)
+
 #### Hasil
 Terdapat 166 outliers untuk kolom `MSRP` dan `Used/New Price`, serta 36 outliers untuk `Horsepower_No` dan 17 outliers untuk `Torque_No`.
 
@@ -157,17 +159,8 @@ Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepowe
 - Ditemukan beberapa outlier, terutama pada harga kendaraan (`MSRP`), yang memiliki rentang sangat lebar.
 - Outlier ini perlu dianalisis lebih lanjut untuk menentukan apakah perlu dihapus atau ditangani secara khusus.
 
----
-
-**Kesimpulan EDA:**
-- EDA memberikan wawasan penting tentang distribusi data, hubungan antar fitur, dan keberadaan outlier.
-- Hasil analisis ini menjadi dasar untuk tahap preprocessing dan model building.
-
----
 
 ## Data Preparation
-
-### Pendahuluan
 
 Pada tahap ini, kami menerapkan beberapa teknik pembersihan dan transformasi data untuk memastikan dataset siap digunakan dalam model machine learning. Proses ini mencakup penanganan nilai hilang, transformasi variabel, penanganan outlier, normalisasi fitur, serta split data.
 
@@ -189,6 +182,8 @@ Pertama, kolom `Invoice Price`, `Cylinders`, dan `Highway Fuel Economy` dihapus 
 
 Setelah semua langkah ini dilakukan, pengecekan dilakukan untuk memastikan bahwa kolom `Horsepower` dan `Torque` tidak lagi memiliki nilai hilang.
 
+![miss](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt11.PNG)
+
 #### Hasil
 - Kolom `Invoice Price`, `Cylinders`, dan `Highway Fuel Economy` telah dihapus dari dataset.
 - Nilai hilang pada kolom `Horsepower` dan `Torque` telah diisi dengan rata-rata dari nilai pada kolom `Horsepower_No` dan `Torque_No`.
@@ -203,6 +198,8 @@ Setelah langkah sebelumnya, kolom tambahan `Horsepower_No` dan `Torque_No` masih
 
 #### Langkah-langkah
 Baris-baris yang memiliki nilai hilang pada kolom `Horsepower_No` dan `Torque_No` dihapus dari dataset. Setelah itu, dilakukan verifikasi untuk memastikan bahwa semua kolom pada dataset sekarang tidak memiliki nilai hilang.
+
+![MISS](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt12.PNG)
 
 #### Hasil
 - Tidak ada lagi nilai hilang dalam dataset.
