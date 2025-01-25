@@ -190,8 +190,6 @@ Grafik menunjukkan pola distribusi harga kendaraan:
 - Puncak grafik menggambarkan harga yang paling sering muncul (modus).
 - Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
 
----
-
 ##### 1. **Distribusi Horsepower**
 - **Gambar:** Grafik distribusi tenaga kuda (Horsepower).
   
@@ -202,8 +200,6 @@ Grafik menunjukkan pola distribusi harga kendaraan:
 
 **Interpretasi:**
 Grafik ini memperlihatkan jumlah tenaga kuda yang dimiliki kendaraan. Sebagian besar kendaraan memiliki horsepower sekitar nilai modus, sementara nilai rata-rata dan median memberikan informasi tambahan tentang penyebaran data.
-
----
 
 ##### 2. **Distribusi Torque**
 - **Gambar:** Grafik distribusi torsi kendaraan (Torque).
