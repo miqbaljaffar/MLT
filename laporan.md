@@ -137,7 +137,22 @@ Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan har
 
 ---
 
-### 3. Cek Outlier
+### 3. Cek Missing Value
+
+Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
+
+![out](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt5.png)
+
+#### Hasil
+- Kolom `index`, `Make`, `Model`, `Year`, `Trim`, `MSRP`, `Used/New Price`, `Body Size`, `Body Style`, `Engine Aspiration`, `Drivetrain`, dan `Transmission` tidak memiliki nilai yang hilang, karena jumlah nilai yang hilang pada kolom-kolom ini adalah **0**.
+- Kolom `Invoice Price` memiliki **552 nilai yang hilang**.
+- Kolom `Cylinders` memiliki **165 nilai yang hilang**.
+- Kolom `Horsepower` memiliki **5 nilai yang hilang**.
+- Kolom `Torque` memiliki **27 nilai yang hilang**.
+- Kolom `Highway Fuel Economy` memiliki **424 nilai yang hilang**.
+
+
+### 4. Cek Outlier
 
 #### Metode
 - Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
@@ -164,7 +179,7 @@ Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepowe
 
 Pada tahap ini, kami menerapkan beberapa teknik pembersihan dan transformasi data untuk memastikan dataset siap digunakan dalam model machine learning. Proses ini mencakup penanganan nilai hilang, transformasi variabel, penanganan outlier, normalisasi fitur, serta split data.
 
-## Penanganan Missing Value
+### Penanganan Missing Value
 
 Pada bagian ini, kita akan melakukan beberapa langkah untuk membersihkan dataset dan menangani masalah nilai yang hilang (*missing values*), serta menyesuaikan format data jika diperlukan. Langkah-langkah ini bertujuan untuk meningkatkan kualitas data dan memastikan analisis serta model yang dibangun dapat bekerja dengan optimal.
 
@@ -208,17 +223,17 @@ Baris-baris yang memiliki nilai hilang pada kolom `Horsepower_No` dan `Torque_No
 
 ---
 
-## 3. Pembersihan dan Konversi Tipe Data
+### 3. Pembersihan dan Konversi Tipe Data
 
-### Metode
+#### Metode
 Pada tahap ini, dilakukan pembersihan dan konversi data pada kolom `MSRP` dan `Used/New Price` yang awalnya berformat string. Kolom-kolom tersebut mengandung simbol mata uang ($) dan tanda koma (,) sebagai pemisah ribuan, yang perlu dihapus agar data dapat dikonversi menjadi tipe numerik. Langkah ini sangat penting untuk memungkinkan analisis statistik dan perhitungan matematika pada data harga kendaraan.
 
-### Langkah-langkah
+#### Langkah-langkah
 Pertama, simbol mata uang `$` dan tanda koma `,` yang ada di kolom `MSRP` dan `Used/New Price` dihapus. Proses ini dilakukan dengan metode penggantian berbasis pola menggunakan ekspresi reguler. Setelah simbol dan tanda koma dihapus, data dalam kedua kolom tersebut dikonversi dari format string menjadi angka desimal (`float`). Langkah ini memastikan bahwa data dapat digunakan untuk berbagai analisis statistik dan matematis. Setelah itu, dilakukan pengecekan kembali pada informasi dataset.
 
 ![info](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt6.png)
 
-### Hasil
+#### Hasil
 Setelah proses pembersihan dan konversi:
 - Kolom `MSRP` dan `Used/New Price` berhasil diubah dari format string menjadi format angka desimal (`float64`).
 - Tidak ada nilai hilang yang tercatat pada kedua kolom ini setelah konversi.
@@ -226,12 +241,14 @@ Setelah proses pembersihan dan konversi:
 
 ---
 
-## Statistik Deskriptif Kolom Numerik
+### Statistik Deskriptif Kolom Numerik
 
-### Pengecekan Statistik Deskriptif
+#### Pengecekan Statistik Deskriptif
 Setelah pembersihan dan konversi tipe data, langkah selanjutnya adalah memeriksa statistik deskriptif dari kolom-kolom numerik pada dataset. Statistik deskriptif memberikan gambaran umum tentang distribusi data, seperti nilai minimum, maksimum, rata-rata, dan simpangan baku. Hal ini penting untuk memahami karakteristik dari setiap kolom numerik yang ada dalam dataset.
 
-### Penjelasan Hasil Output
+![desc](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt14.PNG)
+
+#### Penjelasan Hasil Output
 Berdasarkan hasil dari fungsi `describe()`, kita mendapatkan informasi statistik untuk kolom-kolom numerik pada dataset, yaitu `Year`, `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`. Berikut adalah beberapa poin penting:
 
 1. **Kolom Year**:
@@ -248,17 +265,17 @@ Berdasarkan hasil dari fungsi `describe()`, kita mendapatkan informasi statistik
    - **Nilai maksimum tenaga kuda** tercatat mencapai **831**, sedangkan **nilai maksimum torsi** adalah **811**. Hal ini menunjukkan bahwa ada mobil dengan performa mesin yang sangat tinggi.
    - Sebagian besar mobil dalam dataset memiliki tenaga kuda dan torsi yang lebih rendah, dengan hanya beberapa mobil yang memiliki performa jauh lebih tinggi, yang menunjukkan adanya variasi dalam jenis dan performa kendaraan.
 
-### Kesimpulan
+#### Kesimpulan
 Dari statistik deskriptif ini, kita dapat melihat bahwa dataset ini mengandung variasi yang cukup besar, baik dari sisi harga maupun performa kendaraan. Dengan informasi ini, kita dapat mulai mengidentifikasi pola atau tren dalam data, atau mengelompokkan kendaraan berdasarkan kategori harga dan spesifikasi performa untuk analisis lebih lanjut.
 
 ---
 
 ### 4. Penanganan Outlier dengan Winsorizing
 
-### Metode
+#### Metode
 Pada bagian ini, kita menangani nilai-nilai yang termasuk outlier dalam kolom-kolom numerik yang relevan, yaitu `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`. Outlier akan diganti dengan batas bawah atau batas atas yang dihitung berdasarkan rentang interkuartil (IQR). Teknik ini dikenal dengan sebutan **Winsorizing**, di mana nilai yang lebih besar dari batas atas diganti dengan batas atas, dan nilai yang lebih kecil dari batas bawah diganti dengan batas bawah.
 
-### Langkah-langkah
+#### Langkah-langkah
 1. Menghitung **Q1** (Kuartil pertama) dan **Q3** (Kuartil ketiga) untuk setiap kolom.
 2. Menghitung **IQR** (Rentang Interkuartil), yaitu selisih antara Q3 dan Q1.
 3. Menentukan **Lower Bound** (batas bawah) dan **Upper Bound** (batas atas) berdasarkan rumus:
@@ -268,14 +285,14 @@ Pada bagian ini, kita menangani nilai-nilai yang termasuk outlier dalam kolom-ko
 5. Setelah itu, memeriksa distribusi data menggunakan boxplot untuk melihat perubahan setelah menangani outliers.
 6. Memeriksa statistik deskriptif untuk memastikan bahwa data telah dibersihkan dari outliers ekstrem.
 
-### Implementasi
+#### Implementasi
 - Kolom yang ingin diperiksa adalah: `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`.
 - Untuk setiap kolom tersebut, perhitungan Q1, Q3, IQR, serta batas bawah dan atas dilakukan untuk mendeteksi dan menangani outlier menggunakan Winsorizing.
 
 ![MRS](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt7.png)
 ![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt8.png)
 
-### Hasil
+#### Hasil
 Setelah melakukan Winsorizing pada kolom-kolom yang relevan:
 - **MSRP** dan **Used/New Price**:
   - Nilai maksimum yang sebelumnya sangat tinggi (misalnya 391.100) telah dikurangi menjadi sekitar 114.843,75 setelah Winsorizing, yang membuat rentang harga lebih terkontrol.
