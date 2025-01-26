@@ -136,7 +136,7 @@ Berikut adalah penjelasan beberapa statistik yang diperoleh:
 
 **Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik untuk menggali wawasan dari data.
 
-#### 1. Analisis Data Eksplorasi (EDA): Cek Nilai Unik pada Setiap Kolom
+### 1. Analisis Data Eksplorasi (EDA): Cek Nilai Unik pada Setiap Kolom
 
 Pada tahap ini, kita akan melakukan analisis untuk memeriksa nilai unik yang ada pada setiap kolom dalam dataset. Hal ini penting untuk memahami jenis data yang ada di setiap kolom, serta untuk menentukan apakah ada kolom dengan jumlah nilai yang terlalu banyak atau terlalu sedikit. Ini juga berguna untuk memahami variabilitas dan keunikan data dalam setiap kolom.
 
@@ -167,52 +167,7 @@ Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, kita akan me
 
 ---
 
-#### 2. **Histogram**
-Histogram digunakan untuk memeriksa distribusi harga dan fitur lainnya.
-
-![Distribusi Harga](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
-![Distribusi MSRP](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt31.png)
-
-**Distribusi Harga (Used/New Price dan MSRP):**
-- **Gambar:** Terdapat dua grafik yang menunjukkan distribusi harga kendaraan:
-  - **Harga bekas/baru (Used/New Price)**
-  - **MSRP (Manufacturer's Suggested Retail Price)**
-
-**Statistik:**
-- **Rata-rata (Mean):** 62,795.98
-- **Median:** 55,900.00
-- **Modus:** 114,843.75
-
-**Interpretasi:**
-Grafik menunjukkan pola distribusi harga kendaraan:
-- Puncak grafik menggambarkan harga yang paling sering muncul (modus).
-- Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
-
-##### 1. **Distribusi Horsepower**
-- **Gambar:** Grafik distribusi tenaga kuda (Horsepower).
-  
-**Statistik:**
-- **Rata-rata (Mean):** 345.37
-- **Median:** 318.00
-- **Modus:** 275.00
-
-**Interpretasi:**
-Grafik ini memperlihatkan jumlah tenaga kuda yang dimiliki kendaraan. Sebagian besar kendaraan memiliki horsepower sekitar nilai modus, sementara nilai rata-rata dan median memberikan informasi tambahan tentang penyebaran data.
-
-##### 2. **Distribusi Torque**
-- **Gambar:** Grafik distribusi torsi kendaraan (Torque).
-  
-**Statistik:**
-- **Rata-rata (Mean):** 364.63
-- **Median:** 339.00
-- **Modus:** 260.00
-
-**Interpretasi:**
-Grafik menunjukkan pola distribusi nilai torsi kendaraan. Sebagian besar kendaraan memiliki torsi mendekati nilai modus, sedangkan rata-rata dan median memberikan gambaran tentang sebaran data di sekitar nilai tersebut.
-
----
-
-### 4. Cek Missing Value
+### 2. Cek Missing Value
 
 Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
 
@@ -228,7 +183,7 @@ Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dat
 
 ---
 
-### 5. Cek Duplikasi Data
+### 3. Cek Duplikasi Data
 
 Pada bagian ini, kita akan memeriksa apakah terdapat baris data yang duplikat dalam dataset. Proses ini penting untuk memastikan bahwa data yang digunakan dalam analisis bersih dari duplikasi yang dapat memengaruhi hasil analisis.
 
@@ -309,7 +264,7 @@ Setelah proses pembersihan dan konversi:
 
 ---
 
-### Statistik Deskriptif Kolom Numerik
+### Cek Statistik Deskriptif Kolom Numerik
 
 #### Pengecekan Statistik Deskriptif
 Setelah pembersihan dan konversi tipe data, langkah selanjutnya adalah memeriksa statistik deskriptif dari kolom-kolom numerik pada dataset. Statistik deskriptif memberikan gambaran umum tentang distribusi data, seperti nilai minimum, maksimum, rata-rata, dan simpangan baku. Hal ini penting untuk memahami karakteristik dari setiap kolom numerik yang ada dalam dataset.
@@ -338,7 +293,7 @@ Dari statistik deskriptif ini, kita dapat melihat bahwa dataset ini mengandung v
 
 ---
 
-### 4. Cek Outlier
+### Cek Outlier
 
 #### Metode
 - Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
@@ -361,7 +316,7 @@ Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepowe
 - Outlier ini perlu dianalisis lebih lanjut untuk menentukan apakah perlu dihapus atau ditangani secara khusus.
 
 ---
-### 5. Penanganan Outlier dengan Winsorizing
+### 4. Penanganan Outlier dengan Winsorizing
 
 #### Metode
 Pada bagian ini, kita menangani nilai-nilai yang termasuk outlier dalam kolom-kolom numerik yang relevan, yaitu `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`. Outlier akan diganti dengan batas bawah atau batas atas yang dihitung berdasarkan rentang interkuartil (IQR). Teknik ini dikenal dengan sebutan **Winsorizing**, di mana nilai yang lebih besar dari batas atas diganti dengan batas atas, dan nilai yang lebih kecil dari batas bawah diganti dengan batas bawah.
@@ -400,7 +355,7 @@ Setelah melakukan Winsorizing pada kolom-kolom yang relevan:
 
 ---
 
-#### Cek Korelasi Fitur Numerik dengan **Pairplot**
+### Cek Korelasi Fitur Numerik dengan **Pairplot**
 Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan harga kendaraan.
 
 ![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
@@ -424,10 +379,112 @@ Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan har
 
 ---
 
-### Cek 
+### Analisis MSRP Berdasarkan Variabel Kategorikal
+
+Pada bagian ini, analisis dilakukan untuk memahami hubungan antara variabel kategorikal dengan rata-rata MSRP (Manufacturer's Suggested Retail Price). Hasil analisis divisualisasikan menggunakan diagram batang, yang memberikan wawasan tentang bagaimana setiap kategori memengaruhi MSRP.
+
+#### Metodologi:
+- Variabel kategorikal yang dianalisis meliputi: `Make`, `Body Size`, `Body Style`, `Engine Aspiration`, `Drivetrain`, dan `Transmission`.
+- Untuk setiap variabel, rata-rata MSRP dihitung dan divisualisasikan dalam diagram batang.
+- Visualisasi mencakup label nilai rata-rata MSRP pada setiap batang, tata letak yang rapi, serta penyesuaian gaya untuk meningkatkan keterbacaan.
+
+#### Hasil Analisis dan Interpretasi:
+
+Disini saya tampilkan 1 sample hasil visualisasi dari Make vs MSRP
+
+![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt16.png)
+
+1. **Make vs MSRP**  
+   Grafik ini menunjukkan rata-rata MSRP untuk berbagai merek mobil:
+   - **Aston Martin** dan **Bentley** memiliki MSRP rata-rata tertinggi sekitar **\$114,844**, mencerminkan eksklusivitas dan kemewahan.
+   - **Audi**, **BMW**, dan **Mercedes-Benz** berada pada kisaran **\$66,000 hingga \$74,000**, menunjukkan kendaraan premium dengan fitur mewah.
+   - **Ford** dan **Nissan** memiliki MSRP lebih rendah (**\$41,872 hingga \$53,467**), mencerminkan fokus pada pasar umum.  
+
+   **Kesimpulan:** Merek premium cenderung memiliki MSRP lebih tinggi, mencerminkan kualitas dan posisi pasar mereka.
+
+2. **Body Size vs MSRP**  
+   Grafik ini menunjukkan rata-rata MSRP berdasarkan ukuran bodi:
+   - **Large (besar):** MSRP tertinggi sekitar **\$69,618.4**, mencerminkan kendaraan besar seperti SUV mewah dan truk berat.
+   - **Midsize (sedang):** MSRP rata-rata **\$59,794.7**, mencakup sedan keluarga dan SUV.
+   - **Compact (kecil):** MSRP terendah sekitar **\$44,199.7**, mencerminkan mobil yang lebih ekonomis.
+
+   **Kesimpulan:** Mobil dengan ukuran bodi besar cenderung lebih mahal karena fitur tambahan dan ruang yang lebih luas.
+
+3. **Body Style vs MSRP**  
+   Grafik ini menggambarkan rata-rata MSRP berdasarkan gaya bodi:
+   - **Convertible (mobil atap terbuka):** MSRP tertinggi (**\$85,575.7**), mencerminkan kendaraan mewah untuk gaya hidup premium.
+   - **Coupe:** MSRP tinggi (**\$74,734.7**), mencerminkan mobil sporty dan mewah.
+   - **Minivan (Cargo & Passenger):** MSRP terendah (**\$35,482 hingga \$37,305**), dirancang untuk transportasi keluarga atau barang.
+
+   **Kesimpulan:** Gaya bodi memengaruhi harga berdasarkan fungsi dan target pasar.
+
+4. **Drivetrain vs MSRP**  
+   Grafik ini menunjukkan rata-rata MSRP berdasarkan jenis penggerak:
+   - **AWD (All-Wheel Drive):** MSRP tertinggi (**\$72,458.2**), cocok untuk kendaraan performa tinggi.
+   - **4WD (Four-Wheel Drive):** MSRP kedua tertinggi (**\$59,962**), umum untuk kendaraan off-road.
+   - **RWD (Rear-Wheel Drive):** MSRP sedang (**\$55,746**), umum untuk mobil sport.
+   - **FWD (Front-Wheel Drive):** MSRP terendah (**\$33,873.9**), digunakan pada mobil penumpang kompak.
+
+   **Kesimpulan:** Kendaraan dengan penggerak AWD dan 4WD cenderung lebih mahal karena fungsionalitasnya di berbagai medan.
+
+5. **Transmission vs MSRP**  
+   Grafik ini membandingkan rata-rata MSRP berdasarkan jenis transmisi:
+   - **Automatic Transmission:** MSRP rata-rata lebih tinggi (**\$63,308.8**) dibandingkan manual, mencerminkan kenyamanan dan fitur modern.
+   - **Manual Transmission:** MSRP rata-rata lebih rendah (**\$46,035.9**), mencerminkan kendaraan yang lebih ekonomis atau sporty.
+
+   **Kesimpulan:** Kendaraan dengan transmisi otomatis lebih diminati meskipun harganya lebih tinggi.
+
+#### Keseluruhan:
+Diagram batang ini memberikan wawasan mendalam tentang pengaruh variabel kategorikal terhadap harga kendaraan. Faktor seperti **merek, ukuran bodi, gaya bodi, jenis penggerak, dan transmisi** berkontribusi signifikan dalam menentukan MSRP.
+
 ---
 
-### 6. Normalisasi Fitur
+### Cek Distribusi dengan **Histogram**
+Histogram digunakan untuk memeriksa distribusi harga dan fitur lainnya.
+
+![Distribusi Harga](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
+![Distribusi MSRP](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt31.png)
+
+**Distribusi Harga (Used/New Price dan MSRP):**
+- **Gambar:** Terdapat dua grafik yang menunjukkan distribusi harga kendaraan:
+  - **Harga bekas/baru (Used/New Price)**
+  - **MSRP (Manufacturer's Suggested Retail Price)**
+
+**Statistik:**
+- **Rata-rata (Mean):** 62,795.98
+- **Median:** 55,900.00
+- **Modus:** 114,843.75
+
+**Interpretasi:**
+Grafik menunjukkan pola distribusi harga kendaraan:
+- Puncak grafik menggambarkan harga yang paling sering muncul (modus).
+- Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
+
+##### 1. **Distribusi Horsepower**
+- **Gambar:** Grafik distribusi tenaga kuda (Horsepower).
+  
+**Statistik:**
+- **Rata-rata (Mean):** 345.37
+- **Median:** 318.00
+- **Modus:** 275.00
+
+**Interpretasi:**
+Grafik ini memperlihatkan jumlah tenaga kuda yang dimiliki kendaraan. Sebagian besar kendaraan memiliki horsepower sekitar nilai modus, sementara nilai rata-rata dan median memberikan informasi tambahan tentang penyebaran data.
+
+##### 2. **Distribusi Torque**
+- **Gambar:** Grafik distribusi torsi kendaraan (Torque).
+  
+**Statistik:**
+- **Rata-rata (Mean):** 364.63
+- **Median:** 339.00
+- **Modus:** 260.00
+
+**Interpretasi:**
+Grafik menunjukkan pola distribusi nilai torsi kendaraan. Sebagian besar kendaraan memiliki torsi mendekati nilai modus, sedangkan rata-rata dan median memberikan gambaran tentang sebaran data di sekitar nilai tersebut.
+
+---
+
+### 5. Normalisasi Fitur
 
 ### Metode
 Pada tahap ini, normalisasi fitur numerik dilakukan menggunakan `StandardScaler` untuk memastikan bahwa setiap fitur memiliki **mean = 0** dan **standar deviasi = 1**. Normalisasi ini penting untuk memastikan model dapat mempelajari semua fitur dengan skala yang seragam, menghindari dominasi fitur dengan skala yang lebih besar, seperti harga dan tenaga kuda, dalam proses pelatihan model.
@@ -440,7 +497,7 @@ Fitur numerik `Horsepower_No` dan `Torque_No` telah berhasil dinormalisasi, yang
 
 ---
 
-### 7. Encoding Variabel Kategorikal
+### 6. Encoding Variabel Kategorikal
 
 ### Metode
 Untuk mengonversi variabel kategorikal menjadi format numerik, digunakan metode **one-hot encoding**. Teknik ini mengubah setiap kategori dalam variabel menjadi kolom biner (dummy variables), yang mewakili setiap kategori unik dengan nilai 0 atau 1.
@@ -455,7 +512,7 @@ Dataset yang dihasilkan memiliki kolom dummy untuk variabel kategorikal, seperti
 
 ---
 
-### 8. Cek Korelasi Setiap Fitur
+### Cek Korelasi Setiap Fitur
 
 ### Metode
 Matriks korelasi dihitung dan divisualisasikan untuk fitur numerik. Matriks korelasi ini menunjukkan sejauh mana hubungan antara fitur-fitur numerik dalam dataset, yang membantu untuk mengidentifikasi hubungan antar fitur sebelum modeling.
@@ -470,7 +527,7 @@ Matriks korelasi menunjukkan hubungan positif yang kuat antara `MSRP`, `Horsepow
 
 ---
 
-### Feature Importance menggunakan Decision Tree
+### 7. Feature Importance menggunakan Decision Tree
 
 ### Metode
 Bagian ini bertujuan untuk mengevaluasi pentingnya setiap fitur dalam mempengaruhi target variabel (MSRP) menggunakan **Decision Tree Classifier**. Analisis ini membantu mengidentifikasi fitur mana yang memiliki kontribusi terbesar terhadap prediksi target, sehingga memungkinkan penyederhanaan model dan fokus pada fitur yang paling berpengaruh.
@@ -508,7 +565,7 @@ Hasil ini memberikan wawasan tentang fitur mana yang paling relevan untuk predik
 
 ---
 
-### 9. Split Data
+### 8. Split Data
 
 Pada bagian ini, dataset dibagi menjadi dua bagian, yaitu data latih (train) dan data uji (test). Pembagian ini bertujuan untuk melatih model dengan sebagian data dan mengevaluasi performa model menggunakan data yang tidak digunakan saat pelatihan. Pembagian yang umum digunakan adalah 80% data untuk pelatihan dan 20% data untuk pengujian.
 
