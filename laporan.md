@@ -654,6 +654,92 @@ Model dievaluasi menggunakan data uji yang terpisah (20%) setelah dilatih pada d
 | **K-Nearest Neighbors** | 0.934369     | 0.910862    | 6380.930219    | 7140.058920   | 4432.861769   | 4881.146372  |
 
 ---
+### Visualisasi Hasil Evaluasi Model Terbaik
+
+Visualisasi ini bertujuan untuk memeriksa kinerja model terbaik dalam memprediksi nilai MSRP pada data latih. Analisis dilakukan menggunakan scatter plot untuk menunjukkan hubungan antara nilai aktual dan prediksi MSRP.
+
+#### Scatter Plot:
+
+- **Sumbu x**: Nilai MSRP yang sebenarnya (actual).
+- **Sumbu y**: Nilai MSRP yang diprediksi oleh model (predicted).
+- **Titik biru**: Representasi pasangan data actual vs. predicted pada data latih.
+
+#### Garis Prediksi Ideal:
+- **Garis putus-putus merah**: Menunjukkan prediksi ideal di mana nilai actual dan predicted sepenuhnya sama.
+- Semakin dekat titik biru ke garis merah, semakin baik prediksi model.
+
+#### Komponen Visualisasi:
+1. **Judul**: "Train Data: Predicted vs Actual".
+2. **Label Sumbu**:
+   - Sumbu x: "Actual MSRP".
+   - Sumbu y: "Predicted MSRP".
+3. **Legenda**:
+   - "Train Data" untuk titik biru.
+   - "Ideal Prediction" untuk garis merah.
+4. **Gridlines**: Ditambahkan untuk mempermudah pembacaan grafik.
+
+#### Hasil Visualisasi:
+
+![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt17.png)
+
+1. **Korelasi Positif**:  
+   Grafik menunjukkan korelasi positif yang kuat antara nilai aktual dan nilai prediksi, yang mengindikasikan bahwa model mampu memprediksi MSRP dengan baik.
+
+2. **Penyimpangan**:  
+   Beberapa titik biru berada jauh dari garis merah, menunjukkan bahwa model tidak selalu memberikan prediksi yang sempurna.
+
+3. **Kinerja Model**:  
+   Titik-titik yang dekat dengan garis merah menunjukkan performa prediksi yang baik pada sebagian besar data.
+
+#### Kesimpulan:  
+Visualisasi ini memberikan gambaran yang jelas tentang kemampuan model dalam memprediksi nilai MSRP. Penyimpangan yang kecil dari garis merah menunjukkan bahwa model bekerja cukup baik, meskipun ada beberapa kasus di mana prediksi meleset.
+
+---
+
+### Visualisasi Residuals (Train Data)
+
+Plot residual digunakan untuk menganalisis kesalahan prediksi model (residual), yaitu selisih antara nilai aktual dan prediksi pada data latih. Visualisasi ini membantu mengidentifikasi pola kesalahan tertentu yang dapat diperbaiki.
+
+#### Komponen Visualisasi:
+1. **Residuals**:  
+   Residual dihitung sebagai perbedaan antara nilai aktual dan prediksi. Plot menunjukkan:
+   - **Residual Positif**: Ketika nilai aktual lebih besar dari prediksi.
+   - **Residual Negatif**: Ketika nilai aktual lebih kecil dari prediksi.
+
+2. **Garis Referensi Nol**:  
+   Garis horizontal di y = 0 digunakan sebagai referensi untuk menunjukkan lokasi ideal di mana residual seharusnya nol.
+
+3. **Pewarnaan Residual**:
+   - Residual positif ditampilkan dalam warna hijau.
+   - Residual negatif ditampilkan dalam warna oranye.
+
+4. **Statistik Residual**:
+   - **Mean Residual**: Nilai rata-rata residual mendekati nol menunjukkan prediksi tidak bias.
+   - **Standard Deviation Residual (Std Residual)**: Memberikan gambaran tingkat kesalahan rata-rata.
+
+5. **Lowess Line**:
+   Garis merah di plot menunjukkan hubungan lokal antara residual dan nilai prediksi untuk membantu mengidentifikasi pola.
+
+#### Hasil Visualisasi:
+
+![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt18.png)
+
+1. **Pola Residual**:
+   - Tidak ada tren yang jelas: Residual tersebar secara acak di sekitar garis nol.
+   - **Homoskedastisitas**: Penyebaran residual konsisten di seluruh rentang nilai prediksi, menunjukkan varians kesalahan tetap (tidak ada pola bias).
+
+2. **Distribusi Residual**:
+   - Residual positif dan negatif tersebar merata, mengindikasikan bahwa model tidak secara sistematis melebih-lebihkan atau meremehkan prediksi.
+   - Beberapa residual yang jauh dari garis nol dapat menunjukkan adanya outlier.
+
+3. **Statistik Residual**:
+   - **Mean Residual**: Mendekati nol, menunjukkan prediksi tidak bias.
+   - **Std Residual**: Mengindikasikan tingkat kesalahan prediksi rata-rata.
+
+#### Kesimpulan:
+Visualisasi residual menunjukkan bahwa model menangkap hubungan linier dengan baik tanpa pola bias yang jelas. Penyebaran residual yang konsisten dan rata-rata mendekati nol menunjukkan performa model yang stabil.
+
+---
 
 ## Kesimpulan Akhir
 
