@@ -212,30 +212,6 @@ Grafik menunjukkan pola distribusi nilai torsi kendaraan. Sebagian besar kendara
 
 ---
 
-#### 3. **Pairplot**
-Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan harga kendaraan.
-
-![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
-
-**Analisis Hubungan Antar Fitur:**
-1. **MSRP vs. Horsepower_No:**
-   - Terdapat korelasi positif: semakin tinggi tenaga kuda, semakin tinggi pula MSRP.
-   - Mobil dengan tenaga kuda yang lebih tinggi cenderung lebih mahal.
-
-2. **MSRP vs. Torque_No:**
-   - Terdapat korelasi positif, meskipun tidak sekuat hubungan dengan tenaga kuda.
-   - Mobil dengan torsi lebih tinggi cenderung lebih mahal.
-
-3. **Horsepower_No vs. Torque_No:**
-   - Korelasi positif: mobil dengan tenaga kuda lebih tinggi umumnya memiliki torsi lebih tinggi.
-
-**Catatan Penting:**
-- Korelasi hanya menunjukkan kecenderungan umum dalam data.
-- Ada outlier yang tidak mengikuti tren umum.
-- Faktor lain seperti merek, fitur, tahun pembuatan, dan efisiensi bahan bakar juga memengaruhi harga mobil.
-
----
-
 ### 4. Cek Missing Value
 
 Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
@@ -250,29 +226,22 @@ Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dat
 - Kolom `Torque` memiliki **27 nilai yang hilang**.
 - Kolom `Highway Fuel Economy` memiliki **424 nilai yang hilang**.
 
+---
 
-### 5. Cek Outlier
+### 5. Cek Duplikasi Data
 
-#### Metode
-- Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
+Pada bagian ini, kita akan memeriksa apakah terdapat baris data yang duplikat dalam dataset. Proses ini penting untuk memastikan bahwa data yang digunakan dalam analisis bersih dari duplikasi yang dapat memengaruhi hasil analisis.
 
-#### Langkah-langkah
-- Menghitung Q1, Q3, IQR, dan batas untuk setiap kolom.
+**Langkah-langkah Implementasi:**
 
-![out](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt13.PNG)
+1. Dataset diperiksa untuk mengetahui jumlah baris yang terduplikasi.
+2. Jumlah baris duplikat dihitung dan ditampilkan sebagai hasil pemeriksaan.
 
-#### Hasil
-Terdapat 166 outliers untuk kolom `MSRP` dan `Used/New Price`, serta 36 outliers untuk `Horsepower_No` dan 17 outliers untuk `Torque_No`.
+**Hasil Pemeriksaan:**
 
-#### **Boxplot**
-Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
+Setelah pemeriksaan, ditemukan bahwa **tidak ada baris duplikat** dalam dataset ini. Hal ini menunjukkan bahwa data telah tersusun dengan baik dan bebas dari duplikasi, sehingga siap untuk analisis lebih lanjut.
 
-![Boxplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
-
-**Hasil Analisis:**
-- Ditemukan beberapa outlier, terutama pada harga kendaraan (`MSRP`), yang memiliki rentang sangat lebar.
-- Outlier ini perlu dianalisis lebih lanjut untuk menentukan apakah perlu dihapus atau ditangani secara khusus.
-
+---
 
 ## Data Preparation
 
@@ -369,7 +338,30 @@ Dari statistik deskriptif ini, kita dapat melihat bahwa dataset ini mengandung v
 
 ---
 
-### 4. Penanganan Outlier dengan Winsorizing
+### 4. Cek Outlier
+
+#### Metode
+- Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
+
+#### Langkah-langkah
+- Menghitung Q1, Q3, IQR, dan batas untuk setiap kolom.
+
+![out](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt13.PNG)
+
+#### Hasil
+Terdapat 166 outliers untuk kolom `MSRP` dan `Used/New Price`, serta 36 outliers untuk `Horsepower_No` dan 17 outliers untuk `Torque_No`.
+
+#### **Boxplot**
+Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
+
+![Boxplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
+
+**Hasil Analisis:**
+- Ditemukan beberapa outlier, terutama pada harga kendaraan (`MSRP`), yang memiliki rentang sangat lebar.
+- Outlier ini perlu dianalisis lebih lanjut untuk menentukan apakah perlu dihapus atau ditangani secara khusus.
+
+---
+### 5. Penanganan Outlier dengan Winsorizing
 
 #### Metode
 Pada bagian ini, kita menangani nilai-nilai yang termasuk outlier dalam kolom-kolom numerik yang relevan, yaitu `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`. Outlier akan diganti dengan batas bawah atau batas atas yang dihitung berdasarkan rentang interkuartil (IQR). Teknik ini dikenal dengan sebutan **Winsorizing**, di mana nilai yang lebih besar dari batas atas diganti dengan batas atas, dan nilai yang lebih kecil dari batas bawah diganti dengan batas bawah.
@@ -406,6 +398,33 @@ Setelah melakukan Winsorizing pada kolom-kolom yang relevan:
 - Boxplot menunjukkan distribusi data setelah penanganan outliers, yang mencerminkan perubahan yang signifikan pada nilai-nilai ekstrem yang telah dikendalikan.
 - Statistik deskriptif setelah pembersihan menunjukkan bahwa data menjadi lebih stabil, dengan rentang nilai yang lebih terkontrol dan lebih sedikit variasi ekstrem.
 
+---
+
+#### Cek Korelasi Fitur Numerik dengan **Pairplot**
+Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan harga kendaraan.
+
+![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
+
+**Analisis Hubungan Antar Fitur:**
+1. **MSRP vs. Horsepower_No:**
+   - Terdapat korelasi positif: semakin tinggi tenaga kuda, semakin tinggi pula MSRP.
+   - Mobil dengan tenaga kuda yang lebih tinggi cenderung lebih mahal.
+
+2. **MSRP vs. Torque_No:**
+   - Terdapat korelasi positif, meskipun tidak sekuat hubungan dengan tenaga kuda.
+   - Mobil dengan torsi lebih tinggi cenderung lebih mahal.
+
+3. **Horsepower_No vs. Torque_No:**
+   - Korelasi positif: mobil dengan tenaga kuda lebih tinggi umumnya memiliki torsi lebih tinggi.
+
+**Catatan Penting:**
+- Korelasi hanya menunjukkan kecenderungan umum dalam data.
+- Ada outlier yang tidak mengikuti tren umum.
+- Faktor lain seperti merek, fitur, tahun pembuatan, dan efisiensi bahan bakar juga memengaruhi harga mobil.
+
+---
+
+### Cek 
 ---
 
 ### 6. Normalisasi Fitur
