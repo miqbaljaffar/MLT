@@ -632,7 +632,9 @@ Metode yang digunakan adalah *Winsorizing*, di mana nilai outlier diganti dengan
 - Setelah proses Winsorizing, distribusi data diperiksa menggunakan boxplot untuk melihat perubahan.
 - Statistik deskriptif diperiksa untuk memastikan data telah dibersihkan dari outliers ekstrem.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt35.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt36.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt37.PNG)
 
 #### Hasil Penanganan Outlier
 
@@ -684,7 +686,7 @@ Langkah ini dilakukan dengan:
 - Menginisialisasi `StandardScaler()`.
 - Menerapkan normalisasi menggunakan `scaler.fit_transform()` pada kolom numerik yang ditentukan.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt38.PNG)
 
 #### Hasil Proses
 
