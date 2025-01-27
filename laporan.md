@@ -584,7 +584,7 @@ Langkah yang dilakukan:
 #### 3. **Pengecekan Ulang Missing Values**
 Setelah proses penghapusan kolom dan pengisian nilai hilang, dilakukan pengecekan ulang untuk memastikan tidak ada lagi nilai yang hilang di dataset.
 
-![miss](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt11.PNG)
+![miss](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt34.PNG)
 
 #### Hasil Output
 
