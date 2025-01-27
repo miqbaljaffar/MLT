@@ -223,6 +223,76 @@ Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, daftar nilai
 - **Kolom Highway Fuel Economy** memiliki **63** nilai unik, yang menggambarkan variasi konsumsi bahan bakar mobil di jalan raya.
 
 ---
+## **Ubah Tipe Data**
+
+Pada bagian ini, kolom **MSRP** dan **Used/New Price** akan dibersihkan dan dikonversi. Kolom tersebut awalnya berformat string (termasuk simbol mata uang dan koma sebagai pemisah ribuan), yang akan diubah menjadi tipe data numerik (float). Konversi ini penting agar analisis statistik dan perhitungan matematika pada data harga mobil dapat dilakukan.
+
+### **Langkah-Langkah yang Dilakukan**:
+1. Menghapus simbol mata uang (`$`) dan tanda koma (`,`) dari kolom **MSRP** dan **Used/New Price** menggunakan fungsi `replace()`.
+2. Mengonversi kolom yang telah dibersihkan ke dalam format angka desimal (float) agar data dapat digunakan untuk analisis lebih lanjut.
+
+### **Implementasi:**
+Langkah ini dilakukan dengan metode berikut:
+- Kolom **MSRP** dan **Used/New Price** dibersihkan dari simbol dan tanda baca, kemudian diubah menjadi tipe data float menggunakan `astype()`.
+
+### **Penjelasan Hasil Output:**
+Setelah dilakukan pembersihan dan konversi pada kolom **MSRP** dan **Used/New Price**, diperoleh hasil berikut:
+- Kolom **MSRP** dan **Used/New Price** sekarang memiliki tipe data `float64` yang memungkinkan dilakukan perhitungan numerik.
+- Jumlah entri pada dataset tetap konsisten tanpa adanya kehilangan data.
+- Semua kolom yang relevan kini memiliki format data yang tepat untuk analisis lebih lanjut.
+
+---
+
+### **Mengubah Tipe Data Kolom Horsepower dan Torque**
+
+Kolom **Horsepower** dan **Torque** juga dikonversi dari string ke float agar data dapat dianalisis secara kuantitatif. Pada proses ini, tidak dilakukan penanganan nilai yang hilang; hanya tipe data yang diubah.
+
+#### **Langkah-Langkah yang Dilakukan**:
+1. Ekstraksi nilai numerik awal (3 karakter pertama) dari kolom **Horsepower** dan **Torque** menggunakan `str[:3]`.
+2. Mengonversi nilai yang diekstraksi menjadi tipe data float menggunakan `astype()`.
+
+#### **Implementasi:**
+- Kolom **Horsepower** dan **Torque** diproses untuk memastikan data numerik dapat digunakan langsung dalam perhitungan.
+
+#### **Penjelasan Hasil Output:**
+- Kolom **Horsepower** dan **Torque** kini memiliki tipe data `float64`.
+- Nilai-nilai numerik di kedua kolom telah berhasil diekstraksi dan dikonversi tanpa memengaruhi jumlah entri dalam dataset.
+- Proses ini memastikan data siap untuk analisis tanpa adanya manipulasi terhadap nilai yang hilang.
+
+---
+
+# Analisis Statistik Deskriptif pada Dataset Mobil
+
+### **Cek Statistik Deskriptif**
+
+Pada tahap ini, statistik deskriptif dari kolom-kolom numerik dalam dataset diperiksa untuk memahami distribusi data. Informasi statistik mencakup ukuran penyebaran (mean, std, min, max) serta posisi kuartil (25%, 50%, 75%). Proses ini dilakukan menggunakan fungsi `describe()`.
+
+#### **Langkah-Langkah yang Dilakukan**:
+1. Memeriksa distribusi statistik deskriptif untuk kolom numerik menggunakan `describe()` pada dataset.
+2. Menganalisis hasil yang diperoleh untuk memahami karakteristik data, seperti rentang nilai, rata-rata, dan sebaran.
+
+GAMBAR
+
+#### **Penjelasan Hasil Output**
+
+Berdasarkan hasil dari fungsi `describe()`, berikut adalah informasi statistik untuk kolom numerik pada dataset, yaitu **Year**, **MSRP**, **Used/New Price**, **Horsepower**, dan **Torque**:
+
+#### **1. Kolom Year:**
+- Data tahun berkisar antara **2023** hingga **2024**.
+- **Rata-rata tahun** adalah **2023.45**, menunjukkan mayoritas mobil dalam dataset berasal dari tahun 2023.
+- Variasi dalam kolom ini kecil, karena hanya mencakup dua tahun, yaitu 2023 dan 2024.
+
+#### **2. Kolom MSRP dan Used/New Price:**
+- Rata-rata harga mobil (MSRP dan Used/New Price) adalah sekitar **72.542 dolar**.
+- Harga minimum adalah **15.980 dolar**, sedangkan harga maksimum mencapai **391.100 dolar**, menunjukkan variasi harga yang signifikan di antara mobil yang ada.
+- Simpangan baku (std) yang tinggi (**54.903 dolar**) menunjukkan bahwa harga mobil memiliki sebaran yang lebar, mencerminkan adanya variasi besar dalam data.
+
+#### **3. Kolom Horsepower dan Torque:**
+- **Rata-rata tenaga kuda (Horsepower)** mobil adalah sekitar **345.62**, sedangkan **rata-rata torsi (Torque)** adalah sekitar **364.97**.
+- **Nilai maksimum tenaga kuda** mencapai **831**, sementara **maksimum torsi** adalah **811**, menunjukkan adanya mobil dengan performa mesin yang sangat tinggi.
+- Sebagian besar mobil memiliki tenag
+
+---
 
 ### Cek Missing Value
 
@@ -254,377 +324,457 @@ Pada bagian ini, dilakukan pemeriksaan untuk memastikan apakah terdapat baris da
 Setelah pemeriksaan, ditemukan bahwa **tidak ada baris duplikat** dalam dataset ini. Hal ini menunjukkan bahwa data telah tersusun dengan baik dan bebas dari duplikasi, sehingga siap untuk analisis lebih lanjut.
 
 ---
+### **Cek Outlier**
+
+Pada tahap ini, outlier dalam dataset divisualisasikan menggunakan boxplot. Outlier dapat memengaruhi analisis data dan hasil statistik deskriptif, sehingga penting untuk mengidentifikasinya. Visualisasi dilakukan pada kolom **MSRP**, **Used/New Price**, **Horsepower**, dan **Torque**.
+
+#### **Langkah-Langkah yang Dilakukan**:
+1. Membuat boxplot untuk kolom-kolom numerik yang relevan menggunakan pustaka `seaborn` dan `matplotlib`.
+2. Menampilkan distribusi data beserta outlier pada kolom **MSRP**, **Used/New Price**, **Horsepower**, dan **Torque**.
+
+#### **Visualisasi:**
+- Boxplot menampilkan distribusi data, termasuk nilai tengah, rentang antar-kuartil (IQR), dan potensi outlier.
+
+GAMBAR
+
+#### **Hasil Visualisasi**
+
+Setelah visualisasi dilakukan, berikut adalah hasil analisis:
+- **Terlihat banyak outlier** pada kolom **MSRP** dan **Used/New Price**, yang menunjukkan adanya beberapa mobil dengan harga yang sangat tinggi dibandingkan dengan mobil lainnya.
+- Untuk kolom **Horsepower** dan **Torque**, meskipun terdapat outlier, sebagian besar data terdistribusi secara merata dengan rentang yang lebih kecil dibandingkan kolom harga.
+  
+---
+
+### **Cek Angka Outlier Sebenarnya**
+
+Pada bagian ini, kuartil pertama (**Q1**), kuartil ketiga (**Q3**), dan rentang interkuartil (**IQR**) dihitung untuk kolom-kolom yang relevan, yaitu **MSRP**, **Used/New Price**, **Horsepower**, dan **Torque**. **IQR** digunakan untuk mendeteksi nilai-nilai yang berada di luar batas normal (outliers).
+
+#### **Langkah-Langkah yang Dilakukan**:
+1. **Menghitung Q1 dan Q3**:
+   - Q1 adalah nilai pada posisi 25% dari data yang terurut.
+   - Q3 adalah nilai pada posisi 75% dari data yang terurut.
+2. **Menghitung Rentang Interkuartil (IQR)**:
+   - IQR adalah selisih antara Q3 dan Q1.
+3. **Menentukan Batas Normal**:
+   - Batas bawah dihitung dengan rumus: `Q1 - 1.5 * IQR`.
+   - Batas atas dihitung dengan rumus: `Q3 + 1.5 * IQR`.
+4. **Mengidentifikasi Outliers**:
+   - Nilai yang lebih kecil dari batas bawah atau lebih besar dari batas atas dianggap sebagai outliers.
+5. **Menyimpan Hasil**:
+   - Informasi tentang batas bawah, batas atas, jumlah outliers, dan contoh nilai outliers disimpan dalam bentuk tabel.
+
+GAMBAR
+
+#### **Penjelasan Hasil Output**
+
+Hasil analisis outliers menunjukkan bahwa beberapa kolom memiliki nilai-nilai yang berada di luar batas normal berdasarkan penghitungan **IQR**:
+
+#### **Kolom MSRP dan Used/New Price**:
+- **Jumlah Outliers**: 166.
+- **Penjelasan**: Kolom ini memiliki banyak outliers, yang menunjukkan bahwa ada sejumlah mobil dengan harga jauh lebih tinggi dibandingkan dengan rentang harga yang lebih umum.
+- **Contoh Outliers**: 242.000, 125.800, 127.800.
+
+#### **Kolom Horsepower**:
+- **Jumlah Outliers**: 36.
+- **Penjelasan**: Outliers di kolom ini menunjukkan adanya mobil dengan tenaga kuda yang sangat tinggi. 
+- **Contoh Outliers**: 697, 637, 630.
+
+#### **Kolom Torque**:
+- **Jumlah Outliers**: 17.
+- **Penjelasan**: Beberapa mobil memiliki nilai torsi yang sangat tinggi, menunjukkan performa mesin yang jauh di atas rata-rata.
+- **Contoh Outliers**: 718, 738.
+
+#### **Kesimpulan**
+Analisis ini memberikan gambaran yang lebih mendalam tentang distribusi data dan nilai-nilai yang berada di luar batas normal. Informasi ini berguna untuk langkah selanjutnya, seperti memutuskan apakah outliers perlu dihapus, ditransformasi, atau dipertahankan sesuai dengan tujuan analisis.
+
+---
+
+### **Cek Korelasi Setiap Fitur**
+
+Pada bagian ini, **pairplot** digunakan untuk memvisualisasikan hubungan antara fitur-fitur numerik dalam dataset, yaitu:
+
+- **MSRP** (Harga Eceran yang Disarankan)
+- **Horsepower** (Tenaga Kuda)
+- **Torque** (Torsi)
+- **Engine Aspiration** (Jenis Aspirasinya, misalnya turbocharged)
+
+Pairplot membantu memahami hubungan antar fitur numerik dan pola berbeda berdasarkan jenis mesin. Parameter `hue='Engine Aspiration'` digunakan untuk memberikan warna berbeda sesuai kategori jenis aspirasinya, sehingga pola antar kategori dapat terlihat lebih jelas.
+
+### **Langkah-Langkah yang Dilakukan**:
+1. **Pengaturan Ukuran Gambar**: Ukuran gambar disesuaikan untuk memastikan setiap hubungan antar fitur dapat terlihat dengan jelas.
+2. **Pairplot**: Menggunakan pairplot untuk memvisualisasikan hubungan antar fitur numerik.
+3. **Penambahan Warna Berdasarkan Engine Aspiration**: Memberikan warna berbeda pada data berdasarkan kategori jenis aspirasinya, seperti turbocharged, twin-turbo, dsb.
+
+GAMBAR
+
+Hasilnya
+
+#### **1. MSRP vs. Horsepower**
+- **Korelasi positif**: Semakin tinggi tenaga kuda, semakin tinggi pula MSRP.
+- Mobil dengan tenaga kuda tinggi cenderung memiliki harga yang lebih mahal.
+- Terdapat outlier di sekitar MSRP 350.000 dengan tenaga kuda rendah, kemungkinan disebabkan oleh faktor lain seperti merk, jenis mobil, dan fitur tambahan.
+
+#### **2. MSRP vs. Torque**
+- **Korelasi positif, meskipun tidak sekuat hubungan dengan tenaga kuda**.
+- Mobil dengan torsi lebih tinggi cenderung lebih mahal.
+- Outlier juga terlihat di sekitar MSRP 350.000, yang menunjukkan bahwa torsi bukan satu-satunya faktor utama dalam penentuan harga.
+
+#### **3. Horsepower vs. Torque**
+- **Korelasi positif**: Mobil dengan tenaga kuda tinggi umumnya memiliki torsi tinggi.
+- Beberapa outlier di sekitar 200 tenaga kuda menunjukkan bahwa ada mobil dengan tenaga kuda rendah tetapi memiliki torsi tinggi.
+
+#### **4. Pengaruh Engine Aspiration**
+- **Twin-Turbo**: Biasanya memiliki tenaga kuda dan torsi tinggi, serta harga (MSRP) yang lebih mahal.
+- **Turbocharged**: Memiliki tenaga kuda dan torsi yang lebih tinggi dibandingkan Naturally Aspirated dan Supercharged.
+- **Naturally Aspirated**: Tenaga kuda dan torsi lebih rendah, dengan harga yang juga lebih rendah.
+- **Supercharged**: Tenaga kuda dan torsi tinggi, dengan harga relatif tinggi.
+- **Electric Motor**: Memiliki tenaga kuda dan torsi tinggi, dengan harga yang juga relatif mahal.
+
+#### **Kesimpulan**
+- Secara keseluruhan, terdapat **korelasi positif** antara **MSRP**, **tenaga kuda**, dan **torsi**.
+- Jenis **engine aspiration** memiliki pengaruh signifikan terhadap tenaga kuda, torsi, dan harga mobil.
+- Data menunjukkan bahwa faktor lain, seperti merk, jenis mobil, dan fitur tambahan, juga berpengaruh pada harga mobil, selain tenaga kuda dan torsi.
+
+---
+
+### Visualisasi Rata-Rata MSRP Berdasarkan Variabel Kategorikal
+
+Pada bagian ini, dilakukan visualisasi bar chart untuk menggambarkan rata-rata MSRP (Manufacturer's Suggested Retail Price) berdasarkan variabel-variabel kategorikal berikut:
+
+- **Make** (Merek)
+- **Body Size** (Ukuran Bodi)
+- **Body Style** (Gaya Bodi)
+- **Engine Aspiration** (Jenis Aspirasi Mesin)
+- **Drivetrain** (Jenis Penggerak)
+- **Transmission** (Jenis Transmisi)
+
+Setiap bar chart dirancang untuk memberikan wawasan tentang bagaimana kategori tersebut memengaruhi rata-rata MSRP.
+
+GAMBAR
+
+### 1. **Make vs MSRP**
+Grafik ini menunjukkan rata-rata MSRP untuk berbagai merek mobil:
+
+- **Aston Martin** dan **Bentley** memiliki MSRP rata-rata tertinggi, yaitu sekitar **\$230,011** dan **\$270,636**, mencerminkan eksklusivitas dan kemewahan.
+- **Audi**, **BMW**, dan **Mercedes-Benz** berada di kisaran **\$69,264 hingga \$81,439**, yang merepresentasikan merek premium dengan kinerja tinggi.
+- **Ford** dan **Nissan** memiliki MSRP lebih rendah (**\$43,019 hingga \$53,306**), mencerminkan fokus pada pasar umum.
+
+**Kesimpulan**: Merek premium cenderung memiliki MSRP lebih tinggi, mencerminkan kualitas dan fitur mewah.
+
+### 2. **Body Size vs MSRP**
+Grafik ini menggambarkan rata-rata MSRP berdasarkan ukuran bodi mobil:
+
+- **Large (Besar)**: MSRP tertinggi (**\$79,251.4**), mencerminkan kendaraan seperti SUV mewah dan truk besar.
+- **Midsize (Sedang)**: MSRP rata-rata sekitar **\$71,788.7**, mencakup banyak sedan keluarga dan SUV.
+- **Compact (Kecil)**: MSRP terendah (**\$48,650.3**), mencerminkan mobil kecil yang ekonomis.
+
+**Kesimpulan**: Kendaraan dengan bodi besar cenderung lebih mahal karena ruang yang lebih luas dan fitur tambahan.
+
+### 3. **Body Style vs MSRP**
+Grafik ini menggambarkan rata-rata MSRP berdasarkan gaya bodi:
+
+- **Convertible (Atap Terbuka)**: Rata-rata tertinggi (**\$13,498.3**), sering mewakili kendaraan mewah.
+- **Coupe**: MSRP tinggi (**\$10,717.4**), mencerminkan kendaraan sporty dan mewah.
+- **Minivan (Cargo & Passenger)**: MSRP terendah (**\$35,482 hingga \$37,305**), mencerminkan fokus pada transportasi keluarga atau barang.
+
+**Kesimpulan**: Gaya bodi memengaruhi harga sesuai dengan fungsi dan target pasar. Convertible dan coupe memiliki harga tinggi, sedangkan minivan lebih ekonomis.
+
+### 4. **Drivetrain vs MSRP**
+Grafik ini menunjukkan rata-rata MSRP berdasarkan jenis penggerak:
+
+- **AWD (All-Wheel Drive)**: MSRP tertinggi (**\$90,929.4**), mencerminkan kendaraan dengan performa tinggi untuk berbagai medan.
+- **4WD (Four-Wheel Drive)**: MSRP kedua tertinggi (**\$62,320**), umum untuk kendaraan off-road.
+- **RWD (Rear-Wheel Drive)**: MSRP sedang (**\$58,166**), sering ditemukan pada kendaraan sport.
+- **FWD (Front-Wheel Drive)**: MSRP terendah (**\$33,734.1**), umum pada mobil penumpang kompak.
+
+**Kesimpulan**: Kendaraan AWD dan 4WD cenderung lebih mahal karena kemampuan untuk menghadapi berbagai medan.
+
+### 5. **Transmission vs MSRP**
+Grafik ini membandingkan MSRP rata-rata berdasarkan jenis transmisi:
+
+- **Automatic Transmission**: Rata-rata MSRP lebih tinggi (**\$73,339.1**) dibandingkan manual, mencerminkan kenyamanan dan teknologi modern.
+- **Manual Transmission**: Rata-rata MSRP lebih rendah (**\$46,035.9**), mencerminkan kendaraan yang lebih ekonomis atau sporty.
+
+**Kesimpulan**: Kendaraan dengan transmisi otomatis lebih diminati karena kenyamanan, meskipun memiliki harga lebih tinggi.
+
+### **Keseluruhan**
+Bar chart ini memberikan wawasan tentang bagaimana variabel-variabel kategorikal seperti **merek, ukuran bodi, gaya bodi, jenis penggerak, dan transmisi** memengaruhi rata-rata MSRP kendaraan. Kendaraan premium dan fitur canggih umumnya berkorelasi dengan MSRP yang lebih tinggi.
+
+---
+### Analisis Distribusi Kolom Numerik dalam Dataset Mobil
+
+Visualisasi ini bertujuan untuk menunjukkan distribusi data dari setiap kolom numerik dalam dataset mobil melalui histogram dengan overlay KDE (Kernel Density Estimation). Selain itu, ditampilkan pula statistik deskriptif seperti mean (rata-rata), median, dan mode dalam grafik untuk membantu interpretasi data.
+
+#### Langkah-Langkah:
+
+1. **Kolom Numerik**: Distribusi dihasilkan untuk kolom berikut:
+   - `MSRP` (Manufacturer's Suggested Retail Price)
+   - `Used/New Price` (Harga Bekas/Baru)
+   - `Horsepower` (Tenaga Kuda)
+   - `Torque` (Torsi)
+
+2. **Visualisasi**:
+   - Histogram menggunakan `sns.histplot` dengan overlay KDE.
+   - Garis vertikal untuk statistik deskriptif:
+     - **Mean**: Garis putus-putus merah.
+     - **Median**: Garis solid hijau.
+     - **Mode**: Garis titik-titik oranye.
+   - Setiap grafik dilengkapi dengan judul, label sumbu, legenda, dan grid untuk keterbacaan yang lebih baik.
+
+GAMBAR
+
+#### 1. **Distribusi Harga (Used/New Price dan MSRP)**
+
+- **Deskripsi**: Grafik ini menunjukkan pola distribusi harga kendaraan berdasarkan:
+  - Harga Bekas/Baru (`Used/New Price`)
+  - Harga Eceran yang Disarankan (`MSRP`)
+
+- **Statistik**:
+  - **Rata-rata (Mean)**: 72,542.03
+  - **Median**: 55,945.00
+  - **Modus**: 77,900.75
+
+- **Interpretasi**:  
+  Grafik memperlihatkan puncak distribusi di sekitar nilai modus, yang mewakili harga kendaraan paling umum. Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran harga kendaraan dalam dataset.
+
+#### 2. **Distribusi Horsepower**
+
+- **Deskripsi**: Grafik ini menunjukkan distribusi tenaga kuda (Horsepower) kendaraan dalam dataset.
+
+- **Statistik**:
+  - **Rata-rata (Mean)**: 345.62
+  - **Median**: 325.00
+  - **Modus**: 275.00
+
+- **Interpretasi**:  
+  Sebagian besar kendaraan memiliki tenaga kuda di sekitar nilai modus. Rata-rata dan median memberikan informasi tambahan tentang variasi tenaga kuda di seluruh dataset.
+  
+#### 3. **Distribusi Torque**
+
+- **Deskripsi**: Grafik ini menunjukkan pola distribusi torsi kendaraan (Torque).
+
+- **Statistik**:
+  - **Rata-rata (Mean)**: 364.97
+  - **Median**: 339.00
+  - **Modus**: 260.00
+
+- **Interpretasi**:  
+  Sebagian besar kendaraan memiliki torsi mendekati nilai modus. Rata-rata dan median menunjukkan bahwa ada penyebaran data di sekitar nilai tersebut, dengan beberapa kendaraan memiliki torsi lebih tinggi atau lebih rendah.
+
+#### **Kesimpulan**
+
+Visualisasi distribusi ini memberikan wawasan penting tentang:
+
+- Pola distribusi harga kendaraan (`Used/New Price` dan `MSRP`).
+- Penyebaran tenaga kuda (`Horsepower`) dan torsi (`Torque`).
+- Statistik deskriptif seperti rata-rata, median, dan modus yang membantu memahami karakteristik data.
+
+Informasi ini sangat berguna untuk analisis lebih lanjut, seperti mengidentifikasi segmen pasar kendaraan atau menentukan tren harga berdasarkan fitur kendaraan.
+
+---
 
 ## Data Preparation
 
-Pada tahap ini, dilakukan beberapa teknik pembersihan dan transformasi data untuk memastikan dataset siap digunakan dalam model machine learning. Proses ini mencakup penanganan nilai hilang, transformasi variabel, penanganan outlier, normalisasi fitur, serta pembagian data.
-
 ### Penanganan Missing Value
 
-Pada bagian ini, dilakukan beberapa langkah untuk membersihkan dataset dan menangani masalah nilai yang hilang (missing values), serta menyesuaikan format data jika diperlukan. Langkah-langkah ini bertujuan untuk meningkatkan kualitas data dan memastikan analisis serta model yang dibangun dapat bekerja dengan optimal.
+Langkah ini menjelaskan proses membersihkan dataset dan menangani masalah nilai yang hilang (*missing values*), serta menyesuaikan format data jika diperlukan. Penanganan nilai hilang sangat penting untuk memastikan kualitas data dan hasil analisis yang lebih akurat.
 
-### 1. Penanganan Missing Value
+#### Langkah-Langkah Penanganan Missing Value
 
-#### Metode
-1. **Menghapus Kolom dengan Terlalu Banyak Nilai Hilang**  
-   Kolom yang memiliki lebih dari 20% nilai hilang dihapus untuk menjaga kualitas data. Dalam kasus ini, kolom `Invoice Price`, `Cylinders`, dan `Highway Fuel Economy` dihapus dari dataset.
-   
-2. **Mengisi Nilai Hilang pada Kolom Numerik**  
-   Beberapa kolom numerik, seperti `Horsepower` dan `Torque`, memiliki nilai hilang. Nilai-nilai tersebut diisi menggunakan rata-rata dari kolom yang bersangkutan. Untuk membantu perhitungan ini, kolom tambahan `Horsepower_No` dan `Torque_No` dibuat dengan mengambil tiga digit pertama dari masing-masing kolom.
+#### 1. **Menghapus Kolom dengan Terlalu Banyak Missing Values**
+Kolom yang memiliki terlalu banyak nilai yang hilang dapat memengaruhi kualitas analisis. Oleh karena itu, kolom berikut dihapus dari dataset karena memiliki jumlah nilai hilang yang signifikan:
+- `Invoice Price`
+- `Cylinders`
+- `Highway Fuel Economy`
 
-#### Langkah-langkah
-Pertama, kolom `Invoice Price`, `Cylinders`, dan `Highway Fuel Economy` dihapus dari dataset karena memiliki terlalu banyak nilai hilang. Kemudian, dua kolom tambahan, yaitu `Horsepower_No` dan `Torque_No`, dibuat untuk menyimpan nilai numerik yang dihasilkan dari mengambil tiga digit pertama dari kolom `Horsepower` dan `Torque`. Nilai-nilai hilang pada kolom `Horsepower` dan `Torque` diisi menggunakan rata-rata nilai pada kolom tambahan tersebut.
+#### 2. **Mengisi Missing Value pada Kolom Numerik**
+Beberapa kolom numerik, seperti:
+- `Horsepower`
+- `Torque`
 
-Setelah semua langkah ini dilakukan, pengecekan dilakukan untuk memastikan bahwa kolom `Horsepower` dan `Torque` tidak lagi memiliki nilai hilang.
+Langkah yang dilakukan:
+- Mengisi nilai hilang menggunakan rata-rata (*mean*) dari masing-masing kolom. Metode ini digunakan karena rata-rata memberikan pendekatan yang seimbang untuk mengisi data yang hilang tanpa terlalu memengaruhi distribusi data.
+
+#### 3. **Pengecekan Ulang Missing Values**
+Setelah proses penghapusan kolom dan pengisian nilai hilang, dilakukan pengecekan ulang untuk memastikan tidak ada lagi nilai yang hilang di dataset.
 
 ![miss](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt11.PNG)
 
-#### Hasil
-- Kolom `Invoice Price`, `Cylinders`, dan `Highway Fuel Economy` telah dihapus dari dataset.
-- Nilai hilang pada kolom `Horsepower` dan `Torque` telah diisi dengan rata-rata dari nilai pada kolom `Horsepower_No` dan `Torque_No`.
-- Kolom tambahan `Horsepower_No` dan `Torque_No` dibuat untuk membantu pengisian nilai hilang.
+#### Hasil Output
 
----
-
-### 2. Penghapusan Baris dengan Nilai Hilang
-
-#### Metode
-Setelah langkah sebelumnya, kolom tambahan `Horsepower_No` dan `Torque_No` masih memiliki beberapa nilai hilang, karena terdapat nilai yang tidak dapat diubah menjadi angka atau tidak valid. Oleh karena itu, baris-baris yang memiliki nilai hilang pada kolom-kolom ini dihapus.
-
-#### Langkah-langkah
-Baris-baris yang memiliki nilai hilang pada kolom `Horsepower_No` dan `Torque_No` dihapus dari dataset. Setelah itu, dilakukan verifikasi untuk memastikan bahwa semua kolom pada dataset sekarang tidak memiliki nilai hilang.
-
-![MISS](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt12.PNG)
-
-#### Hasil
-- Tidak ada lagi nilai hilang dalam dataset.
-- Semua kolom sekarang memiliki jumlah nilai hilang yang bernilai 0.
-- Kolom `Horsepower`, `Torque`, `Horsepower_No`, dan `Torque_No` sekarang bersih dari nilai hilang, karena baris dengan nilai hilang pada kolom-kolom tersebut telah dihapus.
-
----
-
-### 3. Pembersihan dan Konversi Tipe Data
-
-#### Metode
-Pada tahap ini, dilakukan pembersihan dan konversi data pada kolom `MSRP` dan `Used/New Price` yang awalnya berformat string. Kolom-kolom tersebut mengandung simbol mata uang ($) dan tanda koma (,) sebagai pemisah ribuan, yang perlu dihapus agar data dapat dikonversi menjadi tipe numerik. Langkah ini sangat penting untuk memungkinkan analisis statistik dan perhitungan matematika pada data harga kendaraan.
-
-#### Langkah-langkah
-Pertama, simbol mata uang `$` dan tanda koma `,` yang ada di kolom `MSRP` dan `Used/New Price` dihapus. Proses ini dilakukan dengan metode penggantian berbasis pola menggunakan ekspresi reguler. Setelah simbol dan tanda koma dihapus, data dalam kedua kolom tersebut dikonversi dari format string menjadi angka desimal (`float`). Langkah ini memastikan bahwa data dapat digunakan untuk berbagai analisis statistik dan matematis. Setelah itu, dilakukan pengecekan kembali pada informasi dataset.
-
-![info](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt6.png)
-
-#### Hasil
-Setelah proses pembersihan dan konversi:
-- Kolom `MSRP` dan `Used/New Price` berhasil diubah dari format string menjadi format angka desimal (`float64`).
-- Tidak ada nilai hilang yang tercatat pada kedua kolom ini setelah konversi.
-- Dataset sekarang memiliki total 1583 entri dengan 16 kolom. Semua kolom relevan telah berada dalam format yang sesuai untuk analisis lebih lanjut.
-
----
-
-### Cek Statistik Deskriptif Kolom Numerik
-
-#### Pengecekan Statistik Deskriptif
-Setelah pembersihan dan konversi tipe data, langkah selanjutnya adalah memeriksa statistik deskriptif dari kolom-kolom numerik pada dataset. Statistik deskriptif memberikan gambaran umum tentang distribusi data, seperti nilai minimum, maksimum, rata-rata, dan simpangan baku. Hal ini penting untuk memahami karakteristik dari setiap kolom numerik yang ada dalam dataset.
-
-![desc](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt14.PNG)
-
-#### Penjelasan Hasil Output
-
-Berdasarkan hasil dari fungsi `describe()`, informasi statistik untuk kolom-kolom numerik pada dataset, yaitu `Year`, `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`, telah diperoleh. Berikut adalah beberapa poin penting:
-
-1. **Kolom Year**:
-   - Data tahun berkisar antara **2023 hingga 2024**.
-   - Tidak ada variasi yang besar dalam kolom ini, karena sebagian besar data hanya mencakup dua tahun yang sangat dekat, yaitu 2023 dan 2024.
-
-2. **Kolom MSRP dan Used/New Price**:
-   - **Rata-rata harga mobil** (MSRP dan Used/New Price) adalah sekitar **72.792 dolar**.
-   - Terdapat perbedaan yang cukup besar antara **harga minimum** yang tercatat sekitar **15.980 dolar** dan **harga maksimum** yang mencapai **391.100 dolar**. Hal ini menunjukkan bahwa harga mobil dalam dataset ini bervariasi secara signifikan, mencakup berbagai jenis kendaraan dengan berbagai harga.
-   - **Simpangan baku (std)** yang cukup tinggi, sekitar **55.276**, menunjukkan bahwa harga mobil memiliki sebaran yang cukup lebar. Ini berarti harga mobil tidak tersebar merata, dengan sebagian besar harga terkonsentrasi pada nilai tertentu, namun ada juga harga yang sangat tinggi dan rendah.
-
-3. **Kolom Horsepower_No dan Torque_No**:
-   - **Rata-rata tenaga kuda (Horsepower)** adalah sekitar **346** dan **rata-rata torsi (Torque)** adalah sekitar **365**.
-   - **Nilai maksimum tenaga kuda** tercatat mencapai **831**, sedangkan **nilai maksimum torsi** adalah **811**. Hal ini menunjukkan bahwa ada mobil dengan performa mesin yang sangat tinggi.
-   - Sebagian besar mobil dalam dataset memiliki tenaga kuda dan torsi yang lebih rendah, dengan hanya beberapa mobil yang memiliki performa jauh lebih tinggi, yang menunjukkan adanya variasi dalam jenis dan performa kendaraan.
+Setelah dilakukan langkah-langkah di atas, berikut hasilnya:
+- Tidak ada lagi nilai hilang pada dataset.
+- Semua kolom memiliki jumlah nilai hilang sebesar **0**, yang memastikan dataset bersih dan siap untuk analisis lebih lanjut.
 
 #### Kesimpulan
-Dari statistik deskriptif ini, terlihat bahwa dataset mengandung variasi yang cukup besar, baik dari sisi harga maupun performa kendaraan. Informasi ini memungkinkan identifikasi pola atau tren dalam data, serta pengelompokan kendaraan berdasarkan kategori harga dan spesifikasi performa untuk analisis lebih lanjut.
+
+Langkah ini memastikan bahwa:
+- Dataset bersih dari nilai hilang yang dapat memengaruhi hasil analisis.
+- Kolom dengan data yang kurang signifikan atau terlalu banyak nilai hilang telah dihapus.
+- Nilai hilang pada kolom numerik diisi menggunakan metode yang sesuai (mean), sehingga distribusi data tetap terjaga.
+
+Proses ini meningkatkan kualitas data dan mendukung hasil analisis yang lebih valid.
 
 ---
 
-### Cek Outlier
+### Penanganan Outlier
 
-#### Metode
-- Menghitung kuartil pertama (Q1), kuartil ketiga (Q3), dan rentang interkuartil (IQR) untuk mendeteksi outlier. Outlier kemudian ditangani dengan metode Winsorizing.
+Bagian ini membahas langkah-langkah untuk mendeteksi dan menangani outlier dalam kolom numerik yang relevan, yaitu:
+- **MSRP**
+- **Used/New Price**
+- **Horsepower**
+- **Torque**
 
-#### Langkah-langkah
-- Menghitung Q1, Q3, IQR, dan batas untuk setiap kolom.
+Metode yang digunakan adalah *Winsorizing*, di mana nilai outlier diganti dengan batas bawah atau batas atas berdasarkan perhitungan rentang interkuartil (IQR). Hal ini bertujuan untuk menjaga distribusi data tetap konsisten tanpa menghapus informasi penting.
 
-![out](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt13.PNG)
+#### Langkah-Langkah Penanganan Outlier
 
-#### Hasil
-Terdapat 166 outliers untuk kolom `MSRP` dan `Used/New Price`, serta 36 outliers untuk `Horsepower_No` dan 17 outliers untuk `Torque_No`.
+#### 1. **Menghitung Kuartil dan Rentang Interkuartil**
+- **Q1 (Kuartil Pertama):** Nilai di mana 25% data berada di bawahnya.
+- **Q3 (Kuartil Ketiga):** Nilai di mana 75% data berada di bawahnya.
+- **IQR (Rentang Interkuartil):** Selisih antara Q3 dan Q1.
 
-#### **Boxplot**
-Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepower` dan `Engine Size`.
+#### 2. **Menentukan Batas Bawah dan Batas Atas**
+- **Lower Bound (Batas Bawah):** `Q1 - 1.5 * IQR`
+- **Upper Bound (Batas Atas):** `Q3 + 1.5 * IQR`
 
-![Boxplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt2.PNG)
+#### 3. **Mengganti Nilai Outlier (Winsorizing)**
+- Nilai yang lebih besar dari batas atas diganti dengan nilai batas atas.
+- Nilai yang lebih kecil dari batas bawah diganti dengan nilai batas bawah.
 
-**Hasil Analisis:**
-- Ditemukan beberapa outlier, terutama pada harga kendaraan (`MSRP`), yang memiliki rentang sangat lebar.
-- Outlier ini perlu dianalisis lebih lanjut untuk menentukan apakah perlu dihapus atau ditangani secara khusus.
+#### 4. **Visualisasi dan Statistik**
+- Setelah proses Winsorizing, distribusi data diperiksa menggunakan boxplot untuk melihat perubahan.
+- Statistik deskriptif diperiksa untuk memastikan data telah dibersihkan dari outliers ekstrem.
 
----
-### 4. Penanganan Outlier dengan Winsorizing
+GAMBAR
 
-#### Metode
+#### Hasil Penanganan Outlier
 
-Pada bagian ini, nilai-nilai yang termasuk outlier dalam kolom-kolom numerik yang relevan, yaitu `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`, akan ditangani. Outlier akan diganti dengan batas bawah atau batas atas yang dihitung berdasarkan rentang interkuartil (IQR). Teknik ini dikenal sebagai **Winsorizing**, di mana nilai yang lebih besar dari batas atas diganti dengan batas atas, dan nilai yang lebih kecil dari batas bawah diganti dengan batas bawah.
+#### **1. Kolom MSRP dan Used/New Price**
+- Nilai maksimum yang sebelumnya sangat tinggi telah dikurangi menjadi **114.870**, membuat rentang harga lebih terkontrol.
+- Nilai rata-rata tetap sama di sekitar **62.715**, menunjukkan konsistensi harga mobil.
+- Rentang harga (*range*) menjadi lebih stabil dengan pengurangan nilai ekstrem.
 
-#### Langkah-langkah
-1. Menghitung **Q1** (Kuartil pertama) dan **Q3** (Kuartil ketiga) untuk setiap kolom.
-2. Menghitung **IQR** (Rentang Interkuartil), yaitu selisih antara Q3 dan Q1.
-3. Menentukan **Lower Bound** (batas bawah) dan **Upper Bound** (batas atas) berdasarkan rumus:
-   - Lower Bound = Q1 - 1.5 * IQR
-   - Upper Bound = Q3 + 1.5 * IQR
-4. Mengganti nilai-nilai yang berada di luar batas ini (outliers) dengan nilai batas yang sesuai menggunakan metode Winsorizing.
-5. Setelah itu, memeriksa distribusi data menggunakan boxplot untuk melihat perubahan setelah menangani outliers.
-6. Memeriksa statistik deskriptif untuk memastikan bahwa data telah dibersihkan dari outliers ekstrem.
+#### **2. Kolom Horsepower dan Torque**
+- Nilai ekstrem pada **tenaga kuda (Horsepower)** dan **torsi (Torque)** telah dikurangi menjadi:
+  - **Horsepower (621)**
+  - **Torque (715)**
+- Nilai rata-rata kini sekitar:
+  - **Horsepower (344.71)**
+  - **Torque (364.63)**
+- Distribusi data menjadi lebih merata, sehingga analisis tidak dipengaruhi oleh outliers yang sangat tinggi.
 
-#### Implementasi
-- Kolom yang ingin diperiksa adalah: `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`.
-- Untuk setiap kolom tersebut, perhitungan Q1, Q3, IQR, serta batas bawah dan atas dilakukan untuk mendeteksi dan menangani outlier menggunakan Winsorizing.
+#### Kesimpulan
+Setelah dilakukan Winsorizing:
+- Dataset menjadi lebih bersih dan distribusi nilai pada kolom-kolom numerik lebih terkontrol.
+- Outliers ekstrem berhasil ditangani tanpa kehilangan informasi utama.
+- Boxplot dan statistik deskriptif menunjukkan bahwa rentang data telah dioptimalkan.
 
-![MRS](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt7.png)
-![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt8.png)
-
-#### Hasil
-Setelah melakukan Winsorizing pada kolom-kolom yang relevan:
-- **MSRP** dan **Used/New Price**:
-  - Nilai maksimum yang sebelumnya sangat tinggi (misalnya 391.100) telah dikurangi menjadi sekitar 114.843,75 setelah Winsorizing, yang membuat rentang harga lebih terkontrol.
-  - Nilai rata-rata tetap sekitar **62.795**, menunjukkan harga mobil yang lebih konsisten setelah menangani outliers.
-  
-- **Horsepower_No** dan **Torque_No**:
-  - Nilai-nilai ekstrem dalam tenaga kuda dan torsi yang sangat tinggi (misalnya 697 dan 738) juga telah dikurangi, dengan nilai maksimum yang baru lebih rendah (621 untuk tenaga kuda dan 715 untuk torsi).
-  - Rata-rata tenaga kuda dan torsi kini lebih konsisten, sekitar **345** untuk tenaga kuda dan **365** untuk torsi.
-
-### Penjelasan Hasil Output
-- Proses Winsorizing berhasil mengurangi nilai-nilai ekstrem yang ada pada kolom `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`, sehingga distribusi data menjadi lebih terkontrol dan konsisten.
-- Boxplot menunjukkan distribusi data setelah penanganan outliers, yang mencerminkan perubahan yang signifikan pada nilai-nilai ekstrem yang telah dikendalikan.
-- Statistik deskriptif setelah pembersihan menunjukkan bahwa data menjadi lebih stabil, dengan rentang nilai yang lebih terkontrol dan lebih sedikit variasi ekstrem.
+Penanganan ini penting untuk menjaga keakuratan analisis dan menghindari distorsi yang disebabkan oleh nilai-nilai ekstrem.
 
 ---
 
-### Cek Korelasi Fitur Numerik dengan **Pairplot**
-Pairplot digunakan untuk melihat hubungan antar fitur dan korelasinya dengan harga kendaraan.
+### Feature Encoding and Normalization
 
-![Pairplot](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt3.png)
+Bagian ini menjelaskan langkah-langkah untuk memproses dataset melalui **encoding variabel kategorikal** dan **normalisasi fitur numerik**. Tujuan dari proses ini adalah untuk memastikan data siap digunakan dalam model machine learning dengan skala yang konsisten dan format yang sesuai.
 
-**Analisis Hubungan Antar Fitur:**
-1. **MSRP vs. Horsepower_No:**
-   - Terdapat korelasi positif: semakin tinggi tenaga kuda, semakin tinggi pula MSRP.
-   - Mobil dengan tenaga kuda yang lebih tinggi cenderung lebih mahal.
+#### Langkah-Langkah Feature Encoding dan Normalisasi
 
-2. **MSRP vs. Torque_No:**
-   - Terdapat korelasi positif, meskipun tidak sekuat hubungan dengan tenaga kuda.
-   - Mobil dengan torsi lebih tinggi cenderung lebih mahal.
+#### 1. **Menghapus Kolom yang Tidak Diperlukan**
+Beberapa kolom yang tidak relevan untuk model dihapus, termasuk:
+- **index**: Tidak memiliki informasi signifikan.
+- **Model, Year, Trim, Used/New Price**: Tidak diperlukan untuk analisis lebih lanjut.
 
-3. **Horsepower_No vs. Torque_No:**
-   - Korelasi positif: mobil dengan tenaga kuda lebih tinggi umumnya memiliki torsi lebih tinggi.
+#### 2. **One-Hot Encoding untuk Variabel Kategorikal**
+- Variabel kategorikal seperti **Make** dan **Body Style** diubah menjadi format biner (dummy variables) menggunakan `pd.get_dummies()`.
+- Setiap kategori unik direpresentasikan sebagai kolom biner.
 
-**Catatan Penting:**
-- Korelasi hanya menunjukkan kecenderungan umum dalam data.
-- Ada outlier yang tidak mengikuti tren umum.
-- Faktor lain seperti merek, fitur, tahun pembuatan, dan efisiensi bahan bakar juga memengaruhi harga mobil.
+#### 3. **Normalisasi Fitur Numerik**
+Fitur numerik seperti **Horsepower** dan **Torque** dinormalisasi untuk memastikan setiap fitur memiliki:
+- **Mean = 0**
+- **Standar Deviasi = 1**
 
----
+Langkah ini dilakukan dengan:
+- Menginisialisasi `StandardScaler()`.
+- Menerapkan normalisasi menggunakan `scaler.fit_transform()` pada kolom numerik yang ditentukan.
 
-### Analisis MSRP Berdasarkan Variabel Kategorikal
+GAMBAR
 
-Pada bagian ini, analisis dilakukan untuk memahami hubungan antara variabel kategorikal dengan rata-rata MSRP (Manufacturer's Suggested Retail Price). Hasil analisis divisualisasikan menggunakan diagram batang, yang memberikan wawasan tentang bagaimana setiap kategori memengaruhi MSRP.
+#### Hasil Proses
 
-#### Metodologi:
-- Variabel kategorikal yang dianalisis meliputi: `Make`, `Body Size`, `Body Style`, `Engine Aspiration`, `Drivetrain`, dan `Transmission`.
-- Untuk setiap variabel, rata-rata MSRP dihitung dan divisualisasikan dalam diagram batang.
-- Visualisasi mencakup label nilai rata-rata MSRP pada setiap batang, tata letak yang rapi, serta penyesuaian gaya untuk meningkatkan keterbacaan.
+Setelah encoding dan normalisasi, dataset memiliki:
+1. **Kolom Numerik yang Dinormalisasi**
+   - Contoh: Horsepower dan Torque telah diubah ke skala standar.
 
-#### Hasil Analisis dan Interpretasi:
+2. **Kolom Dummy untuk Variabel Kategorikal**
+   - Contoh: Make_Aston Martin, Drivetrain_AWD, dan Transmission_automatic.
 
-Berikut adalah satu sampel hasil visualisasi dari hubungan antara Make dan MSRP.
+3. **Dataset yang Siap untuk Modeling**
+   - Dataset terdiri dari **37 kolom**, mencakup kolom dummy dan fitur numerik yang telah dinormalisasi.
+   - Cuplikan 5 baris pertama dataset dapat digunakan untuk verifikasi visual.
 
-![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt16.png)
-
-1. **Make vs MSRP**  
-   Grafik ini menunjukkan rata-rata MSRP untuk berbagai merek mobil:
-   - **Aston Martin** dan **Bentley** memiliki MSRP rata-rata tertinggi sekitar **\$114,844**, mencerminkan eksklusivitas dan kemewahan.
-   - **Audi**, **BMW**, dan **Mercedes-Benz** berada pada kisaran **\$66,000 hingga \$74,000**, menunjukkan kendaraan premium dengan fitur mewah.
-   - **Ford** dan **Nissan** memiliki MSRP lebih rendah (**\$41,872 hingga \$53,467**), mencerminkan fokus pada pasar umum.  
-
-   **Kesimpulan:** Merek premium cenderung memiliki MSRP lebih tinggi, mencerminkan kualitas dan posisi pasar mereka.
-
-2. **Body Size vs MSRP**  
-   Grafik ini menunjukkan rata-rata MSRP berdasarkan ukuran bodi:
-   - **Large (besar):** MSRP tertinggi sekitar **\$69,618.4**, mencerminkan kendaraan besar seperti SUV mewah dan truk berat.
-   - **Midsize (sedang):** MSRP rata-rata **\$59,794.7**, mencakup sedan keluarga dan SUV.
-   - **Compact (kecil):** MSRP terendah sekitar **\$44,199.7**, mencerminkan mobil yang lebih ekonomis.
-
-   **Kesimpulan:** Mobil dengan ukuran bodi besar cenderung lebih mahal karena fitur tambahan dan ruang yang lebih luas.
-
-3. **Body Style vs MSRP**  
-   Grafik ini menggambarkan rata-rata MSRP berdasarkan gaya bodi:
-   - **Convertible (mobil atap terbuka):** MSRP tertinggi (**\$85,575.7**), mencerminkan kendaraan mewah untuk gaya hidup premium.
-   - **Coupe:** MSRP tinggi (**\$74,734.7**), mencerminkan mobil sporty dan mewah.
-   - **Minivan (Cargo & Passenger):** MSRP terendah (**\$35,482 hingga \$37,305**), dirancang untuk transportasi keluarga atau barang.
-
-   **Kesimpulan:** Gaya bodi memengaruhi harga berdasarkan fungsi dan target pasar.
-
-4. **Drivetrain vs MSRP**  
-   Grafik ini menunjukkan rata-rata MSRP berdasarkan jenis penggerak:
-   - **AWD (All-Wheel Drive):** MSRP tertinggi (**\$72,458.2**), cocok untuk kendaraan performa tinggi.
-   - **4WD (Four-Wheel Drive):** MSRP kedua tertinggi (**\$59,962**), umum untuk kendaraan off-road.
-   - **RWD (Rear-Wheel Drive):** MSRP sedang (**\$55,746**), umum untuk mobil sport.
-   - **FWD (Front-Wheel Drive):** MSRP terendah (**\$33,873.9**), digunakan pada mobil penumpang kompak.
-
-   **Kesimpulan:** Kendaraan dengan penggerak AWD dan 4WD cenderung lebih mahal karena fungsionalitasnya di berbagai medan.
-
-5. **Transmission vs MSRP**  
-   Grafik ini membandingkan rata-rata MSRP berdasarkan jenis transmisi:
-   - **Automatic Transmission:** MSRP rata-rata lebih tinggi (**\$63,308.8**) dibandingkan manual, mencerminkan kenyamanan dan fitur modern.
-   - **Manual Transmission:** MSRP rata-rata lebih rendah (**\$46,035.9**), mencerminkan kendaraan yang lebih ekonomis atau sporty.
-
-   **Kesimpulan:** Kendaraan dengan transmisi otomatis lebih diminati meskipun harganya lebih tinggi.
-
-#### Keseluruhan:
-Diagram batang ini memberikan wawasan mendalam tentang pengaruh variabel kategorikal terhadap harga kendaraan. Faktor seperti **merek, ukuran bodi, gaya bodi, jenis penggerak, dan transmisi** berkontribusi signifikan dalam menentukan MSRP.
+#### Kesimpulan
+Proses **encoding variabel kategorikal** dan **normalisasi fitur numerik** menghasilkan dataset yang lebih siap untuk analisis lanjutan. Semua kolom telah diubah ke format yang kompatibel untuk model machine learning dengan skala yang seragam.
 
 ---
+### Feature Importance using Decision Tree
 
-### Cek Distribusi dengan **Histogram**
-Histogram digunakan untuk memeriksa distribusi harga dan fitur lainnya.
+Bagian ini bertujuan untuk mengevaluasi pentingnya setiap fitur dalam memengaruhi target variabel (MSRP) dengan menggunakan **Decision Tree Classifier**. Analisis ini membantu untuk mengidentifikasi fitur-fitur mana yang memiliki kontribusi paling besar terhadap prediksi target (MSRP).
 
-![Distribusi Harga](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt4.png)
-![Distribusi MSRP](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt31.png)
+#### Langkah-Langkah
 
-**Distribusi Harga (Used/New Price dan MSRP):**
-- **Gambar:** Terdapat dua grafik yang menunjukkan distribusi harga kendaraan:
-  - **Harga bekas/baru (Used/New Price)**
-  - **MSRP (Manufacturer's Suggested Retail Price)**
+#### 1. **Pemisahan Fitur (X) dan Target (y)**
 
-**Statistik:**
-- **Rata-rata (Mean):** 62,795.98
-- **Median:** 55,900.00
-- **Modus:** 114,843.75
+- **X**: Semua kolom kecuali **MSRP**.
+- **y**: Kolom target (**MSRP**), yang dikonversi menjadi integer untuk kompatibilitas dengan model Decision Tree.
 
-**Interpretasi:**
-Grafik menunjukkan pola distribusi harga kendaraan:
-- Puncak grafik menggambarkan harga yang paling sering muncul (modus).
-- Rata-rata dan median memberikan informasi tambahan tentang lokasi sebaran data.
+#### 2. **Inisialisasi Model**
 
-##### 1. **Distribusi Horsepower**
-- **Gambar:** Grafik distribusi tenaga kuda (Horsepower).
-  
-**Statistik:**
-- **Rata-rata (Mean):** 345.37
-- **Median:** 318.00
-- **Modus:** 275.00
+- Menggunakan **DecisionTreeClassifier** dengan parameter berikut:
+  - **criterion='entropy'**: Untuk mengukur impurity dengan entropy.
+  - **max_depth=10**: Membatasi kedalaman pohon untuk mencegah overfitting.
+  - **random_state=15**: Agar hasil replikasi konsisten.
 
-**Interpretasi:**
-Grafik ini memperlihatkan jumlah tenaga kuda yang dimiliki kendaraan. Sebagian besar kendaraan memiliki horsepower sekitar nilai modus, sementara nilai rata-rata dan median memberikan informasi tambahan tentang penyebaran data.
+#### 3. **Melatih Model**
 
-##### 2. **Distribusi Torque**
-- **Gambar:** Grafik distribusi torsi kendaraan (Torque).
-  
-**Statistik:**
-- **Rata-rata (Mean):** 364.63
-- **Median:** 339.00
-- **Modus:** 260.00
+- Model dilatih pada dataset yang telah diproses menggunakan `dt.fit(X, y)`.
 
-**Interpretasi:**
-Grafik menunjukkan pola distribusi nilai torsi kendaraan. Sebagian besar kendaraan memiliki torsi mendekati nilai modus, sedangkan rata-rata dan median memberikan gambaran tentang sebaran data di sekitar nilai tersebut.
+#### 4. **Menghitung dan Menampilkan Pentingnya Fitur**
 
----
+- Mengambil nilai pentingnya fitur dari model Decision Tree yang telah dilatih melalui `dt.feature_importances_`.
+- Membuat DataFrame untuk menampilkan nama fitur dan nilai pentingnya.
+- Mengurutkan fitur berdasarkan nilai pentingnya secara menurun.
 
-### 5. Normalisasi Fitur
+#### 5. **Tampilkan Tabel Pentingnya Fitur**
 
-### Metode
-Pada tahap ini, normalisasi fitur numerik dilakukan menggunakan `StandardScaler` untuk memastikan bahwa setiap fitur memiliki **mean = 0** dan **standar deviasi = 1**. Normalisasi ini penting untuk memastikan model dapat mempelajari semua fitur dengan skala yang seragam, menghindari dominasi fitur dengan skala yang lebih besar, seperti harga dan tenaga kuda, dalam proses pelatihan model.
-
-### Langkah-langkah
-- Melakukan normalisasi pada fitur numerik seperti `Horsepower_No` dan `Torque_No` menggunakan `StandardScaler`.
-
-### Hasil
-Fitur numerik `Horsepower_No` dan `Torque_No` telah berhasil dinormalisasi, yang memungkinkan model untuk mempelajari semua fitur dengan skala yang konsisten. Setelah normalisasi, kedua fitur ini memiliki distribusi yang seragam, memfasilitasi proses pelatihan model yang lebih efektif.
-
----
-
-### 6. Encoding Variabel Kategorikal
-
-### Metode
-Untuk mengonversi variabel kategorikal menjadi format numerik, digunakan metode **one-hot encoding**. Teknik ini mengubah setiap kategori dalam variabel menjadi kolom biner (dummy variables), yang mewakili setiap kategori unik dengan nilai 0 atau 1.
-
-### Langkah-langkah
-- Mengonversi variabel kategorikal, seperti `Make`, `Body Style`, dan lainnya, menjadi kolom dummy (one-hot encoding) menggunakan `pd.get_dummies()`.
-
-![OHE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt9.PNG)
-
-### Hasil
-Dataset yang dihasilkan memiliki kolom dummy untuk variabel kategorikal, seperti `Make_Aston Martin`, `Drivetrain_AWD`, dan `Transmission_automatic`. Kolom-kolom ini siap digunakan dalam modeling, memungkinkan algoritma machine learning untuk memproses informasi kategorikal dalam format numerik.
-
----
-
-### Cek Korelasi Setiap Fitur
-
-### Metode
-Matriks korelasi dihitung dan divisualisasikan untuk fitur numerik. Matriks korelasi ini menunjukkan sejauh mana hubungan antara fitur-fitur numerik dalam dataset, yang membantu untuk mengidentifikasi hubungan antar fitur sebelum modeling.
-
-### Langkah-langkah
-- Menghitung dan memvisualisasikan matriks korelasi untuk fitur numerik seperti `MSRP`, `Horsepower_No`, dan `Torque_No`.
-
-![corr](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt10.png)
-
-### Hasil
-Matriks korelasi menunjukkan hubungan positif yang kuat antara `MSRP`, `Horsepower_No`, dan `Torque_No`. Ini menunjukkan bahwa fitur-fitur ini saling berhubungan dan relevan untuk model. Model machine learning dapat memanfaatkan hubungan ini untuk membuat prediksi yang lebih akurat mengenai harga mobil.
-
----
-
-### 7. Feature Importance menggunakan Decision Tree
-
-### Metode
-Bagian ini bertujuan untuk mengevaluasi pentingnya setiap fitur dalam mempengaruhi target variabel (MSRP) menggunakan **Decision Tree Classifier**. Analisis ini membantu mengidentifikasi fitur mana yang memiliki kontribusi terbesar terhadap prediksi target, sehingga memungkinkan penyederhanaan model dan fokus pada fitur yang paling berpengaruh.
-
-### Langkah-langkah
-1. **Pemisahan fitur dan target:**
-   - `X`: Semua kolom kecuali `MSRP`.
-   - `y`: Kolom target (`MSRP`), yang dikonversi menjadi integer untuk kompatibilitas dengan Decision Tree.
-
-2. **Inisialisasi model:**
-   - Menggunakan `DecisionTreeClassifier` dengan parameter `criterion='entropy'`, `max_depth=10`, dan `random_state=15`.
-
-3. **Latih model:**
-   - Model dilatih pada dataset menggunakan `dt.fit(X, y)`.
-
-4. **Evaluasi fitur penting:**
-   - Mengambil nilai pentingnya fitur dari model yang telah dilatih.
-
-### Hasil
-Model Decision Tree berhasil dilatih, dan fitur penting dihitung berdasarkan nilai `feature_importances_`. Berikut adalah fitur-fitur dengan nilai penting tertinggi:
+Setelah model dilatih, tabel yang menunjukkan fitur dan bobot pentingnya akan ditampilkan. Fitur yang memiliki nilai penting tinggi adalah fitur yang memiliki kontribusi besar terhadap prediksi target MSRP.
 
 | Feature                | Importance (%) |
 |------------------------|----------------|
-| Horsepower_No          | 22.07%         |
-| Torque_No              | 21.42%         |
-| Make_Ford              | 13.33%         |
+| Horsepower_No          | 26.99%         |
+| Torque_No              | 15.12%         |
+| Make_Ford              | 13.32%         |
 | ...                    | ...            |
 
-### Interpretasi
-- **Horsepower_No** dan **Torque_No** adalah dua fitur numerik yang memiliki pengaruh terbesar terhadap target `MSRP`, dengan kontribusi masing-masing sekitar **22.07%** dan **21.42%**.
-- Beberapa fitur kategorikal, seperti **Make_Ford** dan **Engine Aspiration_Naturally Aspirated**, juga menunjukkan kontribusi yang signifikan terhadap model.
+#### Hasil Analisis
 
-### Kesimpulan
-Hasil ini memberikan wawasan tentang fitur mana yang paling relevan untuk prediksi harga mobil (`MSRP`). Fitur-fitur dengan nilai penting tertinggi, seperti `Horsepower_No` dan `Torque_No`, harus dipertimbangkan lebih dalam untuk analisis lebih lanjut atau model yang lebih efisien.
+Tabel pentingnya fitur menunjukkan daftar fitur beserta nilai pentingnya. Beberapa fitur dengan nilai penting tertinggi adalah:
+- **Horsepower** (26.99%)
+- **Torque** (15.12%)
+- **Make_Ford** (13.32%)
+
+#### Interpretasi
+
+- **Fitur numerik** seperti **Horsepower** dan **Torque** memiliki pengaruh terbesar terhadap target (MSRP).
+- Beberapa **fitur kategorikal** seperti **Make_Ford** dan **Engine Aspiration_Naturally Aspirated** juga menunjukkan kontribusi yang signifikan.
+
+#### Kesimpulan
+
+Hasil analisis ini memberikan wawasan tentang fitur mana yang paling relevan untuk prediksi MSRP. Informasi ini dapat digunakan untuk **menyederhanakan model** atau **memberikan fokus pada fitur yang signifikan** dalam model machine learning.
 
 ---
 
-### 8. Split Data
+### Split Data
 
 Pada bagian ini, dataset dibagi menjadi dua bagian, yaitu data latih (train) dan data uji (test). Pembagian ini bertujuan untuk melatih model dengan sebagian data dan mengevaluasi performa model menggunakan data yang tidak digunakan saat pelatihan. Pembagian yang umum digunakan adalah 80% data untuk pelatihan dan 20% data untuk pengujian.
 
@@ -696,21 +846,21 @@ Model dievaluasi menggunakan data uji yang terpisah (20%) setelah dilatih pada d
 ### Hasil Evaluasi Model
 
 1. **Regresi Linier**
-   - **R²:** 0.87 (87%) – Model cukup baik dalam menjelaskan varians data.
-   - **RMSE:** 8518.103444	 – Tingginya nilai RMSE menunjukkan adanya kesalahan prediksi yang signifikan.
-   - **MAE:** 6381.047981 – Menunjukkan rata-rata kesalahan absolut yang cukup besar.
+   - **R²:** 0.89 (89%) – Model cukup baik dalam menjelaskan varians data.
+   - **RMSE:** 8518.653482 – Tingginya nilai RMSE menunjukkan adanya kesalahan prediksi yang signifikan.
+   - **MAE:** 6262.459047 – Menunjukkan rata-rata kesalahan absolut yang cukup besar.
 
 2. **K-Nearest Neighbors (KNN)**
-   - **R²:** 0.91 (91%) – KNN lebih baik dibandingkan regresi linier dalam menjelaskan varians data.
-   - **RMSE:** 7140.058920 – RMSE lebih rendah dibandingkan regresi linier, menunjukkan prediksi yang lebih akurat.
-   - **MAE:** 4881.146372 – Kesalahan absolut lebih kecil dibandingkan regresi linier.
+   - **R²:** 0.92 (92%) – KNN lebih baik dibandingkan regresi linier dalam menjelaskan varians data.
+   - **RMSE:** 7019.412983 – RMSE lebih rendah dibandingkan regresi linier, menunjukkan prediksi yang lebih akurat.
+   - **MAE:** 4566.369565 – Kesalahan absolut lebih kecil dibandingkan regresi linier.
 
 ### Perbandingan Antara Model
 
 | **Model**               | **R² Train** | **R² Test** | **RMSE Train** | **RMSE Test** | **MAE Train** | **MAE Test** |
 |-------------------------|--------------|-------------|----------------|---------------|---------------|--------------|
-| **Regresi Linier**      | 0.883937     | 0.873134    | 8485.445020    | 8518.103444   | 6400.032599   | 6381.047981  |
-| **K-Nearest Neighbors** | 0.934369     | 0.910862    | 6380.930219    | 7140.058920   | 4432.861769   | 4881.146372  |
+| **Regresi Linier**      | 0.878314     | 0.888066    | 8527.974118    | 8518.653482   | 6427.383169   | 6262.459047  |
+| **K-Nearest Neighbors** | 0.927509     | 0.923998    | 6582.165008    | 7019.412983   | 4510.563043   | 4566.369565  |
 
 ---
 ### Visualisasi Hasil Evaluasi Model Terbaik
@@ -739,7 +889,7 @@ Visualisasi ini bertujuan untuk memeriksa kinerja model terbaik dalam memprediks
 
 #### Hasil Visualisasi:
 
-![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt17.png)
+GAMBAR
 
 1. **Korelasi Positif**:  
    Grafik menunjukkan korelasi positif yang kuat antara nilai aktual dan nilai prediksi, yang mengindikasikan bahwa model mampu memprediksi MSRP dengan baik.
@@ -781,7 +931,7 @@ Plot residual digunakan untuk menganalisis kesalahan prediksi model (residual), 
 
 #### Hasil Visualisasi:
 
-![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt18.png)
+GAMBAR
 
 1. **Pola Residual**:
    - Tidak ada tren yang jelas: Residual tersebar secara acak di sekitar garis nol.
@@ -803,7 +953,7 @@ Visualisasi residual menunjukkan bahwa model menangkap hubungan linier dengan ba
 ## Kesimpulan Akhir
 
 - **Model KNN** menunjukkan performa yang lebih baik dibandingkan **Regresi Linier** dalam memprediksi harga kendaraan (**MSRP**):
-  - R² KNN lebih tinggi (91%) dibandingkan regresi linier (87%), menunjukkan bahwa KNN dapat menjelaskan lebih banyak variasi data.
+  - R² KNN lebih tinggi (92%) dibandingkan regresi linier (87%), menunjukkan bahwa KNN dapat menjelaskan lebih banyak variasi data.
   - RMSE dan MAE yang lebih rendah pada KNN menunjukkan tingkat akurasi prediksi yang lebih tinggi dibandingkan regresi linier.
   - KNN berhasil menangkap pola non-linear dalam data, yang sulit dijelaskan oleh regresi linier.
 
@@ -828,7 +978,7 @@ Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik u
 ### Answering the Problem Statement:
 
 1. **Faktor Apa yang Paling Mempengaruhi Harga Kendaraan Baru (MSRP)?**
-   Berdasarkan analisis model dan hasil feature importance, faktor yang paling mempengaruhi harga kendaraan baru (MSRP) adalah **Torque_No** dan **Horsepower_No**, dengan kontribusi masing-masing sebesar 22.07% dan 21.42%. Selain itu, merek Ford juga memiliki pengaruh signifikan terhadap harga kendaraan.
+   Berdasarkan analisis model dan hasil feature importance, faktor yang paling mempengaruhi harga kendaraan baru (MSRP) adalah **Torque_No** dan **Horsepower_No**, dengan kontribusi masing-masing sebesar 26.99% dan 15.12%. Selain itu, merek Ford juga memiliki pengaruh signifikan terhadap harga kendaraan.
 
 2. **Bagaimana Hubungan Antara Jenis Kendaraan dan Harga (MSRP)?**
    - **Merek (Make):** Merek premium seperti Aston Martin, Bentley, Audi, BMW, dan Mercedes-Benz memiliki harga yang lebih tinggi. Sedangkan merek seperti Ford dan Nissan lebih terjangkau untuk pasar massal.
@@ -838,15 +988,15 @@ Berdasarkan evaluasi, model **K-Nearest Neighbors (KNN)** adalah model terbaik u
    - **Jenis Transmisi (Transmission):** Transmisi otomatis umumnya lebih mahal daripada transmisi manual.
 
 3. **Bagaimana Kinerja Prediksi Model Dibandingkan dengan Data Aktual?**
-   Model KNN memberikan hasil yang sangat baik, dengan R² sebesar 0.93 pada data latih dan 0.91 pada data uji. Nilai RMSE dan MAE yang cukup tinggi menunjukkan adanya kesalahan prediksi pada beberapa kasus, namun secara keseluruhan model memberikan prediksi yang cukup akurat.
+   Model KNN memberikan hasil yang sangat baik, dengan R² sebesar 0.92 pada data latih dan 0.92 pada data uji. Nilai RMSE dan MAE yang cukup tinggi menunjukkan adanya kesalahan prediksi pada beberapa kasus, namun secara keseluruhan model memberikan prediksi yang cukup akurat.
 
 4. **Bagaimana Tren Residual Memberikan Wawasan Tentang Kelompok yang Kurang Terlayani?**
    - **Residual** menunjukkan distribusi yang acak dan tidak ada bias sistematis pada kelompok tertentu. Model relatif adil untuk sebagian besar data, namun outlier pada residual menunjukkan bahwa ada kasus yang mungkin kurang terlayani oleh model.
    - Penyebaran residual yang konsisten di sekitar garis nol (homoskedastisitas) mengindikasikan model tidak memiliki pola kesalahan yang jelas.
 
 5. **Bagaimana Distribusi Harga Kendaraan Berpengaruh pada Strategi Harga?**
-   - **Distribusi Harga:** Modus (114,843.75) menunjukkan harga kendaraan yang paling sering ditemukan. Strategi harga dapat difokuskan untuk segmen ini dengan penawaran yang kompetitif.
-   - **Rentang Harga:** Rata-rata harga (mean: 62,795.98) dan median (55,900.00) menunjukkan adanya ketimpangan harga, dengan harga lebih tinggi untuk kendaraan premium dan harga lebih rendah untuk kendaraan massal.
+   - **Distribusi Harga:** Modus (114,870.00) menunjukkan harga kendaraan yang paling sering ditemukan. Strategi harga dapat difokuskan untuk segmen ini dengan penawaran yang kompetitif.
+   - **Rentang Harga:** Rata-rata harga (mean: 62,715.93) dan median (55,945.00) menunjukkan adanya ketimpangan harga, dengan harga lebih tinggi untuk kendaraan premium dan harga lebih rendah untuk kendaraan massal.
      
 ### Goals and Problem Statement Review:
 
