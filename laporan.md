@@ -193,11 +193,7 @@ Berikut adalah penjelasan beberapa statistik yang diperoleh:
     
 ---
 
-### Exploratory Data Analysis (EDA)
-
-**Tujuan EDA** adalah untuk memahami distribusi data dan hubungan antar fitur. Pada tahap ini, dilakukan analisis visual menggunakan berbagai grafik untuk menggali wawasan dari data.
-
-### 1. Analisis Data Eksplorasi (EDA): Cek Nilai Unik pada Setiap Kolom
+### Cek Nilai Unik pada Setiap Kolom
 
 Pada tahap ini, analisis akan dilakukan untuk memeriksa nilai unik pada setiap kolom dalam dataset. Proses ini penting untuk memahami jenis data di setiap kolom serta menentukan apakah terdapat kolom dengan jumlah nilai yang terlalu banyak atau terlalu sedikit. Langkah ini juga berguna untuk memahami variabilitas dan keunikan data di setiap kolom.
 
@@ -228,7 +224,7 @@ Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, daftar nilai
 
 ---
 
-### 2. Cek Missing Value
+### Cek Missing Value
 
 Pada tahap ini, dilakukan pemeriksaan untuk memastikan tidak terdapat nilai anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
 
@@ -244,7 +240,7 @@ Pada tahap ini, dilakukan pemeriksaan untuk memastikan tidak terdapat nilai anom
 
 ---
 
-### 3. Cek Duplikasi Data
+### Cek Duplikasi Data
 
 Pada bagian ini, dilakukan pemeriksaan untuk memastikan apakah terdapat baris data yang duplikat dalam dataset. Proses ini penting untuk memastikan bahwa data yang digunakan dalam analisis bersih dari duplikasi yang dapat memengaruhi hasil analisis.
 
