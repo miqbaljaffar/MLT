@@ -877,7 +877,7 @@ Visualisasi ini bertujuan untuk memeriksa kinerja model terbaik dalam memprediks
 
 #### Hasil Visualisasi:
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt39.png)
 
 1. **Korelasi Positif**:  
    Grafik menunjukkan korelasi positif yang kuat antara nilai aktual dan nilai prediksi, yang mengindikasikan bahwa model mampu memprediksi MSRP dengan baik.
@@ -919,7 +919,7 @@ Plot residual digunakan untuk menganalisis kesalahan prediksi model (residual), 
 
 #### Hasil Visualisasi:
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt40.png)
 
 1. **Pola Residual**:
    - Tidak ada tren yang jelas: Residual tersebar secara acak di sekitar garis nol.
