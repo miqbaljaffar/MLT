@@ -171,26 +171,6 @@ Dataset ini memiliki **1610 baris** dan **17 kolom**. Beberapa kolom seperti "In
 
 Mayoritas kolom adalah bertipe **object** (biasanya tipe data string), kecuali untuk kolom "index" dan "Year" yang bertipe **int64**.
 
-### Descriptive Statistics
-
-Pada bagian ini, statistik deskriptif dari kolom numerik dalam dataset akan ditampilkan. Statistik deskriptif ini memberikan gambaran umum mengenai sebaran data, seperti nilai rata-rata (mean), standar deviasi (std), nilai minimum (min), dan nilai maksimum (max) untuk kolom-kolom numerik.
-
-![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt15.PNG)
-
-Berikut adalah penjelasan beberapa statistik yang diperoleh:
-
-- **Kolom "index"**:
-  - Jumlah data (**count**) adalah **1610**, yang berarti tidak ada nilai yang hilang pada kolom ini.
-  - Rata-rata (**mean**) nilai index adalah **2932.10**.
-  - Standar deviasi (**std**) adalah **1857.61**, menunjukkan bahwa data dalam kolom ini memiliki variasi yang cukup besar.
-  - Nilai minimum (**min**) adalah **0**, sementara nilai maksimum (**max**) adalah **6414**, yang menunjukkan rentang yang cukup luas.
-
-- **Kolom "Year"**:
-  - Jumlah data (**count**) adalah **1610**, yang berarti kolom ini juga tidak memiliki nilai yang hilang.
-  - Rata-rata (**mean**) tahun adalah **2023.45**, dengan sebagian besar data berada pada tahun 2023 dan 2024.
-  - Standar deviasi (**std**) yang kecil (**0.50**) menunjukkan bahwa data tahun relatif tidak bervariasi jauh.
-  - Nilai minimum (**min**) dan maksimum (**max**) adalah **2023**, yang menunjukkan bahwa hampir semua data berasal dari tahun 2023 dan 2024.
-    
 ---
 
 ### Cek Nilai Unik pada Setiap Kolom
