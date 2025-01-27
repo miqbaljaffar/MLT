@@ -877,7 +877,7 @@ Visualisasi ini bertujuan untuk memeriksa kinerja model terbaik dalam memprediks
 
 #### Hasil Visualisasi:
 
-![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt39.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt39.PNG)
 
 1. **Korelasi Positif**:  
    Grafik menunjukkan korelasi positif yang kuat antara nilai aktual dan nilai prediksi, yang mengindikasikan bahwa model mampu memprediksi MSRP dengan baik.
