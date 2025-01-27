@@ -167,6 +167,8 @@ Output dari kode ini menunjukkan struktur dataset, dengan kolom-kolom seperti **
 
 Pada bagian ini, informasi dasar mengenai dataset akan ditampilkan, termasuk jenis kolom, jumlah nilai yang tidak kosong, dan tipe data pada setiap kolom. Informasi ini sangat penting untuk memahami karakteristik dataset dan untuk memutuskan langkah-langkah yang diperlukan untuk pembersihan data.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt33.PNG)
+
 Dataset ini memiliki **1610 baris** dan **17 kolom**. Beberapa kolom seperti "Invoice Price", "Cylinders", "Horsepower", "Torque", dan "Highway Fuel Economy" memiliki nilai kosong (null). Sementara kolom lainnya memiliki nilai yang lengkap tanpa kekurangan data.
 
 Mayoritas kolom adalah bertipe **object** (biasanya tipe data string), kecuali untuk kolom "index" dan "Year" yang bertipe **int64**.
