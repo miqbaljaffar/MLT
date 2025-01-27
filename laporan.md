@@ -4,9 +4,9 @@
 
 ### Latar Belakang
 
-Harga kendaraan baru adalah topik yang selalu menjadi perhatian utama bagi produsen, dealer, dan konsumen. Penentuan harga yang tepat sangat krusial, karena dapat memengaruhi daya jual kendaraan dan profitabilitas produsen. Harga kendaraan dipengaruhi oleh berbagai faktor, baik yang bersifat teknis (seperti ukuran mesin, bahan bakar, atau drivetrain) maupun eksternal seperti tren pasar dan preferensi konsumen.
+Harga kendaraan baru merupakan topik yang selalu menjadi perhatian utama bagi produsen, dealer, dan konsumen. Penentuan harga yang tepat sangat krusial, karena dapat memengaruhi daya jual kendaraan dan profitabilitas produsen. Harga kendaraan dipengaruhi oleh berbagai faktor, baik yang bersifat teknis (seperti ukuran mesin, bahan bakar, atau drivetrain) maupun eksternal seperti tren pasar dan preferensi konsumen.
 
-Melalui machine learning, kita dapat memprediksi harga kendaraan baru dengan menggunakan data historis yang mengandung informasi tentang berbagai fitur kendaraan. Dengan demikian, produsen dan konsumen bisa mendapatkan estimasi harga yang lebih akurat, yang akan membantu produsen dalam menetapkan harga dan konsumen dalam menentukan apakah harga kendaraan tersebut sesuai dengan anggaran mereka.
+Melalui machine learning, harga kendaraan baru dapat diprediksi dengan menggunakan data historis yang mengandung informasi tentang berbagai fitur kendaraan. Dengan demikian, produsen dan konsumen dapat memperoleh estimasi harga yang lebih akurat, yang akan membantu produsen dalam menetapkan harga dan konsumen dalam menentukan apakah harga kendaraan tersebut sesuai dengan anggaran yang tersedia.
 
 ### Alasan Penyelesaian Masalah
 
@@ -22,12 +22,12 @@ Referensi terkait dapat ditemukan pada [ANALISIS FAKTOR PEMBELIAN MOBIL BERDASAR
 
 # Business Understanding
 
-Proyek ini bertujuan untuk membangun sebuah model prediksi yang dapat memperkirakan harga kendaraan baru (MSRP), yang akan membantu produsen kendaraan dalam menetapkan harga yang optimal. Selain itu, model ini juga akan mempermudah konsumen dalam membandingkan harga kendaraan berdasarkan fitur-fitur yang relevan. Dengan adanya model ini, produsen dapat membuat keputusan yang lebih tepat mengenai harga jual, sementara konsumen dapat memperoleh informasi yang lebih transparan mengenai harga kendaraan yang mereka minati.
+Proyek ini bertujuan untuk membangun sebuah model prediksi yang dapat memperkirakan harga kendaraan baru (MSRP), yang akan membantu produsen kendaraan dalam menetapkan harga yang optimal. Selain itu, model ini juga akan mempermudah konsumen dalam membandingkan harga kendaraan berdasarkan fitur-fitur yang relevan. Dengan adanya model ini, produsen dapat membuat keputusan yang lebih tepat mengenai harga jual, sementara konsumen dapat memperoleh informasi yang lebih transparan mengenai harga kendaraan yang diminati.
 
 ### Problem Statements
 
 1. **Apa saja faktor yang mempengaruhi harga kendaraan baru (MSRP)?**
-   - Beberapa faktor yang diharapkan dapat mempengaruhi harga kendaraan baru antara lain merek, jenis bodi, ukuran mesin, tenaga kuda (horsepower), torsi, dan fitur-fitur tambahan seperti sistem penggerak (drivetrain), jenis transmisi, dan lain sebagainya. Dalam hal ini, kita ingin mengetahui seberapa besar kontribusi masing-masing faktor terhadap harga kendaraan.
+   - Beberapa faktor yang diharapkan dapat mempengaruhi harga kendaraan baru antara lain merek, jenis bodi, ukuran mesin, tenaga kuda (horsepower), torsi, dan fitur-fitur tambahan seperti sistem penggerak (drivetrain), jenis transmisi, dan lain sebagainya. Dalam hal ini, tujuan utama adalah untuk mengetahui seberapa besar kontribusi masing-masing faktor terhadap harga kendaraan.
 
 2. **Bagaimana hubungan antara jenis kendaraan dan harga?**
    - Jenis kendaraan, seperti sedan, SUV, minivan, atau truk, memiliki karakteristik yang berbeda yang dapat mempengaruhi harga jual kendaraan tersebut. Misalnya, SUV atau kendaraan mewah cenderung memiliki harga yang lebih tinggi daripada kendaraan kompak. Memahami hubungan ini dapat memberikan wawasan tentang bagaimana produsen dan konsumen memandang nilai suatu kendaraan berdasarkan jenisnya.
@@ -81,22 +81,83 @@ Untuk mencapai tujuan-tujuan analisis dan prediksi harga kendaraan, tiga pendeka
 
 Dataset yang digunakan adalah dataset "Automobile" yang tersedia di [Dataset](https://github.com/Pitsillides91/python_2025/blob/main/6.Python_Reg_ml_model/car_data.csv). Dataset ini berisi informasi mengenai kendaraan seperti merek, ukuran mesin, tipe bodi, dan harga kendaraan. Data ini digunakan untuk memprediksi harga kendaraan baru (MSRP) berdasarkan berbagai fitur kendaraan.
 
-### Variabel-variabel pada dataset ini:
+### Variabel dalam Dataset Kendaraan
 
-- **Make**: Merek kendaraan (misalnya Ford, BMW).
-- **Body Style**: Jenis bodi kendaraan (misalnya sedan, SUV, minivan).
-- **Engine Size**: Ukuran mesin kendaraan (dalam liter).
-- **Horsepower**: Daya kuda kendaraan.
-- **MSRP**: Harga kendaraan baru (target variabel yang akan diprediksi).
-- **Transmission**: Jenis transmisi (misalnya otomatis atau manual).
-- **Fuel Economy**: Penghematan bahan bakar (miles per gallon).
-- **Drivetrain**: Jenis penggerak (misalnya FWD, AWD).
+Berikut adalah penjelasan untuk setiap variabel dalam dataset kendaraan yang meliputi berbagai fitur kendaraan yang digunakan untuk analisis harga dan kinerja.
+
+#### 1. Index
+- **Deskripsi**: Ini adalah nomor urut yang digunakan untuk mengidentifikasi setiap baris data dalam dataset. Meskipun **Index** tidak memberikan informasi langsung tentang kendaraan, ia berfungsi sebagai identifikasi unik bagi setiap entri.
+- **Contoh**: 0, 1, 2, 3, 4 (dan seterusnya).
+
+#### 2. Make
+- **Deskripsi**: Merujuk pada **merek** atau **brand** kendaraan, yang menunjukkan produsen atau pembuat kendaraan tersebut. Variabel ini penting untuk mengidentifikasi asal-usul kendaraan dan terkait dengan reputasi, kualitas, dan harga kendaraan.
+- **Contoh**: Aston Martin, Audi, BMW, Toyota.
+
+#### 3. Model
+- **Deskripsi**: Merupakan **model** spesifik dari kendaraan yang diproduksi oleh produsen tersebut. Model biasanya merujuk pada varian yang memiliki desain dan fitur tertentu.
+- **Contoh**: DBX707, A3, X5.
+
+#### 4. Year
+- **Deskripsi**: Merupakan tahun pembuatan kendaraan. Tahun kendaraan sangat penting karena mempengaruhi **harga**, **fitur**, dan **kinerja** kendaraan, dengan kendaraan yang lebih baru biasanya memiliki harga lebih tinggi dan fitur teknologi terbaru.
+- **Contoh**: 2024, 2023, 2022.
+
+#### 5. Trim
+- **Deskripsi**: Trim mengacu pada **varian** atau **tingkatan** dari model kendaraan, yang sering kali mencakup berbagai fitur tambahan, seperti sistem hiburan, pilihan bahan interior, dan paket teknologi.
+- **Contoh**: Base, Premium, Premium Plus.
+
+#### 6. MSRP (Manufacturer’s Suggested Retail Price)
+- **Deskripsi**: **Harga yang disarankan oleh pabrikan** untuk kendaraan baru. Ini adalah harga yang disarankan untuk kendaraan sebelum diskon atau tawar-menawar. Harga ini mencerminkan **harga pasar standar** untuk kendaraan baru.
+- **Contoh**: $242,000, $35,800, $41,400.
+
+#### 7. Invoice Price
+- **Deskripsi**: Merupakan harga **pembelian grosir** atau harga yang dibayar oleh dealer kepada produsen untuk kendaraan tersebut. Ini sering kali lebih rendah daripada MSRP dan memberi gambaran tentang biaya dasar untuk dealer.
+- **Contoh**: $33,653, $35,533.
+
+#### 8. Used/New Price
+- **Deskripsi**: Merupakan harga kendaraan **bekas** atau **baru** yang tertera pada pasar. Ini bisa berbeda tergantung pada status kendaraan (baru atau bekas) dan kondisi pasar saat itu.
+- **Contoh**: $242,000 (baru), $35,800 (baru).
+
+#### 9. Body Size
+- **Deskripsi**: **Ukuran bodi** kendaraan, yang menentukan seberapa besar atau kecil kendaraan tersebut. Ini bisa mempengaruhi kenyamanan, ruang penumpang, dan efisiensi bahan bakar.
+- **Contoh**: Large, Compact, Mid-Size.
+
+#### 10. Body Style
+- **Deskripsi**: Menunjukkan **jenis bodi** kendaraan, seperti sedan, SUV, hatchback, atau coupe. Gaya bodi mempengaruhi bentuk kendaraan, penggunaan ruang, dan tujuan kendaraan (misalnya, SUV lebih cocok untuk perjalanan jauh atau keluarga besar).
+- **Contoh**: SUV, Sedan, Coupe.
+
+#### 11. Cylinders
+- **Deskripsi**: Menunjukkan jumlah **silinder** dalam mesin kendaraan. Ini berpengaruh pada **daya mesin** dan **efisiensi bahan bakar**. Semakin banyak silinder, semakin kuat biasanya mesin tersebut, tetapi itu juga bisa berarti konsumsi bahan bakar yang lebih tinggi.
+- **Contoh**: V8, I4 (4-silinder), I6 (6-silinder).
+
+#### 12. Engine Aspiration
+- **Deskripsi**: Menunjukkan jenis sistem **pengisian udara mesin**. Ada dua jenis utama: **Naturally Aspirated** (tanpa turbocharger atau supercharger) dan **Turbocharged** (menggunakan turbocharger untuk meningkatkan daya).
+- **Contoh**: Turbocharged, Naturally Aspirated, Supercharged.
+
+#### 13. Drivetrain
+- **Deskripsi**: Menunjukkan sistem **penggerak** kendaraan, yaitu bagaimana tenaga dari mesin disalurkan ke roda. Pilihan drivetrain dapat mempengaruhi traksi, pengendalian, dan efisiensi bahan bakar.
+- **Contoh**: AWD (All-Wheel Drive), FWD (Front-Wheel Drive), RWD (Rear-Wheel Drive).
+
+#### 14. Transmission
+- **Deskripsi**: Jenis **transmisi** kendaraan yang mengontrol perpindahan gigi. Transmisi otomatis memudahkan pengemudi dalam mengemudi, sementara transmisi manual memberikan kontrol lebih.
+- **Contoh**: Automatic, Manual.
+
+#### 15. Horsepower
+- **Deskripsi**: Mengukur **daya kuda** mesin kendaraan, yang mempengaruhi seberapa cepat kendaraan dapat bergerak. Semakin tinggi horsepower, semakin kuat kendaraan dalam akselerasi.
+- **Contoh**: 697 hp @ 6000 rpm, 201 hp @ 4800 rpm.
+
+#### 16. Torque
+- **Deskripsi**: Menunjukkan **torsi** mesin yang mengukur kemampuan kendaraan dalam menghasilkan daya putar. Ini sangat penting untuk akselerasi kendaraan terutama pada kecepatan rendah dan untuk kendaraan yang membawa beban.
+- **Contoh**: 663 ft-lbs. @ 2750 rpm, 221 ft-lbs. @ 4100 rpm.
+
+#### 17. Highway Fuel Economy
+- **Deskripsi**: Mengukur **penghematan bahan bakar** kendaraan saat berkendara di jalan raya (dalam miles per gallon atau mpg). Ini menunjukkan efisiensi kendaraan dalam kondisi jalan yang lebih stabil (kecepatan konstan).
+- **Contoh**: 20 mpg, 37 mpg, 34 mpg.
 
 ### Load and Preview Dataset
 
-Pada bagian ini, kita akan memuat dataset mobil dari file CSV ke dalam DataFrame menggunakan pustaka pandas.
+Pada bagian ini, dataset mobil dimuat dari file CSV ke dalam DataFrame menggunakan pustaka pandas.
 
-Setelah memuat dataset, kita dapat melihat lima baris pertama untuk memahami struktur dan isi dataset.
+Setelah dataset dimuat, lima baris pertama dapat dilihat untuk memahami struktur dan isi dataset.
 
 ![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt1.PNG)
 
@@ -104,7 +165,7 @@ Output dari kode ini menunjukkan struktur dataset, dengan kolom-kolom seperti **
 
 ### Data Summary and Information
 
-Pada bagian ini, kita akan menampilkan informasi dasar mengenai dataset, termasuk jenis kolom, jumlah nilai yang tidak kosong, dan tipe data pada setiap kolom. Informasi ini sangat penting untuk memahami karakteristik dataset dan untuk memutuskan langkah-langkah yang diperlukan untuk pembersihan data.
+Pada bagian ini, informasi dasar mengenai dataset akan ditampilkan, termasuk jenis kolom, jumlah nilai yang tidak kosong, dan tipe data pada setiap kolom. Informasi ini sangat penting untuk memahami karakteristik dataset dan untuk memutuskan langkah-langkah yang diperlukan untuk pembersihan data.
 
 Dataset ini memiliki **1610 baris** dan **17 kolom**. Beberapa kolom seperti "Invoice Price", "Cylinders", "Horsepower", "Torque", dan "Highway Fuel Economy" memiliki nilai kosong (null). Sementara kolom lainnya memiliki nilai yang lengkap tanpa kekurangan data.
 
