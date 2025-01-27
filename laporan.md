@@ -223,19 +223,19 @@ Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, daftar nilai
 - **Kolom Highway Fuel Economy** memiliki **63** nilai unik, yang menggambarkan variasi konsumsi bahan bakar mobil di jalan raya.
 
 ---
-## **Ubah Tipe Data**
+### **Ubah Tipe Data**
 
 Pada bagian ini, kolom **MSRP** dan **Used/New Price** akan dibersihkan dan dikonversi. Kolom tersebut awalnya berformat string (termasuk simbol mata uang dan koma sebagai pemisah ribuan), yang akan diubah menjadi tipe data numerik (float). Konversi ini penting agar analisis statistik dan perhitungan matematika pada data harga mobil dapat dilakukan.
 
-### **Langkah-Langkah yang Dilakukan**:
+#### **Langkah-Langkah yang Dilakukan**:
 1. Menghapus simbol mata uang (`$`) dan tanda koma (`,`) dari kolom **MSRP** dan **Used/New Price** menggunakan fungsi `replace()`.
 2. Mengonversi kolom yang telah dibersihkan ke dalam format angka desimal (float) agar data dapat digunakan untuk analisis lebih lanjut.
 
-### **Implementasi:**
+#### **Implementasi:**
 Langkah ini dilakukan dengan metode berikut:
 - Kolom **MSRP** dan **Used/New Price** dibersihkan dari simbol dan tanda baca, kemudian diubah menjadi tipe data float menggunakan `astype()`.
 
-### **Penjelasan Hasil Output:**
+#### **Penjelasan Hasil Output:**
 Setelah dilakukan pembersihan dan konversi pada kolom **MSRP** dan **Used/New Price**, diperoleh hasil berikut:
 - Kolom **MSRP** dan **Used/New Price** sekarang memiliki tipe data `float64` yang memungkinkan dilakukan perhitungan numerik.
 - Jumlah entri pada dataset tetap konsisten tanpa adanya kehilangan data.
@@ -260,8 +260,6 @@ Kolom **Horsepower** dan **Torque** juga dikonversi dari string ke float agar da
 - Proses ini memastikan data siap untuk analisis tanpa adanya manipulasi terhadap nilai yang hilang.
 
 ---
-
-# Analisis Statistik Deskriptif pada Dataset Mobil
 
 ### **Cek Statistik Deskriptif**
 
