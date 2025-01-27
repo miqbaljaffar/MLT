@@ -269,7 +269,7 @@ Pada tahap ini, statistik deskriptif dari kolom-kolom numerik dalam dataset dipe
 1. Memeriksa distribusi statistik deskriptif untuk kolom numerik menggunakan `describe()` pada dataset.
 2. Menganalisis hasil yang diperoleh untuk memahami karakteristik data, seperti rentang nilai, rata-rata, dan sebaran.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt20.PNG)
 
 #### **Penjelasan Hasil Output**
 
@@ -333,7 +333,7 @@ Pada tahap ini, outlier dalam dataset divisualisasikan menggunakan boxplot. Outl
 #### **Visualisasi:**
 - Boxplot menampilkan distribusi data, termasuk nilai tengah, rentang antar-kuartil (IQR), dan potensi outlier.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt21.png)
 
 #### **Hasil Visualisasi**
 
@@ -361,7 +361,7 @@ Pada bagian ini, kuartil pertama (**Q1**), kuartil ketiga (**Q3**), dan rentang 
 5. **Menyimpan Hasil**:
    - Informasi tentang batas bawah, batas atas, jumlah outliers, dan contoh nilai outliers disimpan dalam bentuk tabel.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt22.PNG)
 
 #### **Penjelasan Hasil Output**
 
@@ -403,7 +403,7 @@ Pairplot membantu memahami hubungan antar fitur numerik dan pola berbeda berdasa
 2. **Pairplot**: Menggunakan pairplot untuk memvisualisasikan hubungan antar fitur numerik.
 3. **Penambahan Warna Berdasarkan Engine Aspiration**: Memberikan warna berbeda pada data berdasarkan kategori jenis aspirasinya, seperti turbocharged, twin-turbo, dsb.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt23.png)
 
 Hasilnya
 
@@ -448,7 +448,11 @@ Pada bagian ini, dilakukan visualisasi bar chart untuk menggambarkan rata-rata M
 
 Setiap bar chart dirancang untuk memberikan wawasan tentang bagaimana kategori tersebut memengaruhi rata-rata MSRP.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt24.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt25.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt26.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt27.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt28.png)
 
 ### 1. **Make vs MSRP**
 Grafik ini menunjukkan rata-rata MSRP untuk berbagai merek mobil:
@@ -519,7 +523,9 @@ Visualisasi ini bertujuan untuk menunjukkan distribusi data dari setiap kolom nu
      - **Mode**: Garis titik-titik oranye.
    - Setiap grafik dilengkapi dengan judul, label sumbu, legenda, dan grid untuk keterbacaan yang lebih baik.
 
-GAMBAR
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt29.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt30.png)
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt32.png)
 
 #### 1. **Distribusi Harga (Used/New Price dan MSRP)**
 
