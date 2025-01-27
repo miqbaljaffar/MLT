@@ -173,7 +173,7 @@ Mayoritas kolom adalah bertipe **object** (biasanya tipe data string), kecuali u
 
 ### Descriptive Statistics
 
-Pada bagian ini, kita akan mendapatkan statistik deskriptif dari kolom numerik dalam dataset. Statistik deskriptif ini memberikan gambaran umum mengenai sebaran data, seperti nilai rata-rata (mean), standar deviasi (std), nilai minimum (min), dan nilai maksimum (max) untuk kolom-kolom numerik.
+Pada bagian ini, statistik deskriptif dari kolom numerik dalam dataset akan ditampilkan. Statistik deskriptif ini memberikan gambaran umum mengenai sebaran data, seperti nilai rata-rata (mean), standar deviasi (std), nilai minimum (min), dan nilai maksimum (max) untuk kolom-kolom numerik.
 
 ![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt15.PNG)
 
@@ -199,9 +199,9 @@ Berikut adalah penjelasan beberapa statistik yang diperoleh:
 
 ### 1. Analisis Data Eksplorasi (EDA): Cek Nilai Unik pada Setiap Kolom
 
-Pada tahap ini, kita akan melakukan analisis untuk memeriksa nilai unik yang ada pada setiap kolom dalam dataset. Hal ini penting untuk memahami jenis data yang ada di setiap kolom, serta untuk menentukan apakah ada kolom dengan jumlah nilai yang terlalu banyak atau terlalu sedikit. Ini juga berguna untuk memahami variabilitas dan keunikan data dalam setiap kolom.
+Pada tahap ini, analisis akan dilakukan untuk memeriksa nilai unik pada setiap kolom dalam dataset. Proses ini penting untuk memahami jenis data di setiap kolom serta menentukan apakah terdapat kolom dengan jumlah nilai yang terlalu banyak atau terlalu sedikit. Langkah ini juga berguna untuk memahami variabilitas dan keunikan data di setiap kolom.
 
-Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, kita akan menampilkan daftar nilai unik tersebut. Jika jumlah nilai uniknya lebih dari 12, hanya jumlah nilai unik yang akan ditampilkan.
+Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, daftar nilai unik tersebut akan ditampilkan. Namun, jika jumlah nilai unik lebih dari 12, hanya jumlah nilai unik yang akan ditampilkan.
 
 **Langkah-langkah Implementasi:**
 
@@ -230,7 +230,7 @@ Jika jumlah nilai unik suatu kolom kurang dari atau sama dengan 12, kita akan me
 
 ### 2. Cek Missing Value
 
-Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
+Pada tahap ini, dilakukan pemeriksaan untuk memastikan tidak terdapat nilai anomali dalam dataset, seperti NaN, null, atau nilai hilang lainnya.
 
 ![out](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt5.png)
 
@@ -246,7 +246,7 @@ Pada tahap ini, kita akan memeriksa apakah terdapat nilai yang anomali dalam dat
 
 ### 3. Cek Duplikasi Data
 
-Pada bagian ini, kita akan memeriksa apakah terdapat baris data yang duplikat dalam dataset. Proses ini penting untuk memastikan bahwa data yang digunakan dalam analisis bersih dari duplikasi yang dapat memengaruhi hasil analisis.
+Pada bagian ini, dilakukan pemeriksaan untuk memastikan apakah terdapat baris data yang duplikat dalam dataset. Proses ini penting untuk memastikan bahwa data yang digunakan dalam analisis bersih dari duplikasi yang dapat memengaruhi hasil analisis.
 
 **Langkah-langkah Implementasi:**
 
@@ -261,11 +261,11 @@ Setelah pemeriksaan, ditemukan bahwa **tidak ada baris duplikat** dalam dataset 
 
 ## Data Preparation
 
-Pada tahap ini, kami menerapkan beberapa teknik pembersihan dan transformasi data untuk memastikan dataset siap digunakan dalam model machine learning. Proses ini mencakup penanganan nilai hilang, transformasi variabel, penanganan outlier, normalisasi fitur, serta split data.
+Pada tahap ini, dilakukan beberapa teknik pembersihan dan transformasi data untuk memastikan dataset siap digunakan dalam model machine learning. Proses ini mencakup penanganan nilai hilang, transformasi variabel, penanganan outlier, normalisasi fitur, serta pembagian data.
 
 ### Penanganan Missing Value
 
-Pada bagian ini, kita akan melakukan beberapa langkah untuk membersihkan dataset dan menangani masalah nilai yang hilang (*missing values*), serta menyesuaikan format data jika diperlukan. Langkah-langkah ini bertujuan untuk meningkatkan kualitas data dan memastikan analisis serta model yang dibangun dapat bekerja dengan optimal.
+Pada bagian ini, dilakukan beberapa langkah untuk membersihkan dataset dan menangani masalah nilai yang hilang (missing values), serta menyesuaikan format data jika diperlukan. Langkah-langkah ini bertujuan untuk meningkatkan kualitas data dan memastikan analisis serta model yang dibangun dapat bekerja dengan optimal.
 
 ### 1. Penanganan Missing Value
 
@@ -333,7 +333,8 @@ Setelah pembersihan dan konversi tipe data, langkah selanjutnya adalah memeriksa
 ![desc](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt14.PNG)
 
 #### Penjelasan Hasil Output
-Berdasarkan hasil dari fungsi `describe()`, kita mendapatkan informasi statistik untuk kolom-kolom numerik pada dataset, yaitu `Year`, `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`. Berikut adalah beberapa poin penting:
+
+Berdasarkan hasil dari fungsi `describe()`, informasi statistik untuk kolom-kolom numerik pada dataset, yaitu `Year`, `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`, telah diperoleh. Berikut adalah beberapa poin penting:
 
 1. **Kolom Year**:
    - Data tahun berkisar antara **2023 hingga 2024**.
@@ -350,7 +351,7 @@ Berdasarkan hasil dari fungsi `describe()`, kita mendapatkan informasi statistik
    - Sebagian besar mobil dalam dataset memiliki tenaga kuda dan torsi yang lebih rendah, dengan hanya beberapa mobil yang memiliki performa jauh lebih tinggi, yang menunjukkan adanya variasi dalam jenis dan performa kendaraan.
 
 #### Kesimpulan
-Dari statistik deskriptif ini, kita dapat melihat bahwa dataset ini mengandung variasi yang cukup besar, baik dari sisi harga maupun performa kendaraan. Dengan informasi ini, kita dapat mulai mengidentifikasi pola atau tren dalam data, atau mengelompokkan kendaraan berdasarkan kategori harga dan spesifikasi performa untuk analisis lebih lanjut.
+Dari statistik deskriptif ini, terlihat bahwa dataset mengandung variasi yang cukup besar, baik dari sisi harga maupun performa kendaraan. Informasi ini memungkinkan identifikasi pola atau tren dalam data, serta pengelompokan kendaraan berdasarkan kategori harga dan spesifikasi performa untuk analisis lebih lanjut.
 
 ---
 
@@ -380,7 +381,8 @@ Boxplot digunakan untuk mendeteksi outlier pada fitur numerik seperti `Horsepowe
 ### 4. Penanganan Outlier dengan Winsorizing
 
 #### Metode
-Pada bagian ini, kita menangani nilai-nilai yang termasuk outlier dalam kolom-kolom numerik yang relevan, yaitu `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`. Outlier akan diganti dengan batas bawah atau batas atas yang dihitung berdasarkan rentang interkuartil (IQR). Teknik ini dikenal dengan sebutan **Winsorizing**, di mana nilai yang lebih besar dari batas atas diganti dengan batas atas, dan nilai yang lebih kecil dari batas bawah diganti dengan batas bawah.
+
+Pada bagian ini, nilai-nilai yang termasuk outlier dalam kolom-kolom numerik yang relevan, yaitu `MSRP`, `Used/New Price`, `Horsepower_No`, dan `Torque_No`, akan ditangani. Outlier akan diganti dengan batas bawah atau batas atas yang dihitung berdasarkan rentang interkuartil (IQR). Teknik ini dikenal sebagai **Winsorizing**, di mana nilai yang lebih besar dari batas atas diganti dengan batas atas, dan nilai yang lebih kecil dari batas bawah diganti dengan batas bawah.
 
 #### Langkah-langkah
 1. Menghitung **Q1** (Kuartil pertama) dan **Q3** (Kuartil ketiga) untuk setiap kolom.
@@ -451,7 +453,7 @@ Pada bagian ini, analisis dilakukan untuk memahami hubungan antara variabel kate
 
 #### Hasil Analisis dan Interpretasi:
 
-Disini saya tampilkan 1 sample hasil visualisasi dari Make vs MSRP
+Berikut adalah satu sampel hasil visualisasi dari hubungan antara Make dan MSRP.
 
 ![USE](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/mlt16.png)
 
