@@ -337,41 +337,205 @@ Brand dari produk ponsel diekstrak dari nama produk dengan mengambil kata pertam
 
 ## Data Preparation
 
-1. **Handling Missing Values**: Menghapus baris yang memiliki missing values karena data yang hilang tidak dapat diisi dengan rata-rata atau median.
-2. **Cleaning Text Data**: Menghapus simbol mata uang dan karakter non-numerik dari kolom harga dan rating.
-3. **Feature Engineering**: Menggabungkan kolom 'Product Name' dan 'Description' menjadi satu kolom 'Product Description' untuk mempermudah analisis teks.
-4. **TF-IDF Vectorization**: Mengubah teks deskripsi produk menjadi representasi numerik menggunakan TF-IDF.
-5. **Normalisasi Fitur Numerik**: Melakukan normalisasi pada fitur numerik seperti harga, RAM, storage, dan kamera menggunakan MinMaxScaler.
-6. **One-Hot Encoding**: Mengkodekan brand ponsel menjadi variabel biner menggunakan One-Hot Encoding.
+### **1. Penggabungan Kolom 'Product Name' dan 'Description'**
+Untuk meningkatkan representasi teks produk, dua kolom teks utama dalam dataset, yaitu **'Product Name'** dan **'Description'**, digabungkan menjadi satu kolom baru bernama **'Product Description'**.  
+Langkah ini dilakukan agar informasi produk dapat dianalisis lebih baik dalam pemrosesan teks, seperti **Natural Language Processing (NLP)** atau sistem **rekomendasi berbasis teks**.
+
+#### **Tujuan:**
+- Menggabungkan informasi nama dan deskripsi produk dalam satu kolom untuk analisis berbasis teks yang lebih efektif.
+- Mempermudah teknik pemrosesan teks, termasuk **vectorization**, **clustering**, dan **recommendation system**.
+
+### **2. Transformasi Teks Menggunakan TF-IDF**
+**TF-IDF (Term Frequency - Inverse Document Frequency)** digunakan untuk mengubah teks dalam kolom **'Product Description'** menjadi representasi numerik.  
+Proses ini membantu dalam mengidentifikasi kata-kata yang paling signifikan dalam deskripsi produk.
+
+#### **Langkah-langkah:**
+1. Menggunakan **TfidfVectorizer** untuk mengubah teks menjadi vektor numerik.
+2. Menghilangkan **stop words** (kata umum yang tidak memiliki makna signifikan) menggunakan `stop_words='english'`.
+3. Hasil transformasi ini menghasilkan **matriks TF-IDF (tfidf_matrix)**, yang digunakan untuk analisis lebih lanjut seperti **clustering** atau **sistem rekomendasi berbasis teks**.
+
+---
+
+### **3. Normalisasi Fitur Numerik**
+Standarisasi dilakukan pada fitur numerik agar semua variabel memiliki skala yang sama, sehingga tidak ada fitur yang mendominasi dalam model machine learning.
+
+#### **Langkah-langkah:**
+1. Menggunakan **MinMaxScaler** untuk menormalisasi fitur numerik.
+2. Semua fitur numerik dipetakan ke rentang **[0, 1]**, dengan nilai minimum menjadi 0 dan nilai maksimum menjadi 1.
+3. Normalisasi sangat penting untuk model berbasis jarak, seperti **KNN (K-Nearest Neighbors)** dan **K-Means Clustering**, karena membantu dalam perhitungan jarak yang lebih akurat.
+
+#### **Fitur yang Dinormalisasi:**
+- **Actual Price** (Harga sebelum diskon)
+- **Discount Price** (Harga setelah diskon)
+- **Stars** (Rating produk)
+- **RAM (GB)** (Kapasitas RAM)
+- **Storage (GB)** (Kapasitas penyimpanan)
+- **Display Size (inch)** (Ukuran layar)
+- **Camera** (Resolusi kamera)
+
+Setelah normalisasi dilakukan, dilakukan pengecekan kembali statistik deskriptif untuk memastikan hasil distribusi yang lebih seragam.
+
+### **4. Statistik Deskriptif Setelah Normalisasi**
+Setelah normalisasi, berikut adalah hasil distribusi dari beberapa fitur utama:
+
+#### **4.1. Actual Price**
+- **Rata-rata:** 0.1694 (sekitar 17% dari harga maksimum)
+- **Min - Max:** 0 - 1 (harga minimum menjadi 0, harga maksimum menjadi 1)
+- **Standar Deviasi:** 0.1291 (variasi harga relatif rendah, menunjukkan harga yang cukup stabil)
+
+#### **4.2. Discount Price**
+- **Rata-rata:** 0.1545 (harga rata-rata setelah diskon lebih rendah dibanding harga asli)
+- **Min - Max:** 0 - 1 (harga terendah ke 0, harga tertinggi ke 1)
+- **Standar Deviasi:** 0.1195 (variasi harga setelah diskon cukup kecil, menunjukkan konsistensi)
+
+#### **4.3. Stars (Rating)**
+- **Rata-rata:** 0.6457 (sebagian besar produk memiliki rating tinggi)
+- **Min - Max:** 0 - 1 (rating terendah dipetakan ke 0, tertinggi ke 1)
+- **Standar Deviasi:** 0.1283 (variabilitas rating cukup rendah)
+
+#### **4.4. RAM (GB)**
+- **Rata-rata:** 0.1868 (mayoritas perangkat memiliki RAM kecil)
+- **Min - Max:** 0 - 1 (RAM terkecil dipetakan ke 0, terbesar ke 1)
+- **Standar Deviasi:** 0.1011 (perbedaan kapasitas RAM antar produk tidak terlalu besar)
+
+#### **4.5. Storage (GB)**
+- **Rata-rata:** 0.3183 (kapasitas penyimpanan rata-rata sekitar 31% dari kapasitas tertinggi)
+- **Min - Max:** 0 - 1 (penyimpanan terkecil dipetakan ke 0, terbesar ke 1)
+- **Standar Deviasi:** 0.2130 (variabilitas kapasitas penyimpanan cukup tinggi)
+
+#### **4.6. Display Size (inch)**
+- **Rata-rata:** 0.8180 (mayoritas perangkat memiliki layar besar)
+- **Min - Max:** 0 - 1 (ukuran layar terkecil dipetakan ke 0, terbesar ke 1)
+- **Standar Deviasi:** 0.0489 (perbedaan ukuran layar antar produk kecil)
+
+#### **4.7. Camera**
+- **Rata-rata:** 0.2213 (rata-rata resolusi kamera sekitar 22% dari nilai maksimum)
+- **Min - Max:** 0 - 1 (kamera terendah ke 0, tertinggi ke 1)
+- **Standar Deviasi:** 0.1367 (beberapa produk memiliki kamera resolusi tinggi)
+
+#### **5. Kesimpulan Normalisasi**
+- **Rentang data telah disesuaikan:** Semua fitur numerik dipetakan ke skala **[0, 1]**.
+- **Konsistensi fitur:** Fitur seperti ukuran layar dan rating memiliki variasi kecil, sedangkan fitur seperti RAM dan penyimpanan menunjukkan variasi lebih besar.
+- **Pola distribusi:** Mayoritas fitur memiliki rata-rata mendekati **0.5**, menunjukkan keseimbangan antara nilai minimum dan maksimum.
+
+Normalisasi ini akan memudahkan analisis lebih lanjut, seperti **clustering**, **machine learning**, dan **analisis berbasis jarak**.
+
+### **6. Encoding Variabel Kategorikal (Brand)**
+Fitur kategorikal seperti **Brand** tidak dapat langsung digunakan dalam model machine learning yang memerlukan input numerik. Oleh karena itu, dilakukan **One-Hot Encoding**.
+
+#### **Langkah-langkah:**
+1. **One-Hot Encoding** digunakan untuk mengubah fitur 'Brand' menjadi bentuk numerik biner.
+2. Setiap **Brand** memiliki kolom sendiri dengan nilai **1** jika produk berasal dari brand tersebut, dan **0** jika bukan.
+3. Encoding ini memastikan bahwa model dapat menangani fitur kategorikal dengan benar tanpa bias yang muncul dari nilai numerik langsung.
+
+#### **Kesimpulan Preprocessing**
+1. **Teks Produk Diperkuat**  
+   - Kolom **'Product Name'** dan **'Description'** digabungkan untuk analisis berbasis teks yang lebih efektif.
+   - Data dikonversi ke format numerik menggunakan **TF-IDF Vectorization**.
+
+2. **Fitur Numerik Dinormalisasi**  
+   - Fitur numerik seperti harga, RAM, penyimpanan, ukuran layar, dan rating dinormalisasi menggunakan **MinMaxScaler**.
+   - Normalisasi memastikan setiap fitur berada dalam rentang yang seragam.
+
+3. **Variabel Kategorikal Diencoding**  
+   - **One-Hot Encoding** digunakan untuk fitur 'Brand' agar dapat digunakan dalam model machine learning.
+
+Dengan preprocessing ini, dataset kini siap untuk berbagai analisis lebih lanjut seperti **clustering, classification, rekomendasi produk, atau model machine learning lainnya**.
 
 ---
 
 ## Modeling
 
-1. **Cosine Similarity Berdasarkan Teks**: Menghitung kemiripan antar produk berdasarkan deskripsi produk menggunakan TF-IDF dan Cosine Similarity.
-2. **Cosine Similarity Berdasarkan Fitur Numerik**: Menghitung kemiripan antar produk berdasarkan spesifikasi teknis seperti harga, RAM, storage, dan kamera.
-3. **Kombinasi Similarity**: Menggabungkan kemiripan teks dan numerik dengan bobot 50%-50% untuk mendapatkan matriks kemiripan akhir.
+### **1. Menghitung Kemiripan Teks Menggunakan Cosine Similarity**
+Untuk mengukur kesamaan antara deskripsi produk, digunakan **Cosine Similarity** berdasarkan representasi **TF-IDF** dari teks.  
+Cosine Similarity mengukur sejauh mana dua vektor teks serupa dalam ruang dimensi tinggi.
+
+#### **Langkah-langkah:**
+1. **TF-IDF Matrix** telah dibuat sebelumnya untuk merepresentasikan teks dalam bentuk numerik.
+2. **Cosine Similarity** dihitung dari matriks ini untuk mendapatkan tingkat kesamaan antar produk berdasarkan deskripsi mereka.
+3. Hasilnya adalah **matriks cosine_sim_text**, yang menunjukkan skor kemiripan antara setiap pasangan produk.
+
+### **2. Menghitung Kemiripan Berdasarkan Fitur Numerik**
+Selain teks, fitur numerik seperti harga, RAM, storage, ukuran layar, dan kamera juga digunakan untuk mengukur kesamaan antarproduk.
+
+#### **Langkah-langkah:**
+1. Fitur numerik diubah menjadi bentuk matriks numerik agar dapat dibandingkan antarproduk.
+2. **Cosine Similarity** diterapkan untuk mengukur kemiripan berdasarkan spesifikasi numerik.
+3. Hasilnya adalah **matriks cosine_sim_numerical**, yang menunjukkan seberapa mirip produk berdasarkan karakteristik teknisnya.
+
+### **3. Menggabungkan Kemiripan Teks dan Numerik**
+Untuk mendapatkan sistem rekomendasi yang lebih komprehensif, kemiripan dari dua sumber informasi dikombinasikan.
+
+#### **Strategi Kombinasi:**
+- Kemiripan berdasarkan teks (**cosine_sim_text**) dan numerik (**cosine_sim_numerical**) diberi **bobot 50%-50%**.
+- Hal ini dilakukan agar deskripsi produk dan spesifikasi teknis memiliki peran yang seimbang dalam menentukan kesamaan antarproduk.
+- Matriks final yang disebut **final_similarity** diperoleh dengan menggabungkan kedua matriks similarity menggunakan metode **rata-rata tertimbang**.
+
+### **4. Konversi Matriks Kemiripan ke DataFrame**
+Agar lebih mudah dianalisis, hasil akhir **final_similarity** dikonversi menjadi **DataFrame**.
+
+#### **Detail DataFrame:**
+- **Baris dan kolom** dari DataFrame diindeks menggunakan nama produk.
+- Setiap sel dalam DataFrame menunjukkan skor kemiripan antara dua produk.
+- Struktur ini memungkinkan pencarian cepat terhadap produk yang paling mirip berdasarkan teks dan spesifikasi numerik.
+
+### **5. Ukuran Matriks Kemiripan**
+- Setelah proses selesai, ukuran matriks yang dihasilkan adalah **(732, 732)**.
+- Artinya, terdapat **732 produk**, dan setiap produk dibandingkan dengan 731 produk lainnya.
+- Setiap nilai dalam matriks menunjukkan seberapa mirip dua produk berdasarkan deskripsi dan spesifikasinya.
+
+#### **Kesimpulan**
+- **Cosine Similarity** digunakan untuk mengukur kemiripan produk berdasarkan **teks** (deskripsi) dan **fitur numerik** (spesifikasi teknis).
+- **Matriks Similarity Gabungan** diperoleh dengan mengombinasikan kemiripan teks dan numerik menggunakan **bobot 50%-50%**.
+- **Hasil akhirnya adalah DataFrame**, yang memungkinkan pencarian produk serupa dengan cepat berdasarkan skor kemiripan.
+- Matriks **final_similarity** dapat digunakan sebagai dasar untuk sistem rekomendasi berbasis kemiripan produk.
 
 ---
 
 ## Evaluation
 
-Metrik evaluasi yang digunakan adalah **precision**, yang mengukur seberapa banyak rekomendasi yang diberikan relevan dengan produk yang dicari. Precision dihitung dengan formula:
+### **1. Fungsi `product_recommendations`**
+Fungsi ini digunakan untuk memberikan rekomendasi produk berdasarkan kemiripan antara produk yang diinginkan dengan produk lain dalam dataset.
 
-\[
-\text{Precision} = \frac{\text{Jumlah rekomendasi yang relevan}}{\text{Jumlah rekomendasi yang diberikan}}
-\]
+#### **Parameter Fungsi:**
+- **`product_name`**: Nama produk yang menjadi acuan rekomendasi.
+- **`similarity_data`**: Matriks kemiripan antara produk, yang dihitung menggunakan **Cosine Similarity**. Matriks ini memiliki nama produk sebagai indeks dan kolom.
+- **`items`**: Data yang berisi informasi produk yang akan direkomendasikan. Dalam contoh ini, hanya menyertakan **nama produk** dan fitur **kamera**.
+- **`k`**: Jumlah rekomendasi produk yang akan diberikan.
 
-Contoh evaluasi:
-- Produk yang dicari: POCO C61
-- Rekomendasi yang diberikan: 5 produk
-- Rekomendasi yang relevan: 4 produk
+#### **Proses dalam Fungsi:**
+1. **Mengambil data kemiripan**  
+   - Fungsi mencari produk lain dalam dataset yang memiliki kemiripan tertinggi dengan produk yang dipilih.
+   
+2. **Menggunakan `argpartition`**  
+   - `argpartition` digunakan untuk memilih **produk-produk yang paling mirip** berdasarkan nilai **Cosine Similarity** terbesar.
+   
+3. **Menghapus produk yang sedang dicari**  
+   - Agar produk yang sedang dicari **tidak muncul** dalam daftar rekomendasi, produk tersebut dihapus dari hasil rekomendasi.
+   
+4. **Menggabungkan dan Menampilkan**  
+   - Menampilkan daftar produk yang direkomendasikan beserta fitur relevan (misalnya, **nama produk dan fitur kamera**).
 
-\[
-\text{Precision} = \frac{4}{5} = 0.8 = 80\%
-\]
+### **2. Menampilkan Produk Acuan untuk Rekomendasi**
+Untuk mendapatkan rekomendasi produk, kita memilih sebuah produk dalam dataset sebagai **produk acuan**.  
 
-Dengan demikian, sistem rekomendasi ini memiliki precision sebesar 80%, yang menunjukkan bahwa 80% dari rekomendasi yang diberikan benar-benar relevan dengan produk yang dicari.
+**Contoh Produk Acuan:**
+Produk dengan indeks **100** dalam dataset memiliki informasi sebagai berikut:
+
+| Index | Product Name | Camera |
+|--------|-------------------------------------------------|---------|
+| 125    | REDMI Note 13 Pro+ 5G (Fusion White, 256 GB)  | 0.030303 |
+
+---
+
+### **3. Menampilkan Rekomendasi Produk**
+Selanjutnya, sistem rekomendasi dijalankan untuk mencari **produk paling mirip** dengan produk acuan.
+
+**Contoh Panggilan Fungsi:**  
+Menggunakan produk dengan indeks **150** sebagai acuan rekomendasi:
+
+```python
+product_recommendations(mobile_data.iloc[150]['Product Name'])
 
 ---
 
