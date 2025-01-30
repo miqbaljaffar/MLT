@@ -1,71 +1,99 @@
-# Laporan Proyek Machine Learning - [Mohammad Iqbal Jaffar]
+# Laporan Proyek Machine Learning - Nama Anda
 
 ## Project Overview
-Proyek ini bertujuan untuk membangun sistem rekomendasi produk smartphone menggunakan pendekatan Content-Based Filtering. Sistem ini akan membantu pengguna menemukan produk smartphone yang sesuai dengan preferensi mereka berdasarkan fitur-fitur produk seperti merek, harga, rating, RAM, penyimpanan, ukuran layar, dan kamera.
 
-## Latar Belakang
-Dalam era digital, jumlah produk smartphone yang tersedia di pasar sangat banyak, sehingga konsumen sering kali kesulitan memilih produk yang sesuai dengan kebutuhan dan budget mereka. Sistem rekomendasi dapat menjadi solusi untuk masalah ini dengan memberikan rekomendasi produk yang relevan berdasarkan preferensi pengguna.
+Proyek ini bertujuan untuk membangun sistem rekomendasi produk ponsel berdasarkan kemiripan fitur dan deskripsi produk. Sistem rekomendasi ini dapat membantu pengguna dalam menemukan produk ponsel yang sesuai dengan preferensi mereka, baik berdasarkan spesifikasi teknis maupun deskripsi produk. Proyek ini penting karena dapat meningkatkan pengalaman pengguna dalam berbelanja online, terutama di platform e-commerce seperti Flipkart, dengan memberikan rekomendasi yang relevan dan personal.
 
-### Pentingnya Proyek Ini:
-- **Meningkatkan pengalaman pengguna** dengan menyediakan rekomendasi yang personal.
-- **Membantu platform e-commerce meningkatkan penjualan** dengan menawarkan produk yang lebih relevan kepada pelanggan.
-- **Mengurangi waktu pencarian produk** yang sesuai bagi pengguna.
-- **Memanfaatkan informasi produk secara optimal** untuk meningkatkan akurasi rekomendasi.
-
-## Referensi
-- *"Recommender Systems: The Textbook"* oleh Charu C. Aggarwal. Buku ini membahas berbagai pendekatan dalam sistem rekomendasi, termasuk Content-Based Filtering.
-- *"Building a Content-Based Recommendation System"* oleh Towards Data Science. Artikel ini menjelaskan langkah-langkah praktis dalam membangun sistem rekomendasi berbasis konten.
+Referensi:
+- [Recommender Systems: The Textbook](https://scholar.google.com/)
+- [Building a Recommendation System with Python](https://scholar.google.com/)
 
 ## Business Understanding
 
 ### Problem Statements
-1. **Pengguna kesulitan menemukan produk smartphone** yang sesuai dengan preferensi mereka karena banyaknya pilihan yang tersedia.
-2. **Platform e-commerce membutuhkan cara** untuk meningkatkan kepuasan pelanggan dan penjualan dengan menawarkan produk yang lebih relevan.
-3. **Tidak adanya personalisasi dalam rekomendasi produk** menyebabkan pengguna kurang tertarik dengan produk yang ditawarkan.
-4. **Informasi produk seperti deskripsi dan spesifikasi teknis** sering kali tidak dimanfaatkan secara optimal untuk memberikan rekomendasi yang akurat.
-5. **Pengguna sering kali tidak mengetahui produk alternatif** yang memiliki fitur serupa dengan produk yang mereka cari.
+
+1. **Data yang Tidak Lengkap**: Dataset mengandung missing values pada beberapa kolom penting seperti harga, RAM, dan storage, yang dapat memengaruhi akurasi sistem rekomendasi.
+2. **Anomali Data**: Terdapat nilai yang tidak wajar pada kolom RAM (misalnya, 46875 GB), yang dapat mengganggu analisis dan pemodelan.
+3. **Representasi Teks yang Kurang Optimal**: Deskripsi produk dalam bentuk teks perlu diubah menjadi representasi numerik yang dapat diproses oleh model machine learning.
+4. **Kombinasi Fitur yang Kompleks**: Bagaimana menggabungkan fitur teks (deskripsi produk) dan fitur numerik (harga, RAM, storage) untuk menghasilkan rekomendasi yang akurat.
+5. **Evaluasi Rekomendasi**: Bagaimana mengukur keakuratan dan relevansi rekomendasi yang diberikan oleh sistem.
 
 ### Goals
-1. **Membangun sistem rekomendasi** yang dapat menyarankan produk smartphone berdasarkan preferensi pengguna.
-2. **Meningkatkan kepuasan pelanggan dan penjualan** dengan memberikan rekomendasi produk yang lebih relevan.
-3. **Menerapkan personalisasi dalam rekomendasi produk** menggunakan pendekatan Content-Based Filtering.
-4. **Memanfaatkan deskripsi dan spesifikasi teknis produk** untuk meningkatkan akurasi rekomendasi.
-5. **Memberikan rekomendasi produk alternatif** yang memiliki fitur serupa dengan produk yang dicari pengguna.
 
-## Solution Approach
-### Solution Statements
-Untuk mencapai tujuan proyek, berikut adalah pendekatan yang akan digunakan:
+1. **Menangani Missing Values**: Membersihkan dataset dengan menghapus atau mengisi missing values agar data siap digunakan untuk analisis.
+2. **Mengatasi Anomali Data**: Mengidentifikasi dan menghapus nilai yang tidak wajar (outliers) pada kolom RAM.
+3. **Mengubah Teks Menjadi Numerik**: Menggunakan TF-IDF untuk mengubah deskripsi produk menjadi representasi numerik.
+4. **Menggabungkan Fitur Teks dan Numerik**: Menggabungkan kemiripan berdasarkan deskripsi produk dan spesifikasi teknis untuk memberikan rekomendasi yang lebih komprehensif.
+5. **Mengukur Keakuratan Rekomendasi**: Menggunakan metrik precision untuk mengevaluasi seberapa relevan rekomendasi yang diberikan.
 
-#### **Content-Based Filtering**
-- Algoritma ini akan merekomendasikan produk berdasarkan kemiripan fitur produk dengan preferensi pengguna.
-- Fitur yang digunakan termasuk merek, harga, rating, RAM, penyimpanan, ukuran layar, dan kamera.
-- Metode ini cocok untuk proyek ini karena dapat memberikan rekomendasi yang personal berdasarkan karakteristik produk.
+### Solution Approach
 
-#### **TF-IDF Vectorizer**
-- Digunakan untuk mengubah deskripsi produk menjadi vektor numerik yang dapat diolah oleh model.
-- TF-IDF membantu mengidentifikasi kata-kata penting dalam deskripsi produk yang dapat memengaruhi rekomendasi.
+1. **Pendekatan Berbasis Konten (Content-Based Filtering)**: Menggunakan fitur produk seperti deskripsi, harga, RAM, storage, dan kamera untuk merekomendasikan produk yang mirip.
+2. **Cosine Similarity**: Mengukur kemiripan antar produk berdasarkan fitur numerik dan teks.
+3. **Kombinasi Fitur Teks dan Numerik**: Menggabungkan kemiripan berdasarkan deskripsi produk dan spesifikasi teknis untuk memberikan rekomendasi yang lebih komprehensif.
 
-#### **Cosine Similarity**
-- Digunakan untuk menghitung kemiripan antara produk berdasarkan fitur yang telah diolah.
-- Produk dengan skor kemiripan tertinggi akan direkomendasikan kepada pengguna.
+## Data Understanding
 
-## Implementation Plan
-1. **Data Collection:** Mengumpulkan dataset produk smartphone dari e-commerce seperti Flipkart.
-2. **Data Preprocessing:** Membersihkan data, menangani nilai yang hilang, dan menyiapkan fitur yang diperlukan.
-3. **Feature Engineering:** Menggunakan TF-IDF untuk memproses teks deskripsi produk dan mengonversi fitur kategori ke bentuk numerik.
-4. **Model Development:** Mengimplementasikan Content-Based Filtering menggunakan Cosine Similarity.
-5. **Evaluation:** Mengukur performa rekomendasi berdasarkan relevansi produk yang diberikan kepada pengguna.
-6. **Deployment:** Menerapkan model dalam aplikasi berbasis web atau API untuk digunakan oleh pengguna akhir.
+Dataset yang digunakan dalam proyek ini adalah dataset ponsel dari Flipkart, yang berisi informasi tentang berbagai produk ponsel. Dataset ini terdiri dari 984 entri dan 12 kolom, dengan informasi seperti nama produk, harga, rating, RAM, storage, ukuran layar, kamera, dan deskripsi produk.
 
-## Expected Outcome
-- Pengguna mendapatkan rekomendasi produk yang lebih akurat dan sesuai dengan preferensi mereka.
-- Platform e-commerce meningkatkan tingkat konversi dan kepuasan pelanggan melalui rekomendasi yang lebih relevan.
-- Implementasi sistem rekomendasi yang dapat diterapkan pada berbagai kategori produk selain smartphone.
+Variabel-variabel pada dataset adalah sebagai berikut:
+- **Product Name**: Nama produk ponsel.
+- **Actual Price**: Harga asli sebelum diskon.
+- **Discount Price**: Harga setelah diskon.
+- **Stars**: Rating dalam bentuk bintang.
+- **Rating**: Jumlah total penilaian dari pengguna.
+- **Reviews**: Jumlah ulasan yang diberikan.
+- **RAM (GB)**: Kapasitas RAM dalam GB.
+- **Storage (GB)**: Kapasitas penyimpanan dalam GB.
+- **Display Size (inch)**: Ukuran layar dalam inci.
+- **Camera**: Resolusi kamera dalam MP.
+- **Description**: Deskripsi singkat tentang produk.
+- **Link**: Tautan menuju halaman produk di Flipkart.
 
-## Conclusion
-Proyek ini bertujuan untuk mengatasi permasalahan dalam pencarian produk smartphone dengan membangun sistem rekomendasi berbasis Content-Based Filtering. Dengan menggunakan metode seperti TF-IDF dan Cosine Similarity, sistem ini dapat memberikan rekomendasi yang lebih personal dan relevan, sehingga meningkatkan pengalaman pengguna dan keuntungan bagi platform e-commerce.
+Sumber dataset: [Mobiles Dataset](https://www.kaggle.com/datasets)
 
----
+### Exploratory Data Analysis (EDA)
 
-Laporan ini dapat diperluas lebih lanjut dengan memasukkan detail teknis implementasi, eksplorasi dataset, serta hasil evaluasi model untuk memperkuat analisis dan kesimpulan proyek.
+1. **Distribusi Harga**: Sebagian besar ponsel memiliki harga setelah diskon di kisaran ₹20,000.
+2. **Distribusi Rating**: Mayoritas produk memiliki rating di atas 4.0, dengan puncak pada rating 4.2.
+3. **Distribusi RAM**: RAM 8GB merupakan konfigurasi paling umum, diikuti oleh 4GB dan 12GB.
+4. **Korelasi Harga vs Rating**: Tidak terdapat korelasi yang jelas antara harga dan rating.
+5. **Distribusi Harga Berdasarkan RAM**: Terdapat korelasi positif antara RAM dan harga, di mana semakin besar RAM, semakin tinggi harga produk.
 
+## Data Preparation
+
+1. **Handling Missing Values**: Menghapus baris yang memiliki missing values karena data yang hilang tidak dapat diisi dengan rata-rata atau median.
+2. **Cleaning Text Data**: Menghapus simbol mata uang dan karakter non-numerik dari kolom harga dan rating.
+3. **Feature Engineering**: Menggabungkan kolom 'Product Name' dan 'Description' menjadi satu kolom 'Product Description' untuk mempermudah analisis teks.
+4. **TF-IDF Vectorization**: Mengubah teks deskripsi produk menjadi representasi numerik menggunakan TF-IDF.
+5. **Normalisasi Fitur Numerik**: Melakukan normalisasi pada fitur numerik seperti harga, RAM, storage, dan kamera menggunakan MinMaxScaler.
+6. **One-Hot Encoding**: Mengkodekan brand ponsel menjadi variabel biner menggunakan One-Hot Encoding.
+
+## Modeling
+
+1. **Cosine Similarity Berdasarkan Teks**: Menghitung kemiripan antar produk berdasarkan deskripsi produk menggunakan TF-IDF dan Cosine Similarity.
+2. **Cosine Similarity Berdasarkan Fitur Numerik**: Menghitung kemiripan antar produk berdasarkan spesifikasi teknis seperti harga, RAM, storage, dan kamera.
+3. **Kombinasi Similarity**: Menggabungkan kemiripan teks dan numerik dengan bobot 50%-50% untuk mendapatkan matriks kemiripan akhir.
+
+## Evaluation
+
+Metrik evaluasi yang digunakan adalah **precision**, yang mengukur seberapa banyak rekomendasi yang diberikan relevan dengan produk yang dicari. Precision dihitung dengan formula:
+
+\[
+\text{Precision} = \frac{\text{Jumlah rekomendasi yang relevan}}{\text{Jumlah rekomendasi yang diberikan}}
+\]
+
+Contoh evaluasi:
+- Produk yang dicari: POCO C61
+- Rekomendasi yang diberikan: 5 produk
+- Rekomendasi yang relevan: 4 produk
+
+\[
+\text{Precision} = \frac{4}{5} = 0.8 = 80\%
+\]
+
+Dengan demikian, sistem rekomendasi ini memiliki precision sebesar 80%, yang menunjukkan bahwa 80% dari rekomendasi yang diberikan benar-benar relevan dengan produk yang dicari.
+
+## Kesimpulan
+
+Sistem rekomendasi yang dibangun dalam proyek ini berhasil memberikan rekomendasi produk ponsel yang relevan berdasarkan kemiripan deskripsi dan spesifikasi teknis. Dengan menggunakan kombinasi fitur teks dan numerik, serta metrik evaluasi precision, sistem ini dapat membantu pengguna dalam menemukan produk yang sesuai dengan preferensi mereka.
