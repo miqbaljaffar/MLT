@@ -1,12 +1,11 @@
-# Laporan Proyek Machine Learning - Nama Anda
+# Laporan Proyek Machine Learning - Mohammad Iqbal Jaffar
 
 ## Project Overview
 
-Proyek ini bertujuan untuk membangun sistem rekomendasi produk ponsel berdasarkan kemiripan fitur dan deskripsi produk. Sistem rekomendasi ini dapat membantu pengguna dalam menemukan produk ponsel yang sesuai dengan preferensi mereka, baik berdasarkan spesifikasi teknis maupun deskripsi produk. Proyek ini penting karena dapat meningkatkan pengalaman pengguna dalam berbelanja online, terutama di platform e-commerce seperti Flipkart, dengan memberikan rekomendasi yang relevan dan personal.
+Proyek ini bertujuan untuk membangun sistem rekomendasi produk ponsel berdasarkan kemiripan fitur. Sistem rekomendasi ini dapat membantu pengguna dalam menemukan produk ponsel yang sesuai dengan preferensi mereka, baik berdasarkan spesifikasi teknis maupun deskripsi produk. Proyek ini penting karena dapat meningkatkan pengalaman pengguna dalam berbelanja online, terutama di platform e-commerce seperti Flipkart, dengan memberikan rekomendasi yang relevan dan personal.
 
 Referensi:
-- [Recommender Systems: The Textbook](https://scholar.google.com/)
-- [Building a Recommendation System with Python](https://scholar.google.com/)
+- [ARTICLES : Sistem rekomendasi- Content Based](https://mti.binus.ac.id/2020/11/17/sistem-rekomendasi-content-based/)
 
 ---
 
@@ -171,7 +170,11 @@ Karena dataset ini berisi data produk nyata dari pasar, baris dengan missing val
 
 Untuk menghapus baris yang mengandung missing values, kita menggunakan fungsi `dropna()`. Fungsi ini akan menghapus baris yang memiliki nilai kosong pada salah satu kolom.
 
-Setelah menghapus baris dengan missing values, kita dapat memeriksa kembali apakah masih ada nilai yang hilang dengan menjalankan fungsi pengecekan missing values. Hasil pengecekan menunjukkan bahwa kini semua kolom dalam dataset tidak memiliki missing values.
+Setelah menghapus baris dengan missing values, kita dapat memeriksa kembali apakah masih ada nilai yang hilang dengan menjalankan fungsi pengecekan missing values. 
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r15.PNG)
+
+Hasil pengecekan menunjukkan bahwa kini semua kolom dalam dataset tidak memiliki missing values.
 
 ### Memastikan Harga dalam Format Numerik
 
@@ -402,6 +405,8 @@ Setelah normalisasi dilakukan, dilakukan pengecekan kembali statistik deskriptif
 ### **4. Statistik Deskriptif Setelah Normalisasi**
 Setelah normalisasi, berikut adalah hasil distribusi dari beberapa fitur utama:
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r13.PNG)
+
 #### **4.1. Actual Price**
 - **Rata-rata:** 0.1694 (sekitar 17% dari harga maksimum)
 - **Min - Max:** 0 - 1 (harga minimum menjadi 0, harga maksimum menjadi 1)
@@ -555,18 +560,102 @@ Produk dengan indeks **100** dalam dataset memiliki informasi sebagai berikut:
 ### **3. Menampilkan Rekomendasi Produk**
 Selanjutnya, sistem rekomendasi dijalankan untuk mencari **produk paling mirip** dengan produk acuan.
 
-**Contoh Panggilan Fungsi:**  
-Menggunakan produk dengan indeks **150** sebagai acuan rekomendasi:
-
-```python
-product_recommendations(mobile_data.iloc[150]['Product Name'])
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r14.PNG)
 
 ---
 
-## Kesimpulan
+## **Analisis Problem Statement dan Evaluasi Hasil**
 
-Sistem rekomendasi yang dibangun dalam proyek ini berhasil memberikan rekomendasi produk ponsel yang relevan berdasarkan kemiripan deskripsi dan spesifikasi teknis. Dengan menggunakan kombinasi fitur teks dan numerik, serta metrik evaluasi precision, sistem ini dapat membantu pengguna dalam menemukan produk yang sesuai dengan preferensi mereka.
+Berdasarkan implementasi sistem rekomendasi pada proyek ini, berikut adalah analisis mengenai apakah problem statement yang diajukan telah terjawab.
 
---- 
+---
 
-Dengan struktur ini, laporan Anda menjadi lebih lengkap, terstruktur, dan mudah dipahami. Semoga membantu! 😊
+### **1. Bagaimana cara merekomendasikan produk ponsel yang paling relevan kepada pengguna berdasarkan preferensi mereka?**
+#### **Jawaban:**  
+Sistem rekomendasi telah dibangun dengan menggunakan kombinasi **Cosine Similarity** pada fitur **teks** (deskripsi produk) dan **numerik** (harga, RAM, storage, kamera, dll.). Dengan menggabungkan kedua jenis fitur ini, sistem dapat memberikan rekomendasi produk yang lebih relevan.  
+
+Fungsi `product_recommendations` memungkinkan pemilihan produk tertentu sebagai referensi dan menampilkan daftar produk dengan tingkat kemiripan tertinggi.
+
+---
+
+### **2. Bagaimana memastikan bahwa rekomendasi yang diberikan tidak hanya berdasarkan satu fitur (seperti harga), tetapi juga mempertimbangkan fitur lain seperti RAM, storage, dan kamera?**
+#### **Jawaban:**  
+Pendekatan yang digunakan memastikan bahwa rekomendasi tidak hanya bergantung pada satu fitur.  
+- **Cosine Similarity diterapkan pada fitur numerik** seperti harga, RAM, storage, dan kamera.  
+- **Cosine Similarity juga diterapkan pada deskripsi produk** untuk menangkap kesamaan dari sisi teks.  
+- **Kombinasi dua matriks kemiripan** dilakukan dengan bobot 50%-50% agar sistem memperhitungkan informasi secara seimbang.  
+
+Dengan pendekatan ini, sistem tidak hanya mempertimbangkan harga tetapi juga fitur lainnya, sehingga menghasilkan rekomendasi yang lebih akurat.
+
+---
+
+### **3. Bagaimana mengatasi masalah data yang tidak lengkap atau tidak konsisten dalam dataset produk ponsel?**
+#### **Jawaban:**  
+Beberapa langkah telah dilakukan untuk menangani data yang tidak lengkap atau tidak konsisten:
+- **Mengubah nilai "NIL" menjadi NaN** untuk mengidentifikasi data yang hilang.
+- **Menghapus baris dengan nilai NaN**, karena nilai tersebut tidak dapat diisi menggunakan metode seperti rata-rata atau median (karena bersifat data real).  
+- **Membersihkan dan mengonversi fitur numerik** seperti harga, RAM, storage, dan kamera ke format yang sesuai agar bisa diproses dengan benar.  
+- **Menghapus anomali data**, misalnya nilai RAM yang tidak masuk akal seperti **46875 GB**.  
+
+Dengan langkah-langkah ini, kualitas dataset menjadi lebih baik dan dapat digunakan untuk membangun sistem rekomendasi yang akurat.
+
+---
+
+### **4. Bagaimana memastikan bahwa sistem rekomendasi dapat memberikan rekomendasi yang beragam, bukan hanya produk dengan spesifikasi yang sangat mirip?**
+#### **Jawaban:**  
+Sistem rekomendasi yang diterapkan menggunakan **Cosine Similarity**, yang menggabungkan fitur teks dan numerik. Hal ini memungkinkan sistem untuk memberikan rekomendasi yang lebih luas dibandingkan jika hanya menggunakan satu jenis fitur.  
+
+Namun, ada potensi bahwa rekomendasi yang dihasilkan masih terlalu homogen, karena produk dengan spesifikasi yang sangat mirip dapat mendominasi daftar rekomendasi. Untuk meningkatkan keragaman rekomendasi, beberapa teknik dapat diterapkan, seperti:
+- **Diversifikasi rekomendasi** dengan membatasi jumlah produk yang sangat mirip dalam satu daftar.
+- **Menerapkan metode re-ranking**, yang mengatur ulang daftar rekomendasi agar lebih beragam berdasarkan kategori atau fitur lain.
+- **Menyesuaikan bobot fitur dalam Cosine Similarity**, misalnya memberikan bobot lebih besar pada fitur tertentu untuk menciptakan variasi dalam rekomendasi.
+
+---
+
+### **5. Bagaimana mengukur keefektifan sistem rekomendasi dalam memberikan rekomendasi yang sesuai dengan preferensi pengguna?**
+#### **Jawaban:**  
+Sistem rekomendasi telah dievaluasi menggunakan **precision**, yang mengukur persentase produk yang benar-benar relevan dari total rekomendasi yang diberikan.  
+
+Precision dihitung dengan rumus berikut:
+
+\[
+\text{Precision} = \frac{\text{Jumlah rekomendasi yang relevan}}{\text{Jumlah rekomendasi yang diberikan}}
+\]
+
+Pada contoh hasil rekomendasi:
+- **4 dari 5 produk yang direkomendasikan** memiliki kemiripan yang sangat tinggi dengan produk yang dicari.  
+- Precision dihitung sebagai:
+
+\[
+\text{Precision} = \frac{4}{5} = 0.8 = 80\%
+\]
+
+Precision sebesar **80%** menunjukkan bahwa sebagian besar rekomendasi yang diberikan relevan dengan produk yang dicari.
+
+Namun, precision saja belum cukup untuk mengukur kualitas sistem rekomendasi secara keseluruhan. Evaluasi dapat ditingkatkan dengan menggunakan metrik tambahan seperti:
+- **Recall**: Mengukur seberapa banyak produk yang benar-benar relevan berhasil direkomendasikan.
+- **F1-score**: Kombinasi antara precision dan recall untuk evaluasi yang lebih seimbang.
+- **NDCG (Normalized Discounted Cumulative Gain)**: Mengukur relevansi rekomendasi berdasarkan urutan peringkat.
+- **User feedback**: Melibatkan pengguna untuk memberikan umpan balik langsung terkait rekomendasi yang diberikan.
+
+---
+
+### **Kesimpulan**
+Sistem rekomendasi yang dikembangkan telah menjawab sebagian besar pertanyaan utama dalam problem statement. Implementasi berbasis **Cosine Similarity pada teks dan numerik** telah memberikan hasil yang cukup baik dalam hal:
+- **Mempertimbangkan berbagai fitur produk**, bukan hanya satu aspek seperti harga.
+- **Menangani data yang tidak lengkap dan tidak konsisten** agar dapat digunakan secara optimal.
+- **Memberikan rekomendasi yang relevan**, dengan precision mencapai **80%** pada contoh kasus yang diuji.
+
+Namun, ada beberapa area yang dapat diperbaiki untuk meningkatkan kualitas sistem:
+1. **Meningkatkan keragaman rekomendasi**, agar tidak hanya memberikan produk yang terlalu mirip tetapi juga menawarkan variasi yang lebih luas.  
+2. **Melakukan evaluasi yang lebih komprehensif**, menggunakan metrik tambahan seperti recall, F1-score, dan NDCG.  
+3. **Melibatkan umpan balik pengguna**, untuk memastikan bahwa rekomendasi yang diberikan benar-benar sesuai dengan preferensi pengguna.
+
+---
+
+## Referensi
+
+Wicaksono, A. P. (2020). Sistem rekomendasi pemilihan smartphone Android dengan dana terbatas menggunakan Modified Simple Additive Weighting (M-SAW). TRANSFORMATIKA, 17(2), 115-123.
+
+Rohman Hariri, F., Ujkani, A., & Linggawahyurochim, H. (2022). Sistem rekomendasi produk menggunakan metode User Based Collaborative Filtering: Studi kasus pada aplikasi Sindomall. Jurnal TEKNIKA, Volume 11(3), 208-217. https://doi.org/10.34148/teknika.v11i3.538
+
