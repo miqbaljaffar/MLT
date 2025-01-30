@@ -119,6 +119,8 @@ Berikut adalah cara untuk menampilkan informasi dataset:
 1. Fungsi `info()` digunakan untuk menampilkan informasi umum tentang dataset.
 2. Output dari fungsi ini mencakup jumlah total entri (984 entri), jumlah kolom (12 kolom), tipe data dari masing-masing kolom (seperti `object`, `float64`), serta jumlah nilai yang tidak kosong pada tiap kolom.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r8.PNG)
+
 Berdasarkan hasil output, kita dapat mengamati beberapa hal berikut:
 - Dataset memiliki 984 entri dan 12 kolom.
 - Sebagian besar kolom bertipe `object` (misalnya, kolom yang berisi string), dan ada dua kolom yang bertipe numerik (`Stars` dan `Display Size (inch)`).
@@ -150,6 +152,8 @@ Berdasarkan pengecekan yang dilakukan, hasil menunjukkan bahwa tidak ada baris d
 Langkah pertama dalam pembersihan data adalah untuk mengidentifikasi kolom mana saja yang memiliki nilai kosong (missing values). Hal ini penting dilakukan untuk mengetahui apakah ada data yang hilang dan memutuskan bagaimana cara menanganinya.
 
 Untuk mengecek missing values dalam dataset, kita menggunakan fungsi `isnull()` yang akan mengembalikan nilai boolean untuk setiap nilai di dalam dataset, di mana `True` berarti nilai tersebut kosong (missing). Kemudian, kita menggunakan fungsi `sum()` untuk menghitung jumlah nilai kosong pada setiap kolom.
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r9.PNG)
 
 Output dari pengecekan missing values menunjukkan bahwa beberapa kolom memiliki nilai kosong, yaitu:
 
@@ -183,6 +187,8 @@ Kolom **Rating** dan **Reviews** mengandung karakter selain angka, seperti teks 
 
 Setelah melakukan pembersihan data, kita perlu memastikan bahwa tipe data setiap kolom sudah sesuai. Untuk itu, kita menggunakan fungsi `info()` yang memberikan informasi tentang jumlah entri non-null dan tipe data dari setiap kolom.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r10.PNG)
+
 Berdasarkan hasil pengecekan tipe data, kita dapat melihat bahwa dataset kini memiliki 734 entri, dan tipe data dari kolom-kolom yang relevan telah berubah menjadi lebih sesuai. Sebagai contoh, kolom **Actual price** dan **Discount price** telah dikonversi ke tipe data `float64`, dan kolom **Rating** serta **Reviews** telah diperbaiki untuk hanya mengandung angka.
 
 ### Menampilkan Statistik Deskriptif
@@ -190,6 +196,8 @@ Berdasarkan hasil pengecekan tipe data, kita dapat melihat bahwa dataset kini me
 Langkah pertama dalam analisis data adalah mendapatkan ringkasan statistik dari kolom numerik dalam dataset. Statistik deskriptif memberikan gambaran umum tentang distribusi nilai dalam dataset, seperti rata-rata, nilai minimum, nilai maksimum, dan variasi antar nilai.
 
 Untuk menampilkan statistik deskriptif, kita dapat menggunakan fungsi `describe()`. Fungsi ini akan memberikan informasi ringkas tentang kolom numerik dalam dataset.
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r11.PNG)
 
 Hasil statistik deskriptif pada dataset ini menunjukkan beberapa informasi penting sebagai berikut:
 
@@ -211,6 +219,8 @@ Hasil statistik deskriptif pada dataset ini menunjukkan beberapa informasi penti
 Pengecekan jumlah nilai unik dalam setiap kolom bertujuan untuk memahami karakteristik data dalam kolom-kolom tersebut. Nilai unik memberikan gambaran tentang keragaman data dan membantu kita mengidentifikasi apakah ada data yang sangat terstandardisasi atau memiliki variasi yang tinggi.
 
 Untuk melakukan pengecekan jumlah nilai unik pada setiap kolom, kita menggunakan fungsi `np.unique()` untuk mendapatkan daftar nilai unik pada setiap kolom dan kemudian menghitung jumlahnya. Kolom dengan nilai unik yang jumlahnya lebih kecil atau sama dengan 12 akan dicetak bersama dengan daftar nilai uniknya, sedangkan kolom dengan nilai unik lebih dari 12 hanya akan menampilkan jumlah nilai uniknya.
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r12.PNG)
 
 Hasil analisis menunjukkan beberapa temuan berikut:
 
