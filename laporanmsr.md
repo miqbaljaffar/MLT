@@ -81,6 +81,8 @@ Contohnya, kita dapat menampilkan preview dataset dengan menggunakan kode beriku
 1. Menggunakan fungsi `head()` pada dataset yang bernama `mobile_data` untuk menampilkan beberapa baris pertama dari dataset.
 2. Output yang dihasilkan akan menampilkan beberapa baris awal dari dataset untuk memudahkan pemahaman struktur dan jenis data yang ada.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r7.PNG)
+
 ### Struktur Dataset
 
 Setelah menampilkan preview dataset, kita dapat mengamati struktur dan kolom-kolom yang ada dalam dataset. Berikut adalah deskripsi dari beberapa kolom utama yang terdapat dalam dataset:
@@ -244,6 +246,8 @@ Langkah pertama adalah visualisasi distribusi harga setelah diskon dalam dataset
 
 Dengan menggunakan histogram, kita dapat menampilkan distribusi harga setelah diskon dengan beberapa parameter tambahan untuk memperjelas distribusinya, seperti menambahkan kurva KDE (Kernel Density Estimation) untuk memperkirakan distribusi data secara halus.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r1.png)
+
 Hasil visualisasi menunjukkan bahwa distribusi harga setelah diskon cenderung ke kanan (right-skewed), yang berarti sebagian besar produk terjual dengan harga lebih rendah, namun ada beberapa produk dengan harga jauh lebih tinggi.
 
 ##### Kesimpulan:
@@ -260,6 +264,8 @@ Hasil visualisasi menunjukkan bahwa distribusi harga setelah diskon cenderung ke
 
 Selanjutnya, visualisasi dilakukan untuk menampilkan distribusi rating produk yang diberikan oleh pengguna. Diagram batang (bar plot) digunakan untuk menghitung jumlah produk yang memiliki rating tertentu. Grafik ini memberikan informasi yang jelas tentang seberapa banyak produk yang mendapat rating dalam rentang nilai tertentu.
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r2.png)
+
 ##### Kesimpulan:
 - Grafik menunjukkan bahwa sebagian besar produk memiliki rating di atas 4.0.
 - Ada lonjakan yang signifikan pada rating 4.2, menunjukkan bahwa rating ini paling sering diberikan pada produk.
@@ -271,6 +277,8 @@ Selanjutnya, visualisasi dilakukan untuk menampilkan distribusi rating produk ya
 #### Visualisasi Distribusi RAM pada Produk
 
 Untuk memahami spesifikasi perangkat lebih lanjut, visualisasi distribusi RAM juga dilakukan. Diagram batang digunakan untuk menampilkan jumlah produk berdasarkan kapasitas RAM yang dimiliki. Ini membantu untuk melihat variasi kapasitas RAM yang ada dalam dataset dan memahami preferensi konsumen terhadap konfigurasi RAM.
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r3.png)
 
 ##### Kesimpulan:
 - Mayoritas perangkat memiliki **RAM 8GB**, dengan sekitar 330 perangkat.
@@ -294,6 +302,8 @@ Dalam visualisasi ini:
 - Sumbu X mewakili harga diskon produk (Discount Price).
 - Sumbu Y mewakili rating produk (Stars).
 
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r4.png)
+
 ##### Kesimpulan:
 - Tidak ada korelasi yang jelas antara harga produk dan rating.
 - Banyak produk dengan harga yang bervariasi memiliki rating yang serupa, terutama di kisaran 4.0 hingga 4.6 bintang.
@@ -303,6 +313,8 @@ Dalam visualisasi ini:
 #### Distribusi Harga Berdasarkan Kapasitas RAM
 
 Selanjutnya, untuk menganalisis bagaimana harga produk terdistribusi berdasarkan kapasitas RAM, digunakan **box plot**. Box plot ini menggambarkan distribusi harga dalam berbagai kategori RAM (dalam GB).
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r5.png)
 
 ##### Kesimpulan:
 - **Korelasi Positif:** Terdapat korelasi positif yang jelas antara kapasitas RAM dan harga. Semakin besar kapasitas RAM, semakin tinggi harga produk.
@@ -321,6 +333,8 @@ Brand dari produk ponsel diekstrak dari nama produk dengan mengambil kata pertam
 - **Sumbu X** menunjukkan brand handphone.
 - **Sumbu Y** menunjukkan harga setelah diskon (Discount Price).
 - Setiap kotak dalam box plot menunjukkan distribusi harga untuk masing-masing brand, dengan nilai median, kuartil pertama, dan kuartil ketiga, serta outlier yang terdeteksi.
+
+![tabel](https://raw.githubusercontent.com/miqbaljaffar/MLT/main/r6.png)
 
 ##### Hasil:
 - Ada beberapa brand dengan harga yang lebih tinggi dan terdapat outlier dengan harga yang sangat tinggi dibandingkan produk lainnya.
